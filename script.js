@@ -3,16 +3,16 @@ const card = document.querySelector('.card');
 const frontCard = document.querySelector('.card-front');
 const frontText = frontCard.querySelector('p');
 const categoryText = frontCard.querySelector('.category');
-const toggleButton = document.querySelector('.toggle-button');
-const modeLabel = document.querySelector('.mode-label');
+const settingsButton = document.querySelector('.settings-button');
+const settingsCard = document.querySelector('.settings-card');
+const mainCard = document.querySelector('.main-card');
+const closeButton = document.querySelector('.close-button');
 
 let scenarios = [];
-let usedScenarios = new Set();  // Track used scenarios
+let usedScenarios = new Set();
 let isShowingBack = true;
-let is360Mode = true;  // Start in 360 mode
-
-// Add rotation tracking
 let currentRotation = 180;  // Start showing back (180°)
+let isSettingsVisible = false;
 
 // Load scenarios
 async function loadScenarios() {
@@ -69,96 +69,163 @@ function updateCard(element, scenario) {
     categoryElement.textContent = scenario.category;
 }
 
-function showModeLabel(text) {
-    modeLabel.textContent = text;
-    modeLabel.classList.add('visible');
+// Add settings handling functions
+function showSettings() {
+    if (isSettingsVisible) return;
+    
+    // Create and add overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'settings-overlay';
+    document.body.appendChild(overlay);
+    overlay.style.display = 'block';
+    
+    // Start the fade in
     setTimeout(() => {
-        modeLabel.classList.remove('visible');
-    }, 2000);  // Hide after 2 seconds
+        overlay.classList.add('visible');
+    }, 50);
+
+    if (isShowingBack) {
+        // If we're starting from the back, go straight to settings
+        const settingsContent = document.querySelector('.settings-content');
+        settingsContent.style.display = 'block';
+        
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+        
+        // Show settings content when card is face-down
+        setTimeout(() => {
+            settingsContent.classList.add('visible');
+        }, 400);
+    } else {
+        // First flip to back
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+
+        // After reaching the back, prepare settings content
+        setTimeout(() => {
+            const settingsContent = document.querySelector('.settings-content');
+            settingsContent.style.display = 'block';
+            
+            // Start the second flip
+            currentRotation += 180;
+            card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+            
+            // Show settings content when card is face-down
+            setTimeout(() => {
+                settingsContent.classList.add('visible');
+            }, 400);
+        }, 800);
+    }
+    
+    isSettingsVisible = true;
+    
+    // Add click outside listener
+    overlay.addEventListener('click', hideSettings);
 }
 
-// Add toggle functionality
-toggleButton.addEventListener('click', () => {
-    is360Mode = !is360Mode;
-    toggleButton.classList.toggle('mode-360');
-    toggleButton.querySelector('.mode-text').textContent = is360Mode ? '↻' : '⟲';
+function hideSettings() {
+    if (!isSettingsVisible) return;
     
-    // Show appropriate label with updated text
-    showModeLabel(is360Mode ? 'NEW SCENARIO MODE' : 'FLIP OVER MODE');
+    // Hide settings content immediately
+    const settingsContent = document.querySelector('.settings-content');
+    settingsContent.classList.remove('visible');
     
-    // Reset to initial state when switching modes
-    if (is360Mode) {
-        currentRotation = 180;
-        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
-        card.classList.remove('flipped-left');
-    } else {
-        card.querySelector('.card-inner').style.transform = '';
-        if (!isShowingBack) {
-            card.classList.add('flipped-left');
-        }
-    }
-});
+    // Fade out overlay
+    const overlay = document.querySelector('.settings-overlay');
+    overlay.classList.remove('visible');
+    
+    // First flip to back
+    currentRotation += 180;
+    card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
 
-// Handle card flip
-async function handleCardFlip() {
+    // After reaching the back, clean up and return to previous state
+    setTimeout(() => {
+        settingsContent.style.display = 'none';
+        
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+        
+        // Remove overlay after animation
+        setTimeout(() => {
+            overlay.remove();
+            isSettingsVisible = false;
+        }, 400);
+    }, 800);
+    
+    saveSettings();
+}
+
+function saveSettings() {
+    const flip360 = document.getElementById('flip360').checked;
+    const flipBack = document.getElementById('flipBack').checked;
+    
+    // If neither is checked, default to flip360
+    if (!flip360 && !flipBack) {
+        document.getElementById('flip360').checked = true;
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('cardSettings', JSON.stringify({ 
+        flip360: document.getElementById('flip360').checked,
+        flipBack: document.getElementById('flipBack').checked
+    }));
+}
+
+function loadSettings() {
+    const settings = JSON.parse(localStorage.getItem('cardSettings')) || { flip360: true, flipBack: false };
+    document.getElementById('flip360').checked = settings.flip360;
+    document.getElementById('flipBack').checked = settings.flipBack;
+}
+
+// Add event listeners
+settingsButton.addEventListener('click', showSettings);
+closeButton.addEventListener('click', hideSettings);
+
+// Load settings on startup
+loadSettings();
+
+// Update the flip logic to use settings
+document.querySelector('.next-card-button').addEventListener('click', async function(e) {
+    if (isSettingsVisible) {
+        e.preventDefault();
+        return;
+    }
     if (card.classList.contains('animating')) return;
     card.classList.add('animating');
 
-    if (is360Mode) {
-        if (isShowingBack) {
-            // First flip: back to front
+    const settings = JSON.parse(localStorage.getItem('cardSettings')) || { flip360: true, flipBack: false };
+
+    if (isShowingBack) {
+        // First flip: back to front
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+        isShowingBack = false;
+    } else if (settings.flip360) {
+        // Full 360 flip with new content
+        const nextScenario = getRandomScenario();
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+        
+        setTimeout(() => {
+            updateCard(frontCard, nextScenario);
             currentRotation += 180;
             card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
-        } else {
-            // Start continuous flip animation
-            const nextScenario = getRandomScenario();
-            
-            // Start the flip
-            currentRotation += 180;
-            card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
-            
-            // Update content mid-flip
-            setTimeout(() => {
-                updateCard(frontCard, nextScenario);
-                currentRotation += 180;
-                card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
-            }, 400);
-            
-            return;
-        }
-    } else {
-        // 180 mode: use original class-based flipping
-        if (isShowingBack) {
-            card.classList.add('flipped-left');
-        } else {
-            card.classList.remove('flipped-left');
-            await new Promise(resolve => setTimeout(resolve, 800));
-            const randomScenario = getRandomScenario();
-            updateCard(frontCard, randomScenario);
-        }
+        }, 400);
+    } else if (settings.flipBack) {
+        // Flip to back
+        currentRotation += 180;
+        card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
+        isShowingBack = true;
     }
-
-    isShowingBack = !isShowingBack;
-}
-
-// Event listeners for both click and touch
-card.addEventListener('click', handleCardFlip);
-card.addEventListener('touchend', (e) => {
-    e.preventDefault();  // Prevent double-firing on mobile
-    handleCardFlip();
 });
 
+// Keep the transitionend listener
 card.addEventListener('transitionend', function() {
     this.classList.remove('animating');
 });
 
-// Initialize
+// Update initialization
 loadScenarios().then(() => {
-    // Start with 360 mode UI
-    toggleButton.classList.add('mode-360');
-    toggleButton.querySelector('.mode-text').textContent = '↻';
-    
-    // Prepare first scenario but don't show it yet
     const randomScenario = getRandomScenario();
     updateCard(frontCard, randomScenario);
     
@@ -166,11 +233,33 @@ loadScenarios().then(() => {
     currentRotation = 180;
     card.querySelector('.card-inner').style.transform = `rotateY(${currentRotation}deg)`;
     
-    // Hide the "HELLO" text
+    // Handle initial text visibility
     frontText.style.opacity = '0';
-    // Show the text only when we flip to it
     setTimeout(() => {
         frontText.style.opacity = '1';
     }, 100);
-    showModeLabel('NEW SCENARIO MODE');
 }).catch(console.error); 
+
+// Add checkbox mutual exclusivity
+document.querySelectorAll('.setting-option input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Uncheck other checkbox
+            document.querySelectorAll('.setting-option input[type="checkbox"]').forEach(otherCheckbox => {
+                if (otherCheckbox !== this) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        } else {
+            // If unchecking, check the other box
+            const otherCheckbox = document.querySelector('.setting-option input[type="checkbox"]:not(:checked)');
+            if (otherCheckbox) {
+                otherCheckbox.checked = true;
+            } else {
+                // If trying to uncheck when it's the only one checked, keep it checked
+                this.checked = true;
+            }
+        }
+        saveSettings();
+    });
+}); 

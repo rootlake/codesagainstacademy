@@ -6,10 +6,15 @@
     <title>Card Game</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" href="cardback.png" as="image">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <div class="game-container">
-        <div class="card">
+        <button class="settings-button">
+            <span class="material-icons">settings</span>
+        </button>
+
+        <div class="card main-card">
             <div class="card-inner">
                 <div class="card-front">
                     <div class="text-container">
@@ -19,17 +24,30 @@
                         <img src="CAClogo.png" alt="CODES against academy" class="logo">
                         <div class="category">Category</div>
                     </div>
+
+                    <div class="settings-content" style="display: none;">
+                        <div class="close-button">×</div>
+                        <h2>Settings</h2>
+                        <div class="settings-options">
+                            <label class="setting-option">
+                                <input type="checkbox" id="flip360" checked>
+                                <span>Flip to New Scenario</span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="checkbox" id="flipBack">
+                                <span>Flip Card Over</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-back">
                     <!-- Removing SVG content entirely -->
                 </div>
             </div>
         </div>
-        <div class="mode-toggle">
-            <div class="mode-label"></div>
-            <button class="toggle-button">
-                <span class="mode-text">↻</span>
-            </button>
+        
+        <div class="button-container">
+            <button class="next-card-button">Next Card</button>
         </div>
     </div>
     <script src="script.js"></script>
