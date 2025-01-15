@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    width: 320px;
+    height: 600px;
+    border: 1px solid #ccc;
+    background: linear-gradient(to bottom, #3b3b3b, #d1d1d1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.card {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+    margin: 0 20px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    overflow: hidden;
+}
+
+.card-front {
+    background: linear-gradient(to bottom, #C6C7C9, #888A8C);
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main text container */
+.card-front .text-container {
+    flex: 1;
+    margin-bottom: 50px; /* Create gutter space for logo/category */
+    overflow: hidden;
+}
+
+.card-front p {
+    margin: 0;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+/* Bottom elements */
+.card-front .bottom-elements {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 40px);
+}
+
+.card-front .category {
+    position: static;
+    font-size: 16px;
+    color: #000;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.card-front .logo {
+    width: 66.67%;
+    height: auto;
+    opacity: 0.8;
+    position: static;
+}
+
+.card-back {
+    background-image: url('cardback.png');
+    background-size: 100% 100%;  /* Using 100% instead of cover for precise scaling */
+    background-position: center;
+    transform: rotateY(180deg);
+}
+
+.card.flipped-left .card-inner {
+    transform: rotateY(0deg);    /* Flip to front */
+}
+
+.mode-toggle {
+    position: absolute;
+    bottom: 20px;
+    width: 250px;  /* Match card width */
+    display: flex;
+    justify-content: flex-end;  /* Align to right */
+    align-items: center;
+    gap: 10px;
+    padding-right: 20px;  /* Smaller padding, stay within frame */
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: #000;
+    padding: 8px;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: normal;
+    transition: transform 0.2s ease;
+}
+
+.toggle-button:hover {
+    transform: scale(1.2);
+}
+
+.mode-label {
+    color: #000;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    right: calc(20px + 45px);  /* Adjust based on new padding */
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mode-label.visible {
+    opacity: 1;
+} 
