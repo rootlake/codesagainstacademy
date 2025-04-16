@@ -1,6 +1,7 @@
 <script lang="ts">
   import { currentCard, type ScenarioCard } from '../store'; // Use relative path for store
   import { onDestroy } from 'svelte';
+  import logoSrc from '/minilogo.png'; // Import the logo
 
   let card: ScenarioCard | null = null;
 
@@ -19,88 +20,103 @@
 </script>
 
 {#if card}
-  <div class="card-display">
-    <div class="card-content">
+  <!-- Renamed outer div to mimic .card-front structure -->
+  <div class="card-front">
+    <!-- Added text-container div -->
+    <div class="text-container">
       <p>{card.scenario}</p>
     </div>
-    <div class="card-footer">
-      <!-- <img src={logoSrc} alt="Codes Against Academy Logo" class="footer-logo"/> -->
-      <span class="footer-logo-placeholder">[Logo]</span>
-      <span class="footer-title">CODES ag<span class="against">a</span>inst academy</span>
-      <span class="footer-category">{card.category}</span>
+    <!-- Renamed footer div to mimic .bottom-elements -->
+    <div class="bottom-elements">
+      <img src={logoSrc} alt="Codes Against Academy Logo" class="logo"/>
+      <span class="category">{card.category}</span>
     </div>
   </div>
 {/if}
 
 <style>
-  .card-display {
-    background: linear-gradient(to bottom, #F0F0F0, #C8C8C8); /* Slightly lighter gradient */
-    border: 1px solid #888; /* Slightly darker border */
-    border-radius: 20px;
-    padding: 1.5rem;
-    color: #000;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    min-height: 300px;
+  /* --- Debug Outlines --- Removed */
+  /*
+  .card-front { outline: 2px dotted cyan; }
+  .text-container { outline: 1px solid yellow; }
+  .bottom-elements { outline: 1px solid magenta; }
+  */
+  /* --- End Debug Outlines --- */
+
+  .card-front {
+    /* --- Dimensions (from original .card) --- */
+    width: 300px;
+    height: 420px;
+    /* --- Background & Appearance (from original .card-front) --- */
+    background: linear-gradient(to bottom, #C6C7C9, #888A8C); /* Original gradient */
+    border-radius: 10px; /* Original rounding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Original shadow */
+    /* --- Layout (from original .card-front) --- */
+    padding: 15px; /* Reduced padding */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.3); /* Stronger shadow */
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
-    position: relative;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
+    position: relative; /* Needed for absolute positioning of footer */
+    margin: 0 auto; /* Center the card */
+    /* --- Font (from original .card-front) --- */
+    font-family: Arial, sans-serif; /* Original font */
+    font-weight: bold;
+    color: #000;
+    /* --- Remove Svelte defaults if needed --- */
+    overflow: hidden; /* Added from original */
   }
 
-  .card-content {
-    flex-grow: 1; /* Allow content to take available space */
-    display: flex;
-    align-items: center; /* Center text vertically */
-    justify-content: center;
-    padding-bottom: 1rem; /* Space above footer */
+  .text-container {
+    flex: 1;
+    margin-bottom: 5px; /* Reduced gutter significantly */
+    overflow: hidden;
+    /* Ensure text aligns top-left */
+    text-align: left;
+    display: flex; /* To align paragraph */
+    align-items: flex-start;
   }
 
-  .card-footer {
+  .text-container p {
+    margin: 0;
+    width: 100%;
+    word-wrap: break-word;
+    font-size: clamp(14px, 3.5vw, 22px); /* Slightly smaller font size range */
+    line-height: 1.3;
+    color: #000;
+    /* Remove any inherited bolding if needed, already on parent */
+    /* font-weight: normal; */
+  }
+
+  .bottom-elements {
+    height: 20px; /* Reduced footer height further */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Times New Roman', Times, serif; /* Serif font for footer */
-    font-weight: normal; /* Normal weight for footer */
-    font-size: 0.9rem;
-    color: #333; /* Darker footer text */
-    text-shadow: none; /* Remove text shadow from footer */
-    border-top: 1px solid #aaa; /* Separator line */
-    padding-top: 0.5rem;
-    margin-top: 1rem; /* Space between content and footer */
+    width: 100%;
+    border-top: 1px solid #aaa;
+    padding-top: 2px; /* Reduced padding */
+    margin-top: 3px; /* Reduced margin */
   }
 
-  .footer-logo-placeholder {
-    /* Style the logo placeholder */
-    font-style: italic;
-    color: #666;
-  }
-  /*
-  .footer-logo {
-     height: 20px;
-     width: auto;
-  }
-  */
-
-  .footer-title {
-    /* Specific styling if needed */
-  }
-  .against {
-    /* Style the 'a' in against if needed, e.g., different font/style */
-     font-family: sans-serif; /* Or specific font */
-     display: inline-block;
-     transform: rotate(-15deg); /* Example rotation */
+  .logo {
+    height: 16px; /* Slightly smaller logo */
+    width: auto;
+    opacity: 0.8; /* Original opacity */
+    display: block; /* Ensure proper rendering */
   }
 
-  .footer-category {
-    /* Specific styling if needed */
+  .category {
+    font-size: clamp(11px, 2vw, 14px); /* Slightly smaller category text */
+    color: #000;
+    font-style: italic; /* Original style */
+    font-weight: normal; /* Original weight */
   }
+
+  /* --- Remove styles specific to drag/interaction for now --- */
+  /* cursor: grab; */
+  /* user-select: none; */
+  /* -webkit-user-select: none; */
+  /* touch-action: none; */
+  /* container-type: inline-size; */
 
 </style> 

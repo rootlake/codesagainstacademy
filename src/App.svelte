@@ -4,6 +4,8 @@
   // Assuming scenarios.json is correctly placed and Vite handles JSON imports
   import scenariosData from './lib/data/scenarios.json';
   import CurrentCardDisplay from './lib/components/CurrentCardDisplay.svelte'; // Import the new component
+  import TierListDisplay from './lib/components/TierListDisplay.svelte'; // Import TierListDisplay
+  import logoSrc from '/minilogo.png'; // Import the logo for the header
 
   // Utility function to shuffle an array (Fisher-Yates)
   function shuffleArray<T>(array: T[]): T[] {
@@ -15,21 +17,28 @@
   }
 
   onMount(() => {
-    // Type assertion might be needed depending on JSON structure and TS config
     const allCards = scenariosData as ScenarioCard[];
+    const scenarioCards = allCards;
 
-    // Filter only scenario cards - REMOVED as all cards are scenarios in this file
-    // const scenarioCards = allCards.filter(card => card.type === 'scenario');
-    const scenarioCards = allCards; // Use all cards directly
+    if (scenarioCards.length === 0) {
+      console.error("No scenario cards found!");
+      return;
+    }
 
-    // Set the full deck (useful for reference or reset later)
-    fullDeck.set(scenarioCards);
+    // Set the full deck reference
+    fullDeck.set([...scenarioCards]);
 
-    // Shuffle and set the available deck
-    availableDeck.set(shuffleArray([...scenarioCards]));
+    // Shuffle the whole deck first
+    const shuffledDeck = shuffleArray([...scenarioCards]);
+
+    // Set the initial card (first from shuffled)
+    currentCard.set(shuffledDeck.shift()!); // Remove first card and set it
+
+    // Set the remaining shuffled cards as the available deck
+    availableDeck.set(shuffledDeck);
 
     // Reset current card and tiers if needed (optional)
-    currentCard.set(null);
+    // currentCard.set(null);
     // tieredCards.set(initialTiers); // Reset tiers if implementing replayability
   });
 
@@ -58,113 +67,168 @@
 </script>
 
 <main class="game-container">
-  <h1>Codes Against Academy - Tier List</h1>
+  <!-- Replace H1 with Logo -->
+  <div class="logo-header">
+    <img src={logoSrc} alt="Codes Against Academy" />
+  </div>
+  <!-- <h1>Codes Against Academy - Tier List</h1> -->
 
   <div class="controls">
     <button on:click={drawCard} disabled={$availableDeck.length === 0}>
-      Draw Scenario Card ({$availableDeck.length} left)
+      Draw Next Card ({$availableDeck.length} left)
     </button>
   </div>
 
   <div class="card-area">
-    {#if $currentCard}
-      <!-- Use the component instead of the placeholder -->
+    <!-- Always display the card component, remove placeholder logic -->
+    <CurrentCardDisplay />
+    <!-- {#if $currentCard}
       <CurrentCardDisplay />
-      <!-- <div class="current-card-placeholder">
-        <h2>Current Scenario</h2>
-        <p>{$currentCard.scenario}</p>
-      </div> -->
     {:else if $availableDeck.length > 0}
-      <p>Click "Draw Scenario Card" to start.</p>
-	{:else}
-	  <p>Deck empty!</p>
-	{/if}
+       Initial state handled by setting currentCard in onMount
+    {:else}
+      <div class="card-placeholder empty">
+         <p>Deck empty!</p>
+      </div>
+    {/if} -->
   </div>
 
   <div class="tier-list-area">
-    <!-- Placeholder for TierListContainer component -->
-    <p>[Tier List will go here]</p>
+    <!-- Use the TierListDisplay component -->
+    <TierListDisplay />
+    <!-- <p>[Tier List will go here]</p> -->
   </div>
 
 </main>
 
 <style>
+  /* --- Global Styles --- */
+  :global(html, body) {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure html also takes height */
+  }
+  :global(body) {
+    /* margin: 0; /* Moved to above reset */
+    background: linear-gradient(to bottom, #C7C8CA, #8B8C8F);
+    color: #000;
+    /* min-height: 100vh; /* Not needed with height: 100% */
+    overflow: hidden; /* Prevent scrolling */
+  }
+  :global(h1) { /* Keep rule but comment out content */
+    /* text-align: center; */
+    /* color: #222; */
+    /* font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+    /* font-size: 1.5rem; */
+    /* margin-top: 1rem; */
+    /* margin-bottom: 0.5rem; */
+    /* outline: 1px solid orange; */
+  }
+
+  /* --- Component Styles --- */
+  .logo-header {
+    text-align: center;
+    padding: 0.5rem 0;
+    /* outline: 1px solid orange; /* Removed */
+  }
+  .logo-header img {
+    height: 30px; /* Adjust logo size as needed */
+    width: auto;
+    opacity: 0.8;
+  }
+
   .game-container {
     max-width: 800px;
-    margin: 2rem auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Updated font */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    height: 100vh;
+    height: 100svh;
+    box-sizing: border-box;
+    /* outline: 2px solid red; /* Removed */
   }
 
   .controls {
     text-align: center;
+    /* outline: 2px solid blue; /* Removed */
+    margin-bottom: 0.5rem;
   }
 
   .controls button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #555; /* Darker button */
+    background-color: #555;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Match font */
+    border: 1px solid #444; /* Added subtle border */
+    border-radius: 8px; /* Slightly more rounded */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: background-color 0.2s ease;
+  }
+  .controls button:hover:not(:disabled) {
+    background-color: #666;
   }
   .controls button:disabled {
     background-color: #777;
+    border-color: #666;
     cursor: not-allowed;
   }
 
-  /* Remove placeholder borders */
-  .card-area,
-  .tier-list-area {
-	border: none; /* Remove border */
-	padding: 0; /* Remove padding */
-	text-align: center;
-  }
-
-  .current-card-placeholder {
-    background: linear-gradient(to bottom, #E0E0E0, #B0B0B0); /* Light gray gradient */
-    border: 1px solid #999; /* Slightly darker border */
-    border-radius: 20px; /* Significant rounding */
-    padding: 2rem; /* More padding */
-    color: #000; /* Black text */
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Bold sans-serif */
-    font-weight: bold;
-    min-height: 300px; /* Give it more height */
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center text vertically */
-    text-align: center; /* Center text horizontally */
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.2); /* Subtle shadow */
-    /* Make text visible on gradient */
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5); /* Subtle light shadow for readability */
-  }
-  .current-card-placeholder h2 {
-    color: #222; /* Darker heading inside card */
+  .card-area {
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    /* outline: 2px solid green; /* Removed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
     margin-bottom: 1rem;
   }
 
+  /* Styles for the placeholder when no card is displayed - NOW UNUSED */
+  /*
+  .card-placeholder {
+    max-width: 300px;
+    margin: 0 auto;
+    aspect-ratio: 2.5 / 3.5;
+    background-color: #BDBDBD;
+    border: 1px solid #999;
+    border-radius: 20px;
+    display: block;
+    color: #666;
+    font-style: italic;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    height: 420px;
+  }
+  .card-placeholder.empty {
+    background-color: #A0A0A0;
+  }
+  .card-placeholder.empty p {
+    margin: 0;
+  }
+  */
+
   .tier-list-area {
     min-height: 100px;
-  }
-
-  /* Basic reset/global styles */
-  :global(body) {
-    margin: 0;
-    background: linear-gradient(to bottom, #D3D3D3, #A9A9A9); /* Outer background gradient */
-    color: #000; /* Default text black for now */
-    min-height: 100vh; /* Ensure gradient covers full height */
-  }
-  :global(h1) {
     text-align: center;
-    color: #222;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 1.5rem; /* Reduced font size significantly */
-    margin-top: 1rem; /* Added some margin */
-    margin-bottom: 0.5rem;
+    border: none;
+    padding: 0;
+    line-height: normal;
+    /* outline: 2px solid purple; /* Removed debug outline */
+    flex-shrink: 0;
+    /* margin-top: auto; /* Removed - let it flow naturally */
   }
+  /* Removed tier-list-area p rule */
+
+  /* REMOVED old .current-card-placeholder styles as they are unused */
+
+  /* --- Debug Outlines --- */
+  h1 { outline: 1px solid orange; }
+  .card-placeholder { outline: 3px dashed lime; } /* Make placeholder outline distinct */
+  /* --- End Debug Outlines --- */
+
 </style>
