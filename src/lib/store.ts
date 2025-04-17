@@ -20,8 +20,8 @@ export type TieredCards = Record<string, ScenarioCard[]>;
 // Holds all scenario cards loaded from JSON
 export const fullDeck = writable<ScenarioCard[]>([]);
 
-// Holds scenario cards available to be drawn
-export const availableDeck = writable<ScenarioCard[]>([]);
+// Holds scenario cards available to be drawn - REMOVED
+// export const availableDeck = writable<ScenarioCard[]>([]);
 
 // The currently active scenario card being discussed/dragged
 export const currentCard = writable<ScenarioCard | null>(null);
@@ -29,7 +29,7 @@ export const currentCard = writable<ScenarioCard | null>(null);
 // Holds the cards assigned to each tier
 const initialTiers: TieredCards = {
   'S': [], 'A': [], 'B': [], 'C': [],
-  'D': [], 'E': [], 'F': [], 'Pass': []
+  'D': [], 'E': [], 'F': [], 'Home': []
 };
 export const tieredCards = writable<TieredCards>(initialTiers);
 

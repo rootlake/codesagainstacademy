@@ -17,8 +17,8 @@
     { id: 'D', color: '#8ab9ed', description: 'Not Okay' },
     { id: 'E', color: '#787ABA', description: 'Terrible' },
     { id: 'F', color: '#CA83B8', description: 'Evil' },
-    // Add Pass/Discard placeholder
-    { id: 'P', color: '#D1D5DB', description: 'Pass' }, // Example gray
+    // Changed Menu to Home
+    { id: 'Home', color: '#D1D5DB', description: 'Home' }, // Example gray
   ];
 </script>
 
@@ -35,12 +35,12 @@
 <style>
   .tier-list-container {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, auto); /* Keep 4 columns */
     justify-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    /* max-width: calc(4 * 90px + 3 * 0.75rem); /* Removed max-width */
+    gap: 0.3rem; /* Further reduced gap */
+    padding: 0.25rem;
+    width: 100%;
+    max-width: 300px; /* Further reduced max-width based on smaller cards */
     margin: 0 auto;
-    /* Parent (.tier-list-area) uses text-align: center to center this grid */
   }
 </style> 

@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { currentCard, type ScenarioCard } from '../store'; // Use relative path for store
+  // Keep only necessary imports and logic
+  import { currentCard, type ScenarioCard } from '../store';
   import { onDestroy } from 'svelte';
-  import logoSrc from '/minilogo.png'; // Import the logo
+  import logoSrc from '/minilogo.png';
+
+  // Remove props
+  // export let onNext: () => void = () => {};
+  // export let onPrev: () => void = () => {};
+  // export let canGoNext: boolean = true;
+  // export let canGoPrev: boolean = false;
 
   let card: ScenarioCard | null = null;
-
-  // Subscribe to the store and update local variable
-  const unsubscribe = currentCard.subscribe(value => {
-    card = value;
-  });
-
-  // Unsubscribe when component is destroyed to prevent memory leaks
+  const unsubscribe = currentCard.subscribe(value => { card = value; });
   onDestroy(unsubscribe);
 
   // Placeholder for footer content later
@@ -20,50 +21,42 @@
 </script>
 
 {#if card}
-  <!-- Renamed outer div to mimic .card-front structure -->
+  <!-- Removed card-wrapper -->
+  <!-- Main card element -->
   <div class="card-front">
-    <!-- Added text-container div -->
     <div class="text-container">
       <p>{card.scenario}</p>
     </div>
-    <!-- Renamed footer div to mimic .bottom-elements -->
     <div class="bottom-elements">
       <img src={logoSrc} alt="Codes Against Academy Logo" class="logo"/>
       <span class="category">{card.category}</span>
     </div>
   </div>
+  <!-- Removed buttons -->
 {/if}
 
 <style>
-  /* --- Debug Outlines --- Removed */
-  /*
-  .card-front { outline: 2px dotted cyan; }
-  .text-container { outline: 1px solid yellow; }
-  .bottom-elements { outline: 1px solid magenta; }
-  */
-  /* --- End Debug Outlines --- */
+  /* Removed .card-wrapper styles */
+  /* Removed .nav-button, .prev, .next styles */
 
   .card-front {
-    /* --- Dimensions (from original .card) --- */
-    width: 300px;
-    height: 420px;
-    /* --- Background & Appearance (from original .card-front) --- */
-    background: linear-gradient(to bottom, #C6C7C9, #888A8C); /* Original gradient */
-    border-radius: 10px; /* Original rounding */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Original shadow */
-    /* --- Layout (from original .card-front) --- */
-    padding: 15px; /* Reduced padding */
+    width: 100%; /* Fill container width */
+    aspect-ratio: 2.5 / 3.5; /* Enforce aspect ratio */
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #C6C7C9, #888A8C);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    position: relative; /* Needed for absolute positioning of footer */
-    margin: 0 auto; /* Center the card */
-    /* --- Font (from original .card-front) --- */
-    font-family: Arial, sans-serif; /* Original font */
+    position: relative;
+    font-family: Arial, sans-serif;
     font-weight: bold;
     color: #000;
-    /* --- Remove Svelte defaults if needed --- */
-    overflow: hidden; /* Added from original */
+    overflow: hidden;
+    max-width: 320px; /* Reduced max width */
+    container-type: inline-size;
   }
 
   .text-container {
@@ -74,13 +67,14 @@
     text-align: left;
     display: flex; /* To align paragraph */
     align-items: flex-start;
+    /* outline: 1px solid yellow; */
   }
 
   .text-container p {
     margin: 0;
     width: 100%;
     word-wrap: break-word;
-    font-size: clamp(14px, 3.5vw, 22px); /* Slightly smaller font size range */
+    font-size: clamp(16px, 8cqw, 32px); /* Final increase to clamp values */
     line-height: 1.3;
     color: #000;
     /* Remove any inherited bolding if needed, already on parent */
@@ -96,13 +90,15 @@
     border-top: 1px solid #aaa;
     padding-top: 2px; /* Reduced padding */
     margin-top: 3px; /* Reduced margin */
+    /* outline: 1px solid magenta; */
   }
 
   .logo {
-    height: 16px; /* Slightly smaller logo */
+    /* Scale relative to card (container) width */
+    height: clamp(12px, 2.5cqw, 18px); /* Example: scale with container, limited range */
     width: auto;
-    opacity: 0.8; /* Original opacity */
-    display: block; /* Ensure proper rendering */
+    opacity: 0.8;
+    display: block;
   }
 
   .category {
