@@ -1,7 +1,7 @@
 <script lang="ts">
   // Keep only necessary imports and logic
-  import { currentCard, type ScenarioCard } from '../store';
-  import { onDestroy } from 'svelte';
+  import { currentCard, type ScenarioCard, isDraggingCard } from '../store';
+  import { onDestroy, onMount } from 'svelte';
   import logoSrc from '/minilogo.png';
 
   // Remove props
@@ -14,15 +14,38 @@
   const unsubscribe = currentCard.subscribe(value => { card = value; });
   onDestroy(unsubscribe);
 
+  let isDragging = false;
+  
+  function handleDragStart(event) {
+      isDragging = true;
+      isDraggingCard.set(true);
+      event.dataTransfer.setData('text/plain', 'card'); // Example: Sending card data
+  }
+  
+  function handleDrag(event) {
+  }
+  
+  function handleDragEnd() {
+      isDragging = false;
+      isDraggingCard.set(false);
+  }
+
   // Placeholder for footer content later
   // Need to get CAClogo.png back into the project (e.g., in /static or /src/assets)
   // const logoSrc = '/CAClogo.png'; // Example path if in /static
-
+  
 </script>
 
 {#if card}
-  <!-- Removed card-wrapper -->
-  <!-- Main card element -->
+  <div class="card-wrapper">
+    <img class="cardback" src="cardback.png" alt="Card Back" />
+    <div 
+      class="current-card" 
+      draggable="true" 
+      on:dragstart={handleDragStart} 
+      on:drag={handleDrag} 
+      on:dragend={handleDragEnd}
+    >
   <div class="card-front">
     <div class="text-container">
       <p>{card.scenario}</p>
@@ -32,6 +55,8 @@
       <span class="category">{card.category}</span>
     </div>
   </div>
+  </div>
+</div>
   <!-- Removed buttons -->
 {/if}
 
@@ -39,6 +64,34 @@
   /* Removed .card-wrapper styles */
   /* Removed .nav-button, .prev, .next styles */
 
+  .card-wrapper {
+    position: relative;
+    height: 100%;
+  }
+  .cardback {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+  }
+  .current-card {
+      /* ... existing styles ... */
+      user-select: none;
+      transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+      opacity: 1;
+      z-index: 2;
+  }
+  :global(.current-card[draggable="true"]:active) {
+    cursor: grabbing;
+  }
+  :global(.current-card[draggable="true"]) {
+    cursor: grab;
+  }
+  
   .card-front {
     width: 100%; /* Fill container width */
     aspect-ratio: 2.5 / 3.5; /* Enforce aspect ratio */
@@ -108,11 +161,17 @@
     font-weight: normal; /* Original weight */
   }
 
-  /* --- Remove styles specific to drag/interaction for now --- */
-  /* cursor: grab; */
-  /* user-select: none; */
-  /* -webkit-user-select: none; */
-  /* touch-action: none; */
-  /* container-type: inline-size; */
+  :global(.current-card[draggable="true"]:focus) {
+    outline: none;
+  }
+  :global(.dragging) {
+      opacity: 0.5;
+      transform: scale(0.8);
+      z-index: 3;
+  }
+  :global(.dragging .cardback){
+      opacity: 1;
+      pointer-events: auto;
+  }
 
 </style> 

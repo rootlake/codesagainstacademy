@@ -34,4 +34,7 @@ const initialTiers: TieredCards = {
 export const tieredCards = writable<TieredCards>(initialTiers);
 
 // Optional: Store for interaction state (e.g., if a card is being dragged)
-export const isDraggingCard = writable<boolean>(false); 
+export const isDraggingCard = writable<boolean>(false);
+
+// Store for currently hovered tier
+export const hoveringTier = writable<string>("");
