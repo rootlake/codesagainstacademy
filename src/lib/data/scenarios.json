@@ -1,0 +1,302 @@
+[
+ {
+   "scenario": "A student uses an AI service to perfectly restore an aging picture of a beloved campus building from the archives. The school uses it as a centerpiece for a major celebration and it is widely appreciated by all.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A teacher incorporates an AI-based image recognition tool into art history lessons, allowing students to explore famous artworks and analyze their styles and themes.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A teacher creates an AI-based image of a famous historical battle and uses it in a class slideshow presentation.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A student prompts an AI-generated self-portrait in the style of a renaissance painter. They use it as their school LMS avatar. ",
+   "category": "Images"
+ },
+ {
+   "scenario": "A teacher makes a meme image using a colleague's face and hangs it in the faculty room. The targeted teacher sees it and laughs all day, finding it hilarious.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A teacher utilizes AI-powered image recognition software to assess student understanding of scientific concepts by analyzing their drawings of biological organisms.",
+   "category": "Images"
+ },
+ {
+   "scenario": "The yearbook team uses AI software to generate images of students in famous memes. Once they have them, they ask each student for permission before publishing them.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A contest for an updated school mascot logo is held, and only two entries are made: a hand-drawn logo and an AI-generated logo. While both are excellent, the AI-generated version wins in a school wide vote.",
+   "category": "Images"
+ },
+ {
+   "scenario": "The yearbook team uses AI software to generate images for the graduating class, showing what they could look like at middle age. Some students get upset by their depictions.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A student makes a seemingly innocuous AI image of a teenager running across a field. When shown in class, the teacher does not recognize the pictured person, but many people in the class laugh uproariously.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A student makes a sexually explicit cartoon AI image of the person they are dating. When that person sees it, they like it, so they send it to other students while at school. It is not a real image of them, but it resembles their face.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A school newspaper incorporates AI-generated caricatures of teachers into their editorial cartoons without obtaining prior consent. The teachers react with a mix of amusement and concern.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A teacher assigns a project where students use AI image tools to create portraits of historical figures. One student makes a flattering image of a controversial politician and other students get angry about it.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A student digitally inserts a teacher's image into a picture of a group of students in the class on vacation, sitting on the beach.",
+   "category": "Images"
+ },
+ {
+   "scenario": "A student creates an AI image of another student in a degrading position and posts it to all fellow students over the school's internal network. The student victim is so distraught that they leave the school permanently.",
+   "category": "Images"
+ },
+ {
+   "scenario": "An English teacher trains an AI model based on years of their feedback to students about essays and papers. Now they can enter a student's paper and get instant feedback in the style of the teacher. The teacher finds it to be accurate.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A language teacher develops an AI-powered language learning app for students to practice vocabulary and grammar. Some students say they love how it matches their exact level.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student uses an AI website to find grammar errors in their essay. It does not fix any errors, it just indicates that issues exist, gives them a rating, and suggests general ways to improve the essay.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A teacher has students intentionally use AI to do topic research in order to critically think about the results. They compare the AI results to other sources, and several students say that it helped them think more deeply.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A teacher uses an AI model to write a polite letter to some angry parents explaining their child's recent low grades. The parents do not mention anything about AI when they respond, and the tone of the letter calms their anger.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student creates an AI-based debate between four historians to help them study about a controversial period in time. They later write an essay response about it on a class test and it earns an A+.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A language teacher makes a simple word-bank style quiz using an AI website. Afterward, they tell the students that it was AI generated. One student gets upset about it because they did poorly.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A teacher collaborates with an AI researcher to develop an AI tutor that provides personalized feedback and guidance to students. It is so successful that the school does not rehire their human tutors the next year.",
+   "category": "Text"
+ },
+ {
+   "scenario": "The head of school uses an AI website to create a speech for the beginning of the year that outlines their ideas on education, ethics, and the use of AI in classes.",
+   "category": "Text"
+ },
+ {
+   "scenario": "After the school president is elected, they reveal that they generated their candidacy speech using an AI website. They said the AI phrased all of their ideas perfectly and helped them win.",
+   "category": "Text"
+ },
+ {
+   "scenario": "After the winner of the school poetry contest is announced, they said they used AI generation for one stanza in a ten stanza poem. They said they used the AI to rephrase the words but it didn't write it from scratch.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student wins the school essay contest, but other students complain that they know an AI generator was used to make the first draft of the essay. The winning student claims that they wrote every word of the essay but does not mention an AI draft.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student has an AI tool generate a poem about a favorite poetry teacher at the end of the year as a gift. The teacher finds the result to be kind and appreciates it, but some faculty colleagues critique it as inappropriate.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student computer is found to have prompts on an AI website about the chemicals and process needed to make bombs. When confronted, the student says they were testing the limits of the AI model.",
+   "category": "Text"
+ },
+ {
+   "scenario": "A student makes an AI-based bot that randomly posts jokes to a student chat. Some of the jokes use racist language and mention other students by name. When confronted, the student says the AI made the jokes, not them.",
+   "category": "Text"
+ },
+ {
+   "scenario": "An AI system is developed to adapt learning materials based on each student's performance. Teachers find that it helps bridge existing knowledge gaps by providing content at a good pace for struggling students.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A group of students collaborates with an AI to design a new educational game. The AI suggests improvements based on learning theories and data from previous successful educational games, while the students contribute creative ideas and educational content.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A school employs an AI-based tutoring system that can converse with students in natural language. It assists with homework using the Socratic method, asking questions instead of just giving answers.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "An AI tool built into a camera is used by teachers to monitor students' progress in real-time during class activities. It alerts teachers when a student seems to be losing interest or is struggling with a concept, allowing for immediate intervention.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "An AI tutoring system is developed to provide personalized learning experiences for students, but it starts recommending only easy tasks to some students, hindering their learning progress.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "An AI application designed to help students choose their majors analyzes students' transcripts to make recommendations. Although it is voluntary, a teacher raises questions about consent and data usage in a faculty meeting about it.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A teacher uses an AI tool to grade papers. They think the results are fair and match how they would have graded. They do not tell their students, and no student complains.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A school deploys an AI plagiarism detector that flags a student's work as plagiarized due to similarities with unpublished works in its database. The detector has a 15% false positive rate when the school tests it.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A teacher embeds a bit of hidden text into their assignment to catch students using AI to plagiarize. A student is caught with these same obscure words in their final paper and is suspended for cheating.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A high school implements AI surveillance cameras to monitor student attendance and behavior. It can recognize faces and clothing to track people from place to place. It sends summaries of its findings to the Dean of Students.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A teacher uses an AI system to detect plagiarism in student essays, but the system flags a creatively written original essay as plagiarized. The student challenges the decision but is made to redo the paper from scratch while being monitored.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A developer creates an AI-powered app to help students with learning disabilities. The app's user agreement says that students under 18 must have parental permission. Some schools use it without reading the agreement, but they do check the box.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A school implements an AI system that customizes learning paths for each student based on their performance. Some students get upset because they disagree with the choices.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A teacher who disagrees with using AI in education demonstrates a biased and inaccurate AI system to show flaws with AI learning tools. Based on the analysis, the administration bans the use of all AI at the school.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A school asks their teachers to build lesson plans and grade student work with an AI based Learning Management System. As teachers leave for other jobs, the school makes AI based versions of those teachers as virtual tutors.",
+   "category": "Learning"
+ },
+ {
+   "scenario": "A biology teacher teaches their class to use an AI animation program to create accurate videos of dinosaurs foraging and migrating. The final class video is noticed on social media and the teacher wins the Innovator of the Year award in a state award ceremony.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A chemistry teacher creates an accurate AI based fly-through of atoms and molecules. Students say that it helped them understand the topic much better, and they do better on the test after viewing them.",
+   "category": "Video"
+ },
+ {
+   "scenario": "An admissions staff member uses an AI program to make a video montage using photos of students in classes, playing sports, and doing other activities. Many prospective student families say they really enjoyed the video.",
+   "category": "Video"
+ },
+ {
+   "scenario": "The drama teacher uses AI to create an anime version of the students acting on stage. The full cast loves it and posts it to social media.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A film teacher uses an AI tool to insert current students into film clips. In one horror movie clip, several of the students are seen to be chased and killed. The students in the class like it, but friends not in the class are uncomfortable and complain to the academic dean.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A dance teacher uses AI to make a video projection of robots dancing alongside a student dancer. The audience goes wild when they see it live. The AI model was trained on a video of the student.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A coach makes an AI animated video of a cheerleading team to demonstrate a planned routine. No likenesses are used, but the physical attributes of the animated team members match the real life cheerleaders.  ",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student records a teacher's lecture in class and then uses an AI website to convert the video file into a transcript with relevant images. They share the resulting video study aid with other students but do not tell the teacher.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student makes an online game version of the school campus, complete with AI created characters resembling real students and teachers. The game spreads all around the student body.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student uses an AI tool to make animated cartoon versions of other students. Everyone finds it fun initially, but then another student uses the tool to make highly suggestive caricature versions of several students.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student makes a GIF of their teacher tripping and falling, but an AI tool is used to distort and cover the face, making it more anonymous. The GIF goes viral among the student body and on social media sites.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student uses AI to insert the likeness of the Dean of Students into a scene from an Austin Powers movie. It is perceived generally as funny but unflattering, and the Dean is upset about it.",
+   "category": "Video"
+ },
+ {
+   "scenario": "An AI tool is used to make a realistic model of the principal's face and voice, and it is used to make a parody video of him as Big Brother from 1984. It is projected on the screen at a school meeting, but no one knows who made it.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student prompts a video generating AI service to make an action movie on a campus that resembles their school. It produces scenes of shooting, explosions, and dying students that are similar to campus but not a perfect match.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student trains an AI model on all the faces in the yearbook. They can now generate realistic fake movies resembling students and faculty and put them in any scene or setting. They do not show anyone what they produce but they tell others about it.",
+   "category": "Video"
+ },
+ {
+   "scenario": "A student uses an AI service to generate a catchy song about the school with custom lyrics. It becomes a huge hit among students and faculty and it is adopted as their school spirit anthem.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A head of school uses an AI audio service to clone their voice. The admissions office uses it to make individual greetings for each new student, and families say that they felt very welcome and happy when they hear them.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "The director of the school play uses an AI music service to create a unique soundtrack for various parts of the play. Afterward, many people compliment the sound design.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A poetry teacher encourages students to feed their poems into an AI music website. It makes original songs that use the poems as lyrics. The class makes an album out of the songs.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A history teacher has students generate simulated speeches from historical figures using an AI tool. Students say that they loved the experience and that it made history come alive for them in a memorable way.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student who suffers from a speech disorder asks their teacher if they can make an AI model of their voice for a poetry reading project. The teacher agrees to let them try. The result sounds like the student reading the poems without the speech disorder.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "The director of the school musical finds that some student singers are off key and missing notes. They use an AI service to correct the notes and give the recordings to the students. They say that rehearsing with the recordings made them much better for the final show.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student feeds sections of their textbook and some class notes into an AI audio service. They listen to the results frequently over the course of a week with their headphones while working out. They later score an A+ on the test covering that material.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student creates a song with samples from various sources for a music class assignment. Later, it is revealed that the AI music model sampled from many artists without permission or consent from the original artists.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student uses an AI voice app to make statements that sound like a controversial politician. When a few clips are played before the class bell rings, other students laugh but it makes the teacher upset and angry.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A teacher uses an AI tool live in class to generate voices for characters in a book. Some students get upset when one of the voices sounds like a stereotypical and offensive accent from another region of the country.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student clones the voice of the head of school and creates an announcement that school is closed the next day. Several students miss school and say it was because they believed the announcement was real.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student is known to stammer during presentations in class. Another student records them and uses an AI tool to make a musical remix featuring the student's mistakes. The remix is spread around the school in chat threads.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student uses a voice cloning AI to make a digital version of the dean of students. They use it to make the dean say racist jokes and the audio file spreads around the school.",
+   "category": "Audio"
+ },
+ {
+   "scenario": "A student clones the voice of another student and records a fake phone message to try to end a relationship. Once the victim realizes what happened, they have a breakdown and leave the school.",
+   "category": "Audio"
+ }
+] 
