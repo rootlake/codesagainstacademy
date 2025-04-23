@@ -1,29 +1,30 @@
 <script lang="ts">
 	// Component logic, if needed in the future
+	import { base } from '$app/paths';
 </script>
 
 <nav class="bottom-nav">
-	<a href="/game" class="nav-item">
+	<a href="{base}/game" class="nav-item">
         <div class="circle">
-    		<img src="/icon_play.png" alt="" class="icon-img" />
+    		<img src="{base}/icon_play.png" alt="" class="icon-img" />
         </div>
 		<span class="label">Play</span>
 	</a>
-	<a href="/purchase" class="nav-item">
+	<a href="{base}/purchase" class="nav-item">
          <div class="circle">
     		<span class="icon-text">$</span>
         </div>
 		<span class="label">Purchase</span>
 	</a>
-	<a href="/contact" class="nav-item">
+	<a href="{base}/contact" class="nav-item">
          <div class="circle">
-    		<img src="/icon_contact.png" alt="" class="icon-img" />
+    		<img src="{base}/icon_contact.png" alt="" class="icon-img" />
         </div>
 		<span class="label">Contact</span>
 	</a>
-	<a href="/suggestions" class="nav-item">
+	<a href="{base}/suggestions" class="nav-item">
          <div class="circle">
-    		<img src="/icon_suggest.png" alt="" class="icon-img" />
+    		<img src="{base}/icon_suggest.png" alt="" class="icon-img" />
         </div>
 		<span class="label">Suggest</span>
 	</a>

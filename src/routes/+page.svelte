@@ -1,5 +1,6 @@
 <script lang="ts">
     // Logic for the intro page, if any
+    import { base } from '$app/paths';
 </script>
 
 <div class="static-content-card">
@@ -11,12 +12,12 @@
             This is the companion site for a physical deck of Scenario cards centered around the use of AI tools in high school and other educational settings. It allows groups to collaboratively unpack and analyze the ethical considerations when using (or choosing to avoid) these powerful new technology tools.
         </p>
 
-        <img src="/3dcardbox.png" alt="Codes Against Academy 3D Box" class="box-image" />
+        <img src="{base}/3dcardbox.png" alt="Codes Against Academy 3D Box" class="box-image" />
 
         <!-- Navigation links removed, handled by footer nav -->
     </div>
     <div class="bottom-elements">
-        <img src="/minilogo.png" alt="CAA Logo" class="logo"/>
+        <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
         <!-- Category removed or set appropriately -->
         <!-- <span class="category">Home</span> -->
     </div>

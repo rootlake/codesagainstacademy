@@ -4,13 +4,14 @@
 
 	// Import page store to access route info
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
 </script>
 
 <div class="layout-container">
     <div class="logo-header">
-        <a href="/" aria-label="Home">
-            <img src="/minilogo.png" alt="Codes Against Academy" />
+        <a href="{base}/" aria-label="Home">
+            <img src="{base}/minilogo.png" alt="Codes Against Academy" />
         </a>
     </div>
 
