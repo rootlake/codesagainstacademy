@@ -1,38 +1,48 @@
-# sv
+# Codes Against Academy
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A web-based card game that playfully parodies the challenges and quirks of software development education. Play with friends and learn to laugh at the common struggles of learning to code!
 
-## Creating a project
+## Play Now
 
-If you're seeing this, you've probably already done this step. Congrats!
+Visit [https://rootlake.github.io/codesagainstacademy](https://rootlake.github.io/codesagainstacademy) to play the game.
 
+## About the Game
+
+Codes Against Academy is a humorous card game where players match programming concepts with hilarious real-world situations. It's like Cards Against Humanity, but for programmers and CS students.
+
+## Features
+
+- Single-page SvelteKit application
+- Responsive design for desktop and mobile play
+- Local multiplayer support
+- Growing card deck with community suggestions
+
+## Development
+
+This project uses:
+- SvelteKit
+- TypeScript
+- TailwindCSS
+
+To run locally:
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
+To build for production:
 ```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Contributing
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Feel free to submit:
+- New card suggestions
+- Bug reports
+- Feature requests
+
+## License
+
+MIT License - feel free to use this for learning or fun!
