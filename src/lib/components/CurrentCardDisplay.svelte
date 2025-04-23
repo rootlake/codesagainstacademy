@@ -2,6 +2,7 @@
   // Keep only necessary imports and logic
   import { currentCard, type ScenarioCard } from '$lib/store';
   import { onDestroy } from 'svelte';
+  import { base } from '$app/paths';
 
   // Remove props
   // export let onNext: () => void = () => {};
@@ -34,7 +35,7 @@
       <p>{card.scenario}</p>
     </div>
     <div class="bottom-elements">
-      <img src="/minilogo.png" alt="Codes Against Academy Logo" class="logo"/>
+      <img src="{base}/minilogo.png" alt="Codes Against Academy Logo" class="logo"/>
       <span class="category">{card.category}</span>
     </div>
   </div>

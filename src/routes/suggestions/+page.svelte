@@ -1,6 +1,7 @@
 <script lang="ts">
 	// Suggestions form submission logic will eventually go here
 	// Could use SvelteKit form actions or an API route
+	import { base } from '$app/paths';
 </script>
 
 <div class="static-content-card">
@@ -20,7 +21,7 @@
         </form>
     </div>
     <div class="bottom-elements">
-        <img src="/minilogo.png" alt="CAA Logo" class="logo"/>
+        <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
         <span class="category">Suggest</span>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	// Purchase logic (e.g., Stripe integration) will eventually go here
+	import { base } from '$app/paths';
 </script>
 
 <div class="static-content-card">
@@ -20,7 +21,7 @@
         </p>
     </div>
     <div class="bottom-elements">
-        <img src="/minilogo.png" alt="CAA Logo" class="logo"/>
+        <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
         <span class="category">Purchase</span>
     </div>
 </div>

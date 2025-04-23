@@ -1,40 +1,16 @@
 # Codes Against Academy
 
-A web-based card game that playfully parodies the challenges and quirks of software development education. Play with friends and learn to laugh at the common struggles of learning to code!
+This is the companion site for a physical deck of Scenario cards centered around the use of AI tools in high school and other educational settings. It allows groups to collaboratively unpack and analyze the ethical considerations when using (or choosing to avoid) these powerful new technology tools.
+        
 
-## Play Now
+## Try Online
 
 Visit [https://rootlake.github.io/codesagainstacademy](https://rootlake.github.io/codesagainstacademy) to play the game.
 
 ## About the Game
 
-Codes Against Academy is a humorous card game where players match programming concepts with hilarious real-world situations. It's like Cards Against Humanity, but for programmers and CS students.
+Codes Against Academy is a deck of Scenarios about AI usage in educational settings.
 
-## Features
-
-- Single-page SvelteKit application
-- Responsive design for desktop and mobile play
-- Local multiplayer support
-- Growing card deck with community suggestions
-
-## Development
-
-This project uses:
-- SvelteKit
-- TypeScript
-- TailwindCSS
-
-To run locally:
-```bash
-npm install
-npm run dev
-```
-
-To build for production:
-```bash
-npm run build
-npm run preview
-```
 
 ## Contributing
 
