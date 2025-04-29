@@ -1,6 +1,7 @@
 <!-- src/lib/components/TierCard.svelte -->
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { base } from '$app/paths';
 
   export let tierId: string = '';
   export let color: string = '#ccc';
@@ -14,7 +15,7 @@
 >
   <div class="circle">
     {#if tierId === 'Home'}
-      <a href="/" class="home-link" aria-label="Go to Home page">
+      <a href="{base}/" class="home-link" aria-label="Go to Home page">
         <svg class="home-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
         </svg>
