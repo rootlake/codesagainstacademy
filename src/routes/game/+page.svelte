@@ -4,7 +4,6 @@
 	import scenariosData from '$lib/data/scenarios.json';
 	import CurrentCardDisplay from '$lib/components/CurrentCardDisplay.svelte';
 	import TierListDisplay from '$lib/components/TierListDisplay.svelte';
-	import { base } from '$app/paths';
 
 	// --- State --- //
 	let history: ScenarioCard[] = []; // Will hold the fully shuffled deck
@@ -70,8 +69,6 @@
 	});
 </script>
 
-<!-- Removed outer .game-container and .logo-header -->
-<!-- These elements are now direct children of the layout's main-content slot -->
 <div class="card-area">
 	<CurrentCardDisplay />
 </div>
@@ -93,18 +90,7 @@
 	</div>
 </div>
 
-<!-- Home button for game page -->
-<div class="home-button-container">
-	<a href="{base}/" class="home-button">
-		<img src="{base}/minilogo.png" alt="Home" class="home-icon" />
-		<span class="home-label">Home</span>
-	</a>
-</div>
-
 <style>
-	/* Styles specific to the game page elements */
-	/* Removed .game-container, .logo-header as they are in layout */
-
 	/* --- Nav Button Styles (using CSS triangles) --- */
 	.nav-button {
 		background-color: transparent;
@@ -116,7 +102,6 @@
 		opacity: 0.7;
 		position: relative; /* For pseudo-element positioning */
 		touch-action: manipulation; /* Prevent double-tap zoom */
-		/* outline: 1px dashed white; /* Optional debug */
 	}
 	.nav-button::before { /* Common styles for triangle pseudo-elements */
 		content: "";
@@ -166,7 +151,6 @@
 		width: 100%;
 		box-sizing: border-box;
 		margin-top: 0.5rem; /* Add small space above card */
-		/* outline: 2px solid orange; /* DEBUG removed */
 	}
 
 	.tier-list-area {
@@ -181,7 +165,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* outline: 2px solid purple; /* DEBUG removed */
 	}
 
 	.tier-list-content {
@@ -201,42 +184,5 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	/* Home button styles */
-	.home-button-container {
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		z-index: 100;
-	}
-
-	.home-button {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-decoration: none;
-		color: #000;
-		background-color: #D1D5DB;
-		padding: 10px;
-		border-radius: 50%;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-		transition: background-color 0.2s ease;
-	}
-
-	.home-button:hover {
-		background-color: #BCC0C4;
-	}
-
-	.home-icon {
-		width: 24px;
-		height: 24px;
-		opacity: 0.8;
-	}
-
-	.home-label {
-		font-size: 12px;
-		font-weight: bold;
-		margin-top: 5px;
 	}
 </style> 
