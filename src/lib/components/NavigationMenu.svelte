@@ -37,7 +37,7 @@
 		/* justify-content removed (grid handles distribution) */
 		align-items: start; /* Align items to top */
 		width: 100%;
-		max-width: 300px; /* Match TierListDisplay max-width */
+		max-width: 320px; /* Match TierListDisplay max-width */
 		margin: 0 auto;
 		padding: 0.25rem;
         box-sizing: border-box;

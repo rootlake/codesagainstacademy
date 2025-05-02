@@ -45,7 +45,7 @@
     gap: 0.3rem; /* Further reduced gap */
     padding: 0.25rem;
     width: 100%;
-    max-width: 300px; /* Further reduced max-width based on smaller cards */
+    max-width: 320px; /* Further reduced max-width based on smaller cards */
     margin: 0 auto;
   }
 </style> 

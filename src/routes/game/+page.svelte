@@ -150,7 +150,6 @@
 		flex-shrink: 0;
 		width: 100%;
 		box-sizing: border-box;
-		margin-top: 0.5rem; /* Add small space above card */
 	}
 
 	.tier-list-area {
@@ -161,7 +160,7 @@
 		flex-shrink: 0;
 		width: 100%;
 		box-sizing: border-box;
-		margin-top: 0.75rem; /* Reduced space above the tier list */
+		margin-top: 0.75rem; /* Standard space above */
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -173,9 +172,8 @@
 		justify-content: center;
 		gap: 10px;
 		width: 100%;
-		max-width: 400px;
+		max-width: 420px; /* 320px tier list + 2 * (40px arrow + 10px gap) */
 		box-sizing: border-box;
-		flex-grow: 1;
 	}
 
 	.nav-container {

@@ -35,7 +35,7 @@
         width: 100%;
         max-width: 320px;
         aspect-ratio: 2.5 / 3.5;
-        margin: 1rem auto;
+        margin: 0 auto; /* Use 0 margin like home */
         background: linear-gradient(to bottom, #C6C7C9, #888A8C);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,27 +51,27 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* Align top */
         text-align: center;
-        overflow-y: auto;
-        margin-bottom: 5px;
+        overflow: hidden; /* Match home page */
+        padding: 1rem 0; /* Match home page */
+        gap: 0.5rem; /* Use gap for spacing */
     }
     h1 {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        /* Remove margin-top */
+        margin-bottom: 0; /* Adjust spacing with gap */
         font-weight: bold;
         font-size: clamp(20px, 7cqw, 32px);
     }
     .description {
         font-weight: bold;
         font-size: clamp(14px, 4cqw, 18px);
-        margin-bottom: 1rem;
+        margin-bottom: 0; /* Adjust spacing with gap */
         line-height: 1.3;
     }
 
     /* Form specific styles */
     form {
-        margin-top: 0.5rem;
+        margin-top: 0; /* Adjust spacing with gap */
         width: 100%;
         text-align: left;
     }

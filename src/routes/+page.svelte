@@ -5,16 +5,10 @@
 
 <div class="static-content-card">
     <div class="content-inner">
-        <!-- Removed H1, using logo header from layout -->
-        <h2>AI and Ethics in Education<br>A Game & Discussion Starter</h2>
+        <div class="title">AI and Ethics in Education
+A Game and Discussion Starter</div>
 
-        <p class="description">
-            This is the companion site for a physical deck of Scenario cards centered around the use of AI tools in high school and other educational settings. It allows groups to collaboratively unpack and analyze the ethical considerations when using (or choosing to avoid) these powerful new technology tools.
-        </p>
-
-        <img src="{base}/3dcardbox.png" alt="Codes Against Academy 3D Box" class="box-image" />
-
-        <!-- Navigation links removed, handled by footer nav -->
+        <div class="description">This is the companion site for a physical deck of Scenario cards centered around the use of AI tools in high school and other educational settings. It allows groups to collaboratively unpack and analyze the ethical considerations when using (or choosing to avoid) these powerful new technology tools.</div>
     </div>
     <div class="bottom-elements">
         <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
@@ -23,12 +17,13 @@
     </div>
 </div>
 
+
 <style>
     .static-content-card {
         width: 100%;
         max-width: 320px;
         aspect-ratio: 2.5 / 3.5;
-        margin: 1rem auto;
+        margin: 0 auto;
         background: linear-gradient(to bottom, #C6C7C9, #888A8C);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -45,38 +40,27 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        /* Justify content towards top */
-        justify-content: flex-start;
-        text-align: center;
-        overflow-y: auto;
-        margin-bottom: 5px;
+        gap: 2rem;
+        padding: 1rem 0;
     }
 
-    h2 {
-        margin-top: 0.5rem; /* Add some space below logo */
-        margin-bottom: 1rem;
+    .title {
         font-weight: bold;
-        font-size: clamp(16px, 5cqw, 24px); /* Adjust size */
-        line-height: 1.2;
+        font-size: clamp(16px, 6cqw, 24px);
+        line-height: 1.3;
+        text-align: center;
+        white-space: pre-wrap;
+        max-width: 100%;
     }
 
     .description {
         font-weight: bold;
-        font-size: clamp(12px, 3.5cqw, 16px); /* Adjust size */
-        margin-bottom: 1rem;
-        text-align: left; /* Align description left */
+        font-size: clamp(12px, 4cqw, 16px);
         line-height: 1.4;
+        text-align: left;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
-
-    .box-image {
-        display: block;
-        width: 80%; /* Adjust size as needed */
-        max-width: 200px;
-        height: auto;
-        margin: 1rem auto; /* Center image and add spacing */
-    }
-
-    /* Navigation styles removed */
 
     .bottom-elements {
         height: 20px;
@@ -89,12 +73,27 @@
         margin-top: auto;
         flex-shrink: 0;
     }
+
     .logo {
         height: clamp(12px, 2.5cqw, 18px);
         width: auto;
         opacity: 0.8;
         display: block;
     }
-    /* Category style removed as it's not used here */
-    /* .category { ... } */
+
+    .box-container {
+        width: 100%;
+        max-width: 320px;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .box-image {
+        display: block;
+        width: 50%;
+        height: auto;
+        margin-left: 0;
+    }
+
+
 </style>

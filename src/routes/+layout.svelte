@@ -18,13 +18,15 @@
     <main class="main-content">
         <!-- The slot tag renders the content of the current page -->
         <slot />
+        {#if $page.route.id !== '/game'}
+            <div class="nav-area">
+                <NavigationMenu />
+            </div>
+        {/if}
     </main>
 
-    <!-- Footer area no longer has fixed height -->
-    <footer class="footer-nav-area">
-        {#if $page.route.id !== '/game'}
-            <NavigationMenu />
-        {/if}
+    <!-- Footer area (empty for now, pushed down) -->
+    <footer class="footer-area">
         <!-- The game page provides its own tier list in this space -->
         <!-- This ensures the space is occupied consistently -->
     </footer>
@@ -91,26 +93,35 @@
 
     /* --- Main Content Area --- */
     .main-content {
-        flex-grow: 1; /* Allow main content to push footer down */
+        flex-grow: 1;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* Removed overflow-y - let layout handle scroll if needed */
         padding-left: max(0.5rem, env(safe-area-inset-left));
         padding-right: max(0.5rem, env(safe-area-inset-right));
         box-sizing: border-box;
     }
 
-    /* --- Footer Nav Area (replaces .bottom-spacer) --- */
-    .footer-nav-area {
+    /* --- Navigation Area (inside main-content) --- */
+    .nav-area {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.75rem; /* Space above nav */
+        padding-top: 0.5rem;
+        box-sizing: border-box;
+    }
+
+    /* --- Footer Area --- */
+    .footer-area {
         flex-shrink: 0;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 0.75rem; /* Reduced space above footer */
-        padding-top: 0.5rem;
+        margin-top: auto; /* Pushes footer to the bottom */
         padding-bottom: max(1rem, env(safe-area-inset-bottom));
         box-sizing: border-box;
     }
