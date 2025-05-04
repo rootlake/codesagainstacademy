@@ -5,8 +5,8 @@
 
 <div class="static-content-card">
     <div class="content-inner">
-        <div class="title">AI and Ethics in Education
-A Game and Discussion Starter</div>
+        <div class="title">AI & Ethics in Education:
+A Discussion Game</div>
 
         <div class="description">This is the companion site for a physical deck of Scenario cards centered around the use of AI tools in high school and other educational settings. It allows groups to collaboratively unpack and analyze the ethical considerations when using (or choosing to avoid) these powerful new technology tools.</div>
     </div>
@@ -40,7 +40,7 @@ A Game and Discussion Starter</div>
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         padding: 1rem 0;
     }
 
@@ -55,7 +55,7 @@ A Game and Discussion Starter</div>
 
     .description {
         font-weight: bold;
-        font-size: clamp(12px, 4cqw, 16px);
+        font-size: clamp(18px, 4cqw, 16px);
         line-height: 1.4;
         text-align: left;
         max-width: 100%;
@@ -80,20 +80,5 @@ A Game and Discussion Starter</div>
         opacity: 0.8;
         display: block;
     }
-
-    .box-container {
-        width: 100%;
-        max-width: 320px;
-        padding: 1rem;
-        box-sizing: border-box;
-    }
-
-    .box-image {
-        display: block;
-        width: 50%;
-        height: auto;
-        margin-left: 0;
-    }
-
 
 </style>

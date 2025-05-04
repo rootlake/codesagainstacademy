@@ -5,19 +5,20 @@
 
 <div class="static-content-card">
     <div class="content-inner">
-        <h1>Purchase</h1>
+        <h1>Purchase a Real Deck!</h1>
         <p class="description">
-            Get your own physical deck of Codes Against Academy cards!
-            Perfect for classrooms, workshops, and discussions.
+            Get your own physical box of Codes Against Academy here.
+            <br>It's perfect for classrooms, workshops, and discussions, basically an "Engaging Faculty Meeting in a Box."
+            The deck contains 75 Scenario cards, 25 Reaction cards, the colorful Tier List, and instructions for all three game modes.
         </p>
-         <p class="price">Price: $XX.XX</p> <!-- Placeholder Price -->
+         
         <p>
-             <a href="https://codesagainstacademy.com/" target="_blank" rel="noopener noreferrer" class="purchase-button">
-                 Order Now (External Link)
+             <a href="https://www.shop.pomfretschool.org/new-products-73/p/codes-against-academy" target="_blank" rel="noopener noreferrer" class="purchase-button">
+                $25 (shipping included)
              </a>
         </p>
         <p class="small-text">
-            <em>(Link will eventually integrate with Stripe or similar)</em>
+            <em>Ships from Pomfret School Store</em>
         </p>
     </div>
     <div class="bottom-elements">
@@ -50,37 +51,35 @@
         flex-direction: column;
         text-align: center;
         overflow: hidden; /* Match home page */
-        padding: 1rem 0; /* Match home page */
-        gap: 1rem; /* Add gap for spacing */
+        padding: 0.2rem 0; /* Further reduce top padding */
+        gap: 0.4rem; /* Keep reduced gap */
     }
     h1 {
         margin-bottom: 0; /* Adjust spacing with gap */
         font-weight: bold;
-        font-size: clamp(20px, 7cqw, 32px);
+        font-size: clamp(16px, 6cqw, 24px); /* Match home page title size */
+        line-height: 1.3; /* Match home page line-height */
+        text-align: center; /* Ensure centered */
     }
     .description {
         font-weight: bold;
-        font-size: clamp(14px, 4cqw, 18px);
-        margin-bottom: 0; /* Adjust spacing with gap */
-        line-height: 1.3;
+        font-size: clamp(18px, 4.2cqw, 18px);
+        margin-bottom: 0;
+        line-height: 1.25;
+        text-align: center;
     }
 
     /* Purchase specific styles */
-    .price {
-        font-size: clamp(16px, 5cqw, 22px);
-        font-weight: bold;
-        margin: 1rem 0;
-    }
     .purchase-button {
         display: inline-block;
-        padding: 0.8rem 1.5rem;
+        padding: 0.6rem 1.2rem; /* Slightly smaller */
         background-color: #4CAF50; /* Green */
         color: white;
         text-decoration: none;
         border-radius: 5px;
         font-weight: bold;
-        font-size: clamp(14px, 4.5cqw, 20px);
-        margin: 0.5rem 0;
+        font-size: clamp(14px, 4.5cqw, 18px); /* Slightly smaller */
+        margin: 0.25rem 0; /* Reduce margin */
         border: none;
         cursor: pointer;
         transition: background-color 0.2s ease;
@@ -89,11 +88,11 @@
         background-color: #45a049;
     }
     .small-text {
-        font-size: clamp(10px, 3cqw, 12px);
+        font-size: clamp(14px, 3cqw, 12px);
         font-weight: normal;
         font-style: italic;
         color: #333;
-        margin-top: 1rem;
+        margin-top: -1rem; /* Reduce margin */
     }
 
     /* Footer styles (copied from home page) */
