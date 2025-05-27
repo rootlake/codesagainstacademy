@@ -8,21 +8,15 @@
     <div class="content-inner">
         <h1>Suggest a Scenario</h1>
         <p class="description">
-            Have an idea for a new scenario card? Let us know!
+            Played the game and found it lacking? Suggest new scenarios here! Bonus points for ones based on true stories...
         </p>
-        <form>
-            <label for="suggestion">Scenario:</label><br>
-            <textarea id="suggestion" name="suggestion" rows="4" placeholder="Enter scenario details..."></textarea><br><br>
-
-            <label for="category">Category (optional):</label><br>
-            <input type="text" id="category" name="category" placeholder="Images, Text, Learning..."><br><br>
-
-            <button type="submit">Submit Suggestion</button>
-        </form>
+        <a href="https://forms.gle/dgFGX7wuV9sz3t8Z7" class="form-link-button" target="_blank" rel="noopener noreferrer">
+            Open Suggestion Form
+        </a>
     </div>
     <div class="bottom-elements">
-        <!-- <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/> -->
-        <img src="/minilogo.png" alt="CAA Logo" class="logo"/> <!-- Temporary path -->
+        <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
+        <!-- <img src="/minilogo.png" alt="CAA Logo" class="logo"/> --> <!-- Temporary path removed -->
         <span class="category">Suggest</span>
     </div>
 </div>
@@ -52,7 +46,7 @@
         text-align: center;
         overflow: hidden; /* Match home page */
         padding: 0.5rem 0; /* Reduce top padding */
-        gap: 0.5rem; /* Reduce gap */
+        gap: 1rem; /* Increase gap slightly */
     }
     h1 {
         /* Remove margin-top */
@@ -64,50 +58,28 @@
     }
     .description {
         font-weight: bold;
-        font-size: clamp(14px, 4cqw, 18px);
+        font-size: clamp(18px, 4cqw, 18px);
         margin-bottom: 0; /* Adjust spacing with gap */
         line-height: 1.3;
     }
 
-    /* Form specific styles */
-    form {
-        margin-top: 0; /* Rely on gap */
-        width: 100%; /* Form takes full width */
-        text-align: left;
-    }
-    label {
-        display: block;
-        margin-bottom: 0.1rem; /* Reduce space */
-        font-weight: bold;
-        font-size: clamp(12px, 3.5cqw, 14px);
-    }
-    textarea,
-    input[type="text"] {
-        width: 100%;
-        padding: 0.4rem; /* Reduce padding */
-        margin-bottom: 0.25rem; /* Reduce space */
-        border: 1px solid #555;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        font-weight: normal;
-        font-size: clamp(12px, 3.5cqw, 14px);
-    }
-    button {
-        padding: 0.5rem 1rem; /* Reduce padding */
+    /* Style for the link button */
+    .form-link-button {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
         background-color: #444;
         color: white;
-        border: none;
+        text-decoration: none;
         border-radius: 4px;
         cursor: pointer;
-        font-size: clamp(13px, 4cqw, 15px); /* Reduce font size */
-        display: block;
-        width: 100%;
-        margin-top: 0.25rem; /* Reduce space */
+        font-size: clamp(14px, 4cqw, 16px);
         font-family: Arial, sans-serif;
         font-weight: bold;
+        margin: auto 0 0.5rem; /* Push to bottom with margin */
+        transition: background-color 0.2s ease;
     }
-    button:hover {
+
+    .form-link-button:hover {
         background-color: #222;
     }
 
