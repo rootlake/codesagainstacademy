@@ -14,9 +14,9 @@
 		currentCardValue = value;
 	});
 
-	// Reactive Navigation State
-	$: canGoPrev = historyIndex > 0;
-	$: canGoNext = historyIndex < history.length - 1;
+	// Reactive Navigation State - infinite carousel means always enabled
+	$: canGoPrev = history.length > 0;
+	$: canGoNext = history.length > 0;
 
 	// Utility
 	function shuffleArray<T>(array: T[]): T[] {
@@ -48,19 +48,19 @@
 		currentCard.set(history[historyIndex]);
 	});
 
-	// Navigation Functions
+	// Navigation Functions - updated for infinite carousel
 	function nextCard() {
-		if (canGoNext) {
-			historyIndex++;
-			currentCard.set(history[historyIndex]);
-		}
+		if (history.length === 0) return;
+		
+		historyIndex = (historyIndex + 1) % history.length;
+		currentCard.set(history[historyIndex]);
 	}
 
 	function previousCard() {
-		if (canGoPrev) {
-			historyIndex--;
-			currentCard.set(history[historyIndex]);
-		}
+		if (history.length === 0) return;
+		
+		historyIndex = historyIndex === 0 ? history.length - 1 : historyIndex - 1;
+		currentCard.set(history[historyIndex]);
 	}
 
 	// Cleanup
@@ -77,13 +77,13 @@
 <div class="tier-list-area">
 	<div class="tier-list-content">
 		<div class="nav-container left">
-			<button class="nav-button prev" on:click={previousCard} disabled={!canGoPrev}>
+			<button class="nav-button prev" on:click={previousCard}>
 				<!-- Triangle added via CSS -->
 			</button>
 		</div>
 		<TierListDisplay />
 		<div class="nav-container right">
-			<button class="nav-button next" on:click={nextCard} disabled={!canGoNext}>
+			<button class="nav-button next" on:click={nextCard}>
 				<!-- Triangle added via CSS -->
 			</button>
 		</div>
@@ -125,19 +125,8 @@
 		transform: translate(-50%, -50%);
 	}
 
-	.nav-button:hover:not(:disabled) {
+	.nav-button:hover {
 		opacity: 1.0;
-	}
-	.nav-button:disabled {
-		cursor: not-allowed;
-		opacity: 0.3;
-	}
-	/* Change triangle color when disabled */
-	.nav-button.prev:disabled::before {
-		border-color: transparent rgba(0,0,0,0.2) transparent transparent;
-	}
-	.nav-button.next:disabled::before {
-		border-color: transparent transparent transparent rgba(0,0,0,0.2);
 	}
 
 	.card-area {
