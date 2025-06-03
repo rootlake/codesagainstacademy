@@ -18,6 +18,7 @@
 
   let isSelected = false;
   let hasDot = false;
+  let cardCountForThisTier = 0; // Reactive variable for the count
 
   const unsubscribeSelections = allTierSelections.subscribe((selections) => {
     if (cardId) {
@@ -26,9 +27,20 @@
       isSelected = selection?.tierId === tierId;
       // Check if THIS tier has ANY card selected for it (for the dot)
       hasDot = Array.from(selections.values()).some(sel => sel.tierId === tierId);
+
+      // Calculate the count of cards assigned to this tier
+      let count = 0;
+      selections.forEach(selection => {
+        if (selection.tierId === tierId) {
+          count++;
+        }
+      });
+      cardCountForThisTier = count;
+
     } else {
       isSelected = false;
       hasDot = false;
+      cardCountForThisTier = 0; // Reset count if no card is active
     }
   });
 
@@ -81,6 +93,19 @@
   on:click={handleTierClick}
   on:keydown={(e) => e.key === 'Enter' && handleTierClick()}
 >
+  {#if cardCountForThisTier > 0}
+    <div class="indicator-area-top">
+      <div class="chits-column">
+        {#each Array(Math.min(cardCountForThisTier, 7)) as _, i}
+          <div class="chit"></div>
+        {/each}
+      </div>
+      {#if cardCountForThisTier >= 8}
+        <span class="plus-sign">+</span>
+      {/if}
+    </div>
+  {/if}
+
   <div class="circle">
     {#if tierId === 'Home'}
       <a href="{base}/" class="home-link" aria-label="Go to Home page">
@@ -91,13 +116,18 @@
     {:else}
       <span class="letter">{tierId}</span>
       {#if hasDot}
-        <div class="selection-dot"></div>
+        <!-- OLD: <div class="selection-dot"></div> -->
       {/if}
     {/if}
   </div>
   {#if description}
     <span class="description">{description}</span>
   {/if}
+
+  {#if cardCountForThisTier > 0}
+    <div class="card-count">{cardCountForThisTier}</div>
+  {/if}
+
 </button>
 
 <style>
@@ -111,6 +141,11 @@
     color: inherit; /* Inherit text color */
     text-align: inherit; /* Inherit text alignment */
     cursor: pointer; /* Ensure cursor is pointer */
+    /* Prevent any animations or transitions */
+    transition: none !important;
+    animation: none !important;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 
     /* Existing styles to maintain look */
     background-color: var(--tier-color); /* Re-apply background color */
@@ -123,21 +158,35 @@
     /* Set fixed size */
     width: 70px;
     height: 70px;
+    position: relative; /* Added for absolute positioning of children */
   }
 
   .tier-card.clickable {
     cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    /* Removed hover transitions */
+    /* transition: transform 0.1s ease, box-shadow 0.1s ease; */
   }
 
   .tier-card.clickable:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Remove hover effects */
+    /* transform: translateY(-1px); */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+    /* Ensure visibility and opacity are not affected by hover */
+    opacity: 1; /* Explicitly set opacity to default */
+    visibility: visible; /* Explicitly set visibility to default */
   }
 
   .tier-card.clickable:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    /* transform: translateY(0); */
+    /* Remove hover effects */
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
+    /* Ensure visibility and opacity are not affected by hover */
+    opacity: 1; /* Explicitly set opacity to default */
+    visibility: visible; /* Explicitly set visibility to default */
+    color: black; /* Or a color that contrasts well */
+    opacity: 1; /* Ensure visibility */
+    visibility: visible; /* Ensure visibility */
+    /* Add any other desired styling like background or padding */
   }
 
   .circle {
@@ -175,6 +224,7 @@
     font-weight: bold;
     color: black;
     text-align: center;
+    margin-bottom: 0.15rem; /* Restore original margin below description */
   }
 
   .home-link {
@@ -186,14 +236,48 @@
     text-decoration: none;
   }
 
-  .selection-dot {
+  .tier-card .card-count { /* Added .tier-card to increase specificity */
+    /* Position in bottom right corner */
+    position: absolute; /* Use absolute positioning */
+    bottom: 2px; /* Small offset from bottom */
+    right: 4px; /* Small offset from right */
+    transform: none; /* Remove centering transform */
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: black;
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+    /* Remove any potentially conflicting styling */
+  }
+
+  .indicator-area-top {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #333;
-    border: 1px solid white;
+    top: 4px; /* Adjust as needed */
+    left: 4px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column; /* Arrange chits column and plus sign vertically */
+    align-items: flex-start; /* Align items to the left */
+    }
+
+  .chits-column {
+    display: flex;
+    flex-direction: column; /* Stack chits vertically */
+    gap: 2px; /* Space between vertical chits */
+  }
+
+  .chit {
+    width: 6px;
+    height: 6px;
+    background-color: black;
+  }
+
+  .plus-sign {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: black;
+    margin-top: -2px; /* Negative margin to pull it up closer to last chit */
+    line-height: 1; /* Ensure consistent line height */
+    margin-left: -1px; /* Center under the chits (chit width is 6px) */
   }
 </style> 
