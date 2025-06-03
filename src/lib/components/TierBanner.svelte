@@ -189,28 +189,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black !important; /* Force black color */
   }
-
-  /* Comment out the old CSS triangle rule */
-  /*
-  .next-button::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 6px 0 6px 8px;
-    border-color: transparent transparent transparent black;
-    transform: translate(-50%, -50%);
-  }
-  */
 
   /* Style for the embedded SVG */
   .next-button svg {
     width: 75%; /* Make the SVG fill the button width */
     height: 75%; /* Make the SVG fill the button height */
+    fill: black !important; /* Force black fill color */
+    color: black !important; /* Force black color */
     /* The flexbox styles on .next-button will center the SVG */
   }
 </style>
