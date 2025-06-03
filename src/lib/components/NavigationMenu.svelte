@@ -49,12 +49,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center; /* Vertically center content */
 		text-decoration: none;
 		color: #000;
 		font-family: Arial, sans-serif;
 		font-size: 0.65rem; /* Match tier card description size */
 		gap: 0.15rem; /* Match tier card gap */
-        padding: 0.5rem 0.25rem; /* Match tier card padding */
+        /* padding: 0.5rem 0.25rem; /* Removed padding */
         border-radius: 6px; /* Match tier card radius */
         transition: background-color 0.2s ease;
         /* flex removed */
@@ -63,6 +64,9 @@
         box-shadow: 1px 1px 3px rgba(0,0,0,0.15); /* Match tier card shadow */
         border: none;
         cursor: pointer;
+        /* Set fixed size to match tier cards */
+        width: 70px;
+        height: 70px;
 	}
 
     .nav-item:hover {

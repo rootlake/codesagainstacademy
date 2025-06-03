@@ -1,8 +1,14 @@
 <script lang="ts">
   // Keep only necessary imports and logic
-  import { currentCard, type ScenarioCard } from '$lib/store';
+  import { createEventDispatcher } from 'svelte';
+  import { currentCard, currentCardTierSelection, allTierSelections, type ScenarioCard, tiers } from '$lib/store';
   import { onDestroy } from 'svelte';
   import { base } from '$app/paths';
+  import TierBanner from './TierBanner.svelte';
+
+  const dispatch = createEventDispatcher<{
+    nextCard: void;
+  }>();
 
   // Remove props
   // export let onNext: () => void = () => {};
@@ -11,10 +17,53 @@
   // export let canGoPrev: boolean = false;
 
   let card: ScenarioCard | null = null;
-  const unsubscribe = currentCard.subscribe((value: ScenarioCard | null) => { card = value; });
-  onDestroy(unsubscribe);
+  const unsubscribeCard = currentCard.subscribe((value: ScenarioCard | null) => { 
+    card = value;
+    // When card changes, check if it has an existing tier selection
+    if (value) {
+      const existingSelection = $allTierSelections.get(value.scenario);
+      if (existingSelection) {
+        // Find the full tier info to get the short name
+        const tierInfo = tiers.find(tier => tier.id === existingSelection.tierId);
+        currentCardTierSelection.set({
+          ...existingSelection,
+          tierShortName: tierInfo?.shortName // Add short name
+        });
+      } else {
+        currentCardTierSelection.set(null);
+      }
+    }
+  });
 
-  // Removed handleDragStart, handleDragEnd functions
+  // Subscribe to current card tier selection
+  let currentSelection = $currentCardTierSelection;
+  const unsubscribeSelection = currentCardTierSelection.subscribe((value) => {
+    currentSelection = value;
+  });
+
+  onDestroy(() => {
+    unsubscribeCard();
+    unsubscribeSelection();
+  });
+
+  // Handle tier banner events
+  function handleBannerClose() {
+    if (card && currentSelection) {
+      // Remove from global selections
+      allTierSelections.update(selections => {
+        const newSelections = new Map(selections);
+        newSelections.delete(card!.scenario);
+        return newSelections;
+      });
+      
+      // Clear current selection
+      currentCardTierSelection.set(null);
+    }
+  }
+
+  function handleBannerNext() {
+    dispatch('nextCard');
+  }
 
   // Placeholder for footer content later
   // Need to get CAClogo.png back into the project (e.g., in /static or /src/assets)
@@ -31,6 +80,15 @@
     tabindex="0"
     aria-label="Scenario card: {card.scenario}"
   >
+    <!-- Show tier banner if a tier is selected for this card -->
+    {#if currentSelection}
+      <TierBanner 
+        selection={currentSelection} 
+        on:close={handleBannerClose}
+        on:nextCard={handleBannerNext}
+      />
+    {/if}
+    
     <div class="text-container">
       <p>{card.scenario}</p>
     </div>

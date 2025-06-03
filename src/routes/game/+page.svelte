@@ -70,7 +70,7 @@
 </script>
 
 <div class="card-area">
-	<CurrentCardDisplay />
+	<CurrentCardDisplay on:nextCard={nextCard} />
 </div>
 
 <!-- Tier list area sits below the card area -->
