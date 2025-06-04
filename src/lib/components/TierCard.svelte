@@ -51,7 +51,11 @@
 
   // Handle tier selection
   function handleTierClick() {
-    if (tierId === 'Home' || !cardId) return;
+    if (tierId === 'Home') {
+      window.location.href = base + '/';
+      return;
+    }
+    if (!cardId) return;
 
     const currentSelection = $allTierSelections.get(cardId);
 
@@ -87,7 +91,7 @@
 </script>
 
 <button
-  class="tier-card {tierId !== 'Home' ? 'clickable' : ''}"
+  class="tier-card"
   style:--tier-color={color}
   aria-label="Tier {tierId}{description ? ': ' + description : ''}"
   on:click={handleTierClick}
@@ -108,11 +112,9 @@
 
   <div class="circle">
     {#if tierId === 'Home'}
-      <a href="{base}/" class="home-link" aria-label="Go to Home page">
-        <svg class="home-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-      </a>
+      <svg class="home-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
     {:else}
       <span class="letter">{tierId}</span>
       {#if hasDot}
