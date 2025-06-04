@@ -97,6 +97,7 @@
         background-color: white;
         border-radius: 50%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         position: absolute;
@@ -111,14 +112,13 @@
         font-weight: bold;
         color: black;
         line-height: 1;
-        margin-bottom: -0.2rem;
+        margin-bottom: 2px;
     }
 
     .each {
-        font-size: 0.7rem;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        font-size: 0.6rem;
+        color: black;
+        font-weight: 500;
     }
 
     .payment-button {
