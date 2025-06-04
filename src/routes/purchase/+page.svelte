@@ -15,13 +15,13 @@
         <!-- Purchase buttons will go here -->
         <div class="purchase-options">
             <div class="button-grid">
-                <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=20&note=Card+Deck+-+(include+your+name+and+mailing+address+or+email+here)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
-                <a href="https://paypal.me/JoshuaLake/20" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
+                <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
+                <a href="https://paypal.me/JoshuaLake/25" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
                 <div class="price-circle">
-                    <span class="price">$20</span>
+                    <span class="price">$25</span>
                 </div>
                 <a href="https://cash.app/$rootlake" target="_blank" rel="noopener noreferrer" class="payment-button cashapp">Cash App</a>
-                <a href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2420%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D" class="payment-button mail">Via Mail</a>
+                <a href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D" class="payment-button mail">Via Mail</a>
             </div>
         </div>
     </div>
