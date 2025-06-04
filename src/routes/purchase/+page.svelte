@@ -7,19 +7,23 @@
     <div class="content-inner">
         <h1>Purchase a Real Deck!</h1>
         <p class="description">
-            Get your own physical box of Codes Against Academy here.
-            <br>It's perfect for classrooms, workshops, and discussions, basically an "Engaging Faculty Meeting in a Box."
+            Get your own physical box of <strong>Codes Against Academy</strong>
+            here. It's perfect for classrooms, workshops, and discussions, basically an "Engaging Faculty Meeting in a Box."
             The deck contains 75 Scenario cards, 25 Reaction cards, the colorful Tier List, and instructions for all three game modes.
         </p>
          
-        <p>
-             <a href="https://www.shop.pomfretschool.org/new-products-73/p/codes-against-academy" target="_blank" rel="noopener noreferrer" class="purchase-button">
-                $25 (shipping included)
-             </a>
-        </p>
-        <p class="small-text">
-            <em>Ships from Pomfret School Store</em>
-        </p>
+        <!-- Purchase buttons will go here -->
+        <div class="purchase-options">
+            <div class="button-grid">
+                <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=20&note=Card+Deck+-+(include+your+name+and+mailing+address+or+email+here)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
+                <a href="https://paypal.me/JoshuaLake/20" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
+                <div class="price-circle">
+                    <span class="price">$20</span>
+                </div>
+                <a href="https://cash.app/$rootlake" target="_blank" rel="noopener noreferrer" class="payment-button cashapp">Cash App</a>
+                <a href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2420%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D" class="payment-button mail">Via Mail</a>
+            </div>
+        </div>
     </div>
     <div class="bottom-elements">
         <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
@@ -62,37 +66,101 @@
         text-align: center; /* Ensure centered */
     }
     .description {
-        font-weight: bold;
-        font-size: clamp(18px, 4.2cqw, 18px);
+        font-size: clamp(14px, 3.8cqw, 16px); /* Reduced from 18px */
         margin-bottom: 0;
         line-height: 1.25;
         text-align: center;
+        margin-bottom: 1rem; /* Add space before buttons */
     }
 
     /* Purchase specific styles */
-    .purchase-button {
-        display: inline-block;
-        padding: 0.6rem 1.2rem; /* Slightly smaller */
-        background-color: #4CAF50; /* Green */
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
+    .purchase-options {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+        position: relative;
+    }
+
+    .price-circle {
+        width: 80px;
+        height: 80px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    .price {
+        font-size: 2rem;
         font-weight: bold;
-        font-size: clamp(14px, 4.5cqw, 18px); /* Slightly smaller */
-        margin: 0.25rem 0; /* Reduce margin */
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
+        color: black;
     }
-    .purchase-button:hover {
-        background-color: #45a049;
+
+    .payment-button {
+        background-color: white;
+        color: black;
+        padding: 0.8rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.2s;
     }
-    .small-text {
-        font-size: clamp(14px, 3cqw, 12px);
-        font-weight: normal;
-        font-style: italic;
-        color: #333;
-        margin-top: -1rem; /* Reduce margin */
+
+    .payment-button:hover {
+        background-color: #f0f0f0;
+    }
+
+    .payment-button.venmo {
+        background-color: #3D95CE;
+        color: white;
+    }
+
+    .payment-button.venmo:hover {
+        background-color: #3788BD;
+    }
+
+    .payment-button.paypal {
+        background-color: #FFB800;
+        color: #253B80;
+        font-weight: 700;
+    }
+
+    .payment-button.paypal:hover {
+        background-color: #F2AE00;
+    }
+
+    .payment-button.cashapp {
+        background-color: #00D632;
+        color: white;
+    }
+
+    .payment-button.cashapp:hover {
+        background-color: #00C02E;
+    }
+
+    .payment-button.mail {
+        background-color: #8B0000;
+        color: white;
+    }
+
+    .payment-button.mail:hover {
+        background-color: #700000;
     }
 
     /* Footer styles (copied from home page) */
