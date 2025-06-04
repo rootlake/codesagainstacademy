@@ -7,7 +7,7 @@
     <div class="content-inner">
         <h1>Purchase a Real Deck!</h1>
         <p class="description">
-            Get your own physical box of <strong>Codes Against Academy</strong>
+            Order your own physical box of <br><strong>Codes Against Academy</strong>
             here. It's perfect for classrooms, workshops, and discussions, basically an "Engaging Faculty Meeting in a Box."
             The deck contains 75 Scenario cards, 25 Reaction cards, the colorful Tier List, and instructions for all three game modes.
         </p>
@@ -19,6 +19,7 @@
                 <a href="https://paypal.me/JoshuaLake/25" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
                 <div class="price-circle">
                     <span class="price">$25</span>
+                    <span class="each">EACH</span>
                 </div>
                 <a href="https://cash.app/$rootlake" target="_blank" rel="noopener noreferrer" class="payment-button cashapp">Cash App</a>
                 <a href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D" class="payment-button mail">Via Mail</a>
@@ -66,7 +67,7 @@
         text-align: center; /* Ensure centered */
     }
     .description {
-        font-size: clamp(14px, 3.8cqw, 16px); /* Reduced from 18px */
+        font-size: clamp(16px, 3.8cqw, 16px); /* Reduced from 18px */
         margin-bottom: 0;
         line-height: 1.25;
         text-align: center;
@@ -109,6 +110,15 @@
         font-size: 2rem;
         font-weight: bold;
         color: black;
+        line-height: 1;
+        margin-bottom: -0.2rem;
+    }
+
+    .each {
+        font-size: 0.7rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .payment-button {
