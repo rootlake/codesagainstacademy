@@ -64,12 +64,13 @@
 <style>
   .tier-banner-container {
     position: absolute;
-    bottom: 35px;
+    bottom: 40px; /* Move up from 35px */
     left: 0;
     right: 0;
     display: flex;
     z-index: 10;
     height: 65px; /* Match tier button height */
+    filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.5)); /* Darker, sharper shadow */
   }
 
   /* Replica of tier button on the left */
