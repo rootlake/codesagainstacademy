@@ -68,54 +68,6 @@
         text-decoration: underline;
     }
 
-    /* Form specific styles */
-    form {
-        margin-top: 0; /* Rely on gap */
-        width: 100%;
-        text-align: left;
-    }
-    label {
-        display: block;
-        margin-bottom: 0.1rem; /* Reduce space */
-        font-weight: bold;
-        font-size: clamp(12px, 3.5cqw, 14px);
-    }
-    textarea,
-    input[type="text"],
-    input[type="email"] {
-        width: 100%;
-        padding: 0.4rem; /* Reduce padding */
-        margin-bottom: 0.25rem; /* Reduce space */
-        border: 1px solid #555;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        font-weight: normal;
-        font-size: clamp(12px, 3.5cqw, 14px);
-    }
-    /* Specific height for message textarea */
-    textarea#message {
-        height: 60px; /* Reduce height */
-        resize: vertical;
-    }
-    button {
-        padding: 0.5rem 1rem; /* Reduce padding */
-        background-color: #444;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: clamp(13px, 4cqw, 15px); /* Reduce font size */
-        display: block;
-        width: 100%;
-        margin-top: 0.25rem; /* Reduce space */
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-    }
-    button:hover {
-        background-color: #222;
-    }
-
     /* Footer styles (copied from home page) */
     .bottom-elements {
         height: 20px;
