@@ -8,27 +8,28 @@
 
     let unlockCode = '';
     let showCodeInput = false;
+    let errorMessage = '';
 
     function handleUnlock() {
-        console.log('Attempting to unlock with code:', unlockCode);
-        if (!unlockCode.trim()) {
-            console.log('No unlock code provided');
-            return;
+        if (unlockCode === '0theHumanity') {
+            errorMessage = '';
+            dispatch('unlock');
+        } else {
+            errorMessage = 'Invalid unlock code. Please try again.';
         }
-        console.log('Dispatching unlock event');
-        dispatch('unlock');
     }
 </script>
 
 <div class="card-front">
     <div class="text-container">
         <div class="content">
-            <h2>Thanks for trying <strong>Codes Against Academy!</strong></h2>
+            <h2>Thanks for trying Codes Against Academy!</h2>
             <p class="message">
-                Unlock all 75 scenario cards to fully explore the wide range of relevant AI situations and discussions.
+                Unlock all 75 scenario cards to fully explore the wide range of relevant AI discussions.
             </p>
             <p class="support">
-                I created this app and pay for server time, so if you enjoy using it, please consider a donation to unlock the full game. Use any of these services to leave a small tip  - $5 suggested, but I'll be happy with anything, thank you! </p>
+                I created this app and pay for server time, so help me keep it running with a small donation ($5 recommended, but I'll be happy with anything, thank you!).
+            </p>
             <div class="payment-options">
                 <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=5&note=Full Digital Deck" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
                 <a href="https://paypal.me/JoshuaLake/5" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
@@ -48,11 +49,15 @@
                         bind:value={unlockCode} 
                         placeholder="Enter your unlock code"
                         class="code-input"
+                        on:keydown={(e) => e.key === 'Enter' && handleUnlock()}
                     />
                     <button class="submit-button" on:click={handleUnlock}>
                         Unlock
                     </button>
                 </div>
+                {#if errorMessage}
+                    <p class="error-message">{errorMessage}</p>
+                {/if}
             {/if}
         </div>
     </div>
@@ -193,6 +198,12 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: clamp(12px, 3.5cqw, 14px);
+        font-family: Arial, sans-serif;
+    }
+
+    .code-input:focus {
+        outline: none;
+        border-color: #444;
     }
 
     .submit-button {
@@ -233,5 +244,12 @@
         color: #000;
         font-style: italic;
         font-weight: normal;
+    }
+
+    .error-message {
+        color: #d32f2f;
+        font-size: clamp(12px, 3.5cqw, 14px);
+        margin: 0.5rem 0 0;
+        text-align: center;
     }
 </style> 
