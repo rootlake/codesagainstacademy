@@ -19,7 +19,11 @@
 
 	const unsubscribeDemo = demoModeState.subscribe(value => {
 		demoState = value;
-		showUnlockCard = value.cardsViewed >= 1 && !value.isUnlocked;
+		console.log('Demo state updated:', value);
+		console.log('Cards viewed:', value.cardsViewed);
+		console.log('Is unlocked:', value.isUnlocked);
+		showUnlockCard = value.cardsViewed >= 5 && !value.isUnlocked;
+		console.log('Show unlock card:', showUnlockCard);
 	});
 
 	// Reactive Navigation State
@@ -37,6 +41,11 @@
 
 	// Lifecycle
 	onMount(() => {
+		// Clear all localStorage data for testing
+		localStorage.removeItem('caa_unlock_status');
+		localStorage.removeItem('caa_cards_viewed');
+		console.log('Cleared localStorage');
+
 		const allCards = scenariosData as ScenarioCard[];
 		if (allCards.length === 0) {
 			console.error("No scenario cards found!");
@@ -55,8 +64,9 @@
 		// Set the initial current card
 		currentCard.set(history[historyIndex]);
 		
-		// Initialize demo mode state
-		demoModeState.set({ cardsViewed: 1, isUnlocked: false });
+		// Initialize with fresh state
+		demoModeState.set({ cardsViewed: 0, isUnlocked: false });
+		console.log('Initialized fresh demo state');
 	});
 
 	// Navigation Functions
@@ -68,9 +78,11 @@
 		currentCard.set(history[historyIndex]);
 		
 		if (!demoState.isUnlocked) {
+			const newCardsViewed = demoState.cardsViewed + 1;
+			console.log('Incrementing cards viewed to:', newCardsViewed);
 			demoModeState.update(state => ({
 				...state,
-				cardsViewed: state.cardsViewed + 1
+				cardsViewed: newCardsViewed
 			}));
 		}
 	}
@@ -84,10 +96,17 @@
 	}
 
 	function handleUnlock() {
-		demoModeState.update(state => ({
-			...state,
-			isUnlocked: true
-		}));
+		console.log('Handling unlock...');
+		demoModeState.update(state => {
+			console.log('Current state before unlock:', state);
+			const newState = {
+				...state,
+				isUnlocked: true,
+				cardsViewed: 0
+			};
+			console.log('New state after unlock:', newState);
+			return newState;
+		});
 		showUnlockCard = false;
 	}
 
@@ -125,7 +144,7 @@
 
 {#if !demoState.isUnlocked}
 	<div class="demo-banner">
-		Demo Mode ({1 - demoState.cardsViewed} cards remaining)
+		Demo Mode ({5 - demoState.cardsViewed} cards remaining)
 	</div>
 {/if}
 

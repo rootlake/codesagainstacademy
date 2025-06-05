@@ -1,7 +1,7 @@
 <script lang="ts">
   // Keep only necessary imports and logic
   import { createEventDispatcher } from 'svelte';
-  import { currentCard, currentCardTierSelection, allTierSelections, type ScenarioCard, tiers } from '$lib/store';
+  import { currentCard, currentCardTierSelection, allTierSelections, type ScenarioCard, tiers, demoModeState } from '$lib/store';
   import { onDestroy } from 'svelte';
   import { base } from '$app/paths';
   import TierBanner from './TierBanner.svelte';
@@ -41,9 +41,28 @@
     currentSelection = value;
   });
 
+  let showThankYou = false;
+  let isThankYouLeaving = false;
+  
+  // Subscribe to demo mode state to show thank you message
+  const unsubscribeDemo = demoModeState.subscribe(value => {
+    if (value.isUnlocked) {
+      isThankYouLeaving = false;
+      showThankYou = true;
+      setTimeout(() => {
+        isThankYouLeaving = true;
+        setTimeout(() => {
+          showThankYou = false;
+          isThankYouLeaving = false;
+        }, 300); // Match animation duration
+      }, 2000);
+    }
+  });
+
   onDestroy(() => {
     unsubscribeCard();
     unsubscribeSelection();
+    unsubscribeDemo();
   });
 
   // Handle tier banner events
@@ -80,7 +99,6 @@
     tabindex="0"
     aria-label="Scenario card: {card.scenario}"
   >
-    <!-- Show tier banner if a tier is selected for this card -->
     {#if currentSelection}
       <TierBanner 
         selection={currentSelection} 
@@ -92,6 +110,11 @@
     <div class="text-container">
       <p>{card.scenario}</p>
     </div>
+    {#if showThankYou}
+      <div class="thank-you-banner" class:leaving={isThankYouLeaving}>
+        Thank you for supporting Codes Against Academy!
+      </div>
+    {/if}
     <div class="bottom-elements">
       <img src="{base}/minilogo.png" alt="Codes Against Academy Logo" class="logo"/>
       <span class="category">{card.category}</span>
@@ -187,4 +210,46 @@
   /* touch-action: none; */
   /* container-type: inline-size; */
 
+  .thank-you-banner {
+    position: absolute;
+    bottom: 30px; /* Space for bottom elements */
+    left: 15px;
+    right: 15px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: clamp(14px, 4cqw, 16px);
+    text-align: center;
+    border-radius: 6px;
+    animation: slideUp 0.3s ease-out forwards;
+    z-index: 10;
+  }
+
+  .thank-you-banner.leaving {
+    animation: slideDown 0.3s ease-in forwards;
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to { 
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
 </style> 
