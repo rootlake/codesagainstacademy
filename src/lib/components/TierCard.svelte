@@ -163,34 +163,6 @@
     position: relative; /* Added for absolute positioning of children */
   }
 
-  .tier-card.clickable {
-    cursor: pointer;
-    /* Removed hover transitions */
-    /* transition: transform 0.1s ease, box-shadow 0.1s ease; */
-  }
-
-  .tier-card.clickable:hover {
-    /* Remove hover effects */
-    /* transform: translateY(-1px); */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
-    /* Ensure visibility and opacity are not affected by hover */
-    opacity: 1; /* Explicitly set opacity to default */
-    visibility: visible; /* Explicitly set visibility to default */
-  }
-
-  .tier-card.clickable:active {
-    /* transform: translateY(0); */
-    /* Remove hover effects */
-    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
-    /* Ensure visibility and opacity are not affected by hover */
-    opacity: 1; /* Explicitly set opacity to default */
-    visibility: visible; /* Explicitly set visibility to default */
-    color: black; /* Or a color that contrasts well */
-    opacity: 1; /* Ensure visibility */
-    visibility: visible; /* Ensure visibility */
-    /* Add any other desired styling like background or padding */
-  }
-
   .circle {
     background-color: white;
     width: 35px;
@@ -227,15 +199,6 @@
     color: black;
     text-align: center;
     margin-bottom: 0.15rem; /* Restore original margin below description */
-  }
-
-  .home-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
   }
 
   .tier-card .card-count { /* Added .tier-card to increase specificity */

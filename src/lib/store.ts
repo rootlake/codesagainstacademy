@@ -36,6 +36,12 @@ export const currentCardTierSelection = writable<CardTierSelection | null>(null)
 // Tracks all card-tier selections (for showing dots on tier cards)
 export const allTierSelections = writable<Map<string, CardTierSelection>>(new Map());
 
+// Track demo mode state
+export const demoModeState = writable({
+    cardsViewed: 0,
+    isUnlocked: false
+});
+
 export const tiers: TierInfo[] = [
   {
     id: 'S',
