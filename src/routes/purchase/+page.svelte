@@ -14,6 +14,16 @@
          
         <!-- Purchase buttons will go here -->
         <div class="purchase-options">
+            <!-- Primary Amazon option -->
+            <div class="primary-purchase">
+                <a href="https://www.amazon.com/dp/B0FD6VKZ9K" target="_blank" rel="noopener noreferrer" class="amazon-button">
+                    <strong>Buy on Amazon</strong>
+                    <span class="amazon-subtitle">Fast shipping & easy returns</span>
+                </a>
+            </div>
+            
+            <!-- Alternative payment methods -->
+            <div class="alternative-label">Or pay directly:</div>
             <div class="button-grid">
                 <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
                 <a href="https://paypal.me/JoshuaLake/25" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
@@ -119,6 +129,46 @@
         font-size: 0.6rem;
         color: black;
         font-weight: 500;
+    }
+
+    /* Primary Amazon button */
+    .primary-purchase {
+        margin-bottom: 1rem;
+    }
+
+    .amazon-button {
+        display: block;
+        background-color: #FF9900;
+        color: #232F3E;
+        padding: 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .amazon-button:hover {
+        background-color: #FF8800;
+    }
+
+    .amazon-button strong {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .amazon-subtitle {
+        font-size: 0.85rem;
+        opacity: 0.9;
+    }
+
+    .alternative-label {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.75rem;
+        font-style: italic;
     }
 
     .payment-button {
