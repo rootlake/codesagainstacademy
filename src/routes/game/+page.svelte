@@ -19,11 +19,7 @@
 
 	const unsubscribeDemo = demoModeState.subscribe(value => {
 		demoState = value;
-		console.log('Demo state updated:', value);
-		console.log('Cards viewed:', value.cardsViewed);
-		console.log('Is unlocked:', value.isUnlocked);
 		showUnlockCard = value.cardsViewed >= 5 && !value.isUnlocked;
-		console.log('Show unlock card:', showUnlockCard);
 	});
 
 	// Reactive Navigation State
@@ -44,7 +40,6 @@
 		// Clear all localStorage data for testing
 		localStorage.removeItem('caa_unlock_status');
 		localStorage.removeItem('caa_cards_viewed');
-		console.log('Cleared localStorage');
 
 		const allCards = scenariosData as ScenarioCard[];
 		if (allCards.length === 0) {
@@ -66,7 +61,6 @@
 		
 		// Initialize with fresh state
 		demoModeState.set({ cardsViewed: 0, isUnlocked: false });
-		console.log('Initialized fresh demo state');
 	});
 
 	// Navigation Functions
@@ -79,7 +73,6 @@
 		
 		if (!demoState.isUnlocked) {
 			const newCardsViewed = demoState.cardsViewed + 1;
-			console.log('Incrementing cards viewed to:', newCardsViewed);
 			demoModeState.update(state => ({
 				...state,
 				cardsViewed: newCardsViewed
@@ -96,17 +89,12 @@
 	}
 
 	function handleUnlock() {
-		console.log('Handling unlock...');
-		demoModeState.update(state => {
-			console.log('Current state before unlock:', state);
-			const newState = {
-				...state,
-				isUnlocked: true,
-				cardsViewed: 0
-			};
-			console.log('New state after unlock:', newState);
-			return newState;
-		});
+		demoModeState.update(state => ({
+			...state,
+			isUnlocked: true,
+			cardsViewed: 0
+		}));
+		showUnlockCard = false;
 		showUnlockCard = false;
 	}
 

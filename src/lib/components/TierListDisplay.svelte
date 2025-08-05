@@ -1,24 +1,7 @@
 <!-- src/lib/components/TierListDisplay.svelte -->
 <script lang="ts">
   import TierCard from './TierCard.svelte';
-
-  interface TierInfo {
-    id: string;
-    color: string;
-    description?: string;
-  }
-
-  // Define tier data
-  const tiers: TierInfo[] = [
-    { id: 'S', color: '#f07171', description: 'Super' },
-    { id: 'A', color: '#fdb462', description: 'Excellent' },
-    { id: 'B', color: '#fdee73', description: 'Good' },
-    { id: 'C', color: '#8bd37e', description: 'Okay' },
-    { id: 'D', color: '#8ab9ed', description: 'Not Okay' },
-    { id: 'E', color: '#787ABA', description: 'Terrible' },
-    { id: 'F', color: '#CA83B8', description: 'Evil' },
-    { id: 'Home', color: '#D1D5DB', description: 'Home' },
-  ];
+  import { tiers } from '$lib/store';
 
   // Dispatcher is no longer needed if not forwarding other events
   // const dispatch = createEventDispatcher();

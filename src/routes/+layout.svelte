@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
+	import { MOBILE_MAX_WIDTH, DESKTOP_MAX_WIDTH, TABLET_BREAKPOINT } from '$lib/constants';
 </script>
 
 <div class="layout-container">
@@ -34,6 +35,19 @@
 
 <style>
 	/* --- Global Styles --- */
+	:global(html) {
+		/* CSS Custom Properties from constants */
+		--mobile-max-width: 320px;
+		--desktop-max-width: 1200px;
+		--card-max-width: 420px;
+		--nav-button-size: 40px;
+		--circle-size: 35px;
+		--standard-gap: 10px;
+		--primary-black: #000;
+		--primary-white: #fff;
+		--background-gray: #D1D5DB;
+	}
+	
 	:global(html, body) {
 		margin: 0;
 		padding: 0;
@@ -66,6 +80,16 @@
         box-sizing: border-box;
         justify-content: flex-start; /* Align items to the top */
         align-items: center; /* Center items horizontally */
+        
+        /* Desktop: wider container */
+        max-width: var(--mobile-max-width, 320px); /* Mobile constraint */
+    }
+    
+    @media (min-width: 768px) {
+        .layout-container {
+            max-width: var(--desktop-max-width, 1200px); /* Desktop: much wider */
+            padding: 0 2rem;
+        }
     }
 
     /* --- Logo Header --- */
