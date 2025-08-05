@@ -16,11 +16,19 @@
         </a>
     </div>
 
+    <!-- Desktop Navigation (under logo) -->
+    <div class="desktop-nav">
+        {#if $page.route.id !== '/game'}
+            <NavigationMenu />
+        {/if}
+    </div>
+
     <main class="main-content">
         <!-- The slot tag renders the content of the current page -->
         <slot />
+        <!-- Mobile Navigation (bottom) -->
         {#if $page.route.id !== '/game'}
-            <div class="nav-area">
+            <div class="nav-area mobile-nav">
                 <NavigationMenu />
             </div>
         {/if}
@@ -102,6 +110,13 @@
         box-sizing: border-box;
         padding-top: max(0.5rem, env(safe-area-inset-top));
     }
+
+    @media (min-width: 1024px) {
+        .logo-header {
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
     .logo-header img {
         width: 100%;
         height: auto;
@@ -127,8 +142,22 @@
         box-sizing: border-box;
     }
 
-    /* --- Navigation Area (inside main-content) --- */
-    .nav-area {
+    /* --- Desktop Navigation (under logo) --- */
+    .desktop-nav {
+        display: none;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+        .desktop-nav {
+            display: flex;
+        }
+    }
+
+    /* --- Mobile Navigation Area (inside main-content) --- */
+    .nav-area.mobile-nav {
         width: 100%;
         display: flex;
         align-items: center;
@@ -136,6 +165,12 @@
         margin-top: 0.75rem; /* Space above nav */
         padding-top: 0.5rem;
         box-sizing: border-box;
+    }
+
+    @media (min-width: 1024px) {
+        .nav-area.mobile-nav {
+            display: none;
+        }
     }
 
     /* --- Footer Area --- */

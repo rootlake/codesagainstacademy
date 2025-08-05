@@ -105,7 +105,8 @@
 	});
 </script>
 
-<div class="card-area">
+<!-- Mobile Layout -->
+<div class="card-area mobile-layout">
 	{#if showUnlockCard}
 		<UnlockCard on:unlock={handleUnlock} />
 	{:else}
@@ -113,8 +114,8 @@
 	{/if}
 </div>
 
-<!-- Tier list area sits below the card area -->
-<div class="tier-list-area">
+<!-- Mobile tier list area sits below the card area -->
+<div class="tier-list-area mobile-layout">
 	<div class="tier-list-content">
 		<div class="nav-container left">
 			<button class="nav-button prev" on:click={previousCard} disabled={!canGoPrev}>
@@ -126,6 +127,32 @@
 			<button class="nav-button next" on:click={nextCard} disabled={!canGoNext}>
 				<!-- Triangle added via CSS -->
 			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Desktop Layout -->
+<div class="desktop-layout">
+	<div class="desktop-game-container">
+		<div class="desktop-left-panel">
+			{#if showUnlockCard}
+				<UnlockCard on:unlock={handleUnlock} />
+			{:else}
+				<div class="desktop-card-area">
+					<CurrentCardDisplay on:nextCard={nextCard} />
+				</div>
+				<div class="desktop-nav-area">
+					<button class="nav-button desktop-prev" on:click={previousCard} disabled={!canGoPrev}>
+						← Previous
+					</button>
+					<button class="nav-button desktop-next" on:click={nextCard} disabled={!canGoNext}>
+						Next →
+					</button>
+				</div>
+			{/if}
+		</div>
+		<div class="desktop-right-panel">
+			<TierListDisplay />
 		</div>
 	</div>
 </div>
@@ -236,5 +263,87 @@
 		max-width: 420px;
 		text-align: center;
 		box-sizing: border-box;
+	}
+
+	/* Responsive Layout Controls */
+	.mobile-layout {
+		display: block;
+	}
+
+	.desktop-layout {
+		display: none;
+	}
+
+	/* Desktop Layout (1024px and up) */
+	@media (min-width: 1024px) {
+		.mobile-layout {
+			display: none;
+		}
+
+		.desktop-layout {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		.desktop-game-container {
+			display: flex;
+			gap: 2rem;
+			height: 100%;
+			align-items: flex-start;
+			justify-content: center;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.desktop-left-panel {
+			flex: 1;
+			max-width: 500px;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.desktop-card-area {
+			width: 100%;
+		}
+
+		.desktop-nav-area {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+		}
+
+		.desktop-prev,
+		.desktop-next {
+			background-color: #666;
+			color: white;
+			border: none;
+			padding: 0.75rem 1.5rem;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 1rem;
+			font-weight: bold;
+			transition: background-color 0.2s;
+		}
+
+		.desktop-prev:hover:not(:disabled),
+		.desktop-next:hover:not(:disabled) {
+			background-color: #555;
+		}
+
+		.desktop-prev:disabled,
+		.desktop-next:disabled {
+			background-color: #ccc;
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+
+		.desktop-right-panel {
+			flex: 1;
+			max-width: 400px;
+			display: flex;
+			justify-content: center;
+		}
 	}
 </style> 
