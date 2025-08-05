@@ -77,11 +77,11 @@
         text-align: center; /* Ensure centered */
     }
     .description {
-        font-size: clamp(16px, 3.8cqw, 16px); /* Reduced from 18px */
+        font-size: clamp(13px, 3.2cqw, 14px); /* Further reduced to fit content */
         margin-bottom: 0;
-        line-height: 1.25;
+        line-height: 1.2;
         text-align: center;
-        margin-bottom: 1rem; /* Add space before buttons */
+        margin-bottom: 0.75rem; /* Slightly reduced space before buttons */
     }
 
     /* Purchase specific styles */
