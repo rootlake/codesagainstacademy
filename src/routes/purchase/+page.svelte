@@ -17,8 +17,7 @@
             <!-- Primary Amazon option -->
             <div class="primary-purchase">
                 <a href="https://www.amazon.com/dp/B0FD6VKZ9K" target="_blank" rel="noopener noreferrer" class="amazon-button">
-                    <strong>Buy on Amazon</strong>
-                    <span class="amazon-subtitle">Fast shipping & easy returns</span>
+                    <span class="amazon-text">📦 Buy on Amazon</span>
                 </a>
             </div>
             
@@ -90,7 +89,8 @@
         flex-direction: column;
         padding: 0 0.5rem;
         flex-grow: 1;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.25rem;
     }
 
     .button-grid {
@@ -133,14 +133,14 @@
 
     /* Primary Amazon button */
     .primary-purchase {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .amazon-button {
         display: block;
         background-color: #FF9900;
         color: #232F3E;
-        padding: 1rem;
+        padding: 0.7rem;
         border-radius: 8px;
         text-decoration: none;
         text-align: center;
@@ -152,22 +152,16 @@
         background-color: #FF8800;
     }
 
-    .amazon-button strong {
-        display: block;
-        font-size: 1.1rem;
-        margin-bottom: 0.2rem;
-    }
-
-    .amazon-subtitle {
-        font-size: 0.85rem;
-        opacity: 0.9;
+    .amazon-text {
+        font-size: 1rem;
+        font-weight: bold;
     }
 
     .alternative-label {
         text-align: center;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: #555;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
         font-style: italic;
     }
 
