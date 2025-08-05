@@ -14,6 +14,15 @@
          
         <!-- Purchase buttons will go here -->
         <div class="purchase-options">
+            <!-- Primary Amazon option -->
+            <div class="primary-purchase">
+                <a href="https://www.amazon.com/dp/B0FD6VKZ9K" target="_blank" rel="noopener noreferrer" class="amazon-button">
+                    <span class="amazon-text">📦 Buy on Amazon</span>
+                </a>
+            </div>
+            
+            <!-- Alternative payment methods -->
+            <div class="alternative-label">Or pay directly:</div>
             <div class="button-grid">
                 <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
                 <a href="https://paypal.me/JoshuaLake/25" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
@@ -67,11 +76,11 @@
         text-align: center; /* Ensure centered */
     }
     .description {
-        font-size: clamp(16px, 3.8cqw, 16px); /* Reduced from 18px */
+        font-size: clamp(13px, 3.2cqw, 14px); /* Further reduced to fit content */
         margin-bottom: 0;
-        line-height: 1.25;
+        line-height: 1.2;
         text-align: center;
-        margin-bottom: 1rem; /* Add space before buttons */
+        margin-bottom: 0.75rem; /* Slightly reduced space before buttons */
     }
 
     /* Purchase specific styles */
@@ -80,7 +89,8 @@
         flex-direction: column;
         padding: 0 0.5rem;
         flex-grow: 1;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.25rem;
     }
 
     .button-grid {
@@ -119,6 +129,40 @@
         font-size: 0.6rem;
         color: black;
         font-weight: 500;
+    }
+
+    /* Primary Amazon button */
+    .primary-purchase {
+        margin-bottom: 0.75rem;
+    }
+
+    .amazon-button {
+        display: block;
+        background-color: #FF9900;
+        color: #232F3E;
+        padding: 0.7rem;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .amazon-button:hover {
+        background-color: #FF8800;
+    }
+
+    .amazon-text {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .alternative-label {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+        font-style: italic;
     }
 
     .payment-button {
