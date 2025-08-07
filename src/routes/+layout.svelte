@@ -6,39 +6,38 @@
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
-	import { MOBILE_MAX_WIDTH, DESKTOP_MAX_WIDTH, TABLET_BREAKPOINT } from '$lib/constants';
 </script>
 
 <div class="layout-container">
-    <div class="logo-header">
-        <a href="{base}/" aria-label="Home">
-            <img src="{base}/minilogo.png" alt="Codes Against Academy" />
-        </a>
-    </div>
+	<div class="logo-header">
+		<a href="{base}/" aria-label="Home">
+			<img src="{base}/minilogo.png" alt="Codes Against Academy" />
+		</a>
+	</div>
 
-    <!-- Desktop Navigation (under logo) -->
-    <div class="desktop-nav">
-        {#if $page.route.id !== '/game'}
-            <NavigationMenu />
-        {/if}
-    </div>
+	<!-- Desktop Navigation (under logo) -->
+	<div class="desktop-nav">
+		{#if $page.route.id !== '/game'}
+			<NavigationMenu />
+		{/if}
+	</div>
 
-    <main class="main-content">
-        <!-- The slot tag renders the content of the current page -->
-        <slot />
-        <!-- Mobile Navigation (bottom) -->
-        {#if $page.route.id !== '/game'}
-            <div class="nav-area mobile-nav">
-                <NavigationMenu />
-            </div>
-        {/if}
-    </main>
+	<main class="main-content">
+		<!-- The slot tag renders the content of the current page -->
+		<slot />
+		<!-- Mobile Navigation (bottom) -->
+		{#if $page.route.id !== '/game'}
+			<div class="nav-area mobile-nav">
+				<NavigationMenu />
+			</div>
+		{/if}
+	</main>
 
-    <!-- Footer area (empty for now, pushed down) -->
-    <footer class="footer-area">
-        <!-- The game page provides its own tier list in this space -->
-        <!-- This ensures the space is occupied consistently -->
-    </footer>
+	<!-- Footer area (empty for now, pushed down) -->
+	<footer class="footer-area">
+		<!-- The game page provides its own tier list in this space -->
+		<!-- This ensures the space is occupied consistently -->
+	</footer>
 </div>
 
 <style>
@@ -53,136 +52,142 @@
 		--standard-gap: 10px;
 		--primary-black: #000;
 		--primary-white: #fff;
-		--background-gray: #D1D5DB;
+		--background-gray: #d1d5db;
 	}
-	
+
 	:global(html, body) {
 		margin: 0;
 		padding: 0;
 		height: 100%;
 		width: 100%;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
 
 	:global(body) {
-		background: linear-gradient(to bottom, #8B8C8F, #C7C8CA);
+		background: linear-gradient(to bottom, #8b8c8f, #c7c8ca);
 		color: #000;
-        height: 100vh; /* Fallback */
-        height: 100svh; /* Use small viewport height */
-        overflow: hidden; /* Prevent body scroll if content fits */
 		position: relative;
 	}
 
-    /* --- Layout Container (replaces old .game-container) --- */
-    .layout-container {
-        width: 100%;
-        /* Use min-height to allow content to determine height */
-        min-height: 100vh; /* Fallback */
-        min-height: 100svh;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        justify-content: flex-start; /* Align items to the top */
-        align-items: center; /* Center items horizontally */
-        
-        /* Desktop: wider container */
-        max-width: var(--mobile-max-width, 320px); /* Mobile constraint */
-    }
-    
-    @media (min-width: 768px) {
-        .layout-container {
-            max-width: var(--desktop-max-width, 1200px); /* Desktop: much wider */
-            padding: 0 2rem;
-        }
-    }
+	/* Mobile-specific body constraints */
+	@media (max-width: 1023px) {
+		:global(body) {
+			height: 100vh; /* Fallback */
+			height: 100svh; /* Use small viewport height */
+			overflow: hidden; /* Prevent body scroll if content fits */
+		}
+	}
 
-    /* --- Logo Header --- */
-    .logo-header {
-        text-align: center;
-        flex-shrink: 0; /* Prevent shrinking */
-        margin-bottom: 0.75rem;
-        width: 100%;
-        max-width: 320px; /* Max width consistent with card */
-        box-sizing: border-box;
-        padding-top: max(0.5rem, env(safe-area-inset-top));
-    }
+	/* --- Layout Container (replaces old .game-container) --- */
+	.layout-container {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		justify-content: flex-start; /* Align items to the top */
+		align-items: center; /* Center items horizontally */
 
-    @media (min-width: 1024px) {
-        .logo-header {
-            max-width: 100%;
-            margin-bottom: 1rem;
-        }
-    }
-    .logo-header img {
-        width: 100%;
-        height: auto;
-        max-height: 40px;
-        opacity: 0.8;
-        display: block;
-    }
+		/* Mobile: constrained width and height */
+		max-width: var(--mobile-max-width, 320px);
+		min-height: 100vh; /* Fallback */
+		min-height: 100svh;
+		height: auto;
+	}
 
-    .logo-header a {
-        display: inline-block; /* Ensure anchor behaves correctly */
-        line-height: 0; /* Prevent extra space below image */
-    }
+	@media (min-width: 768px) {
+		.layout-container {
+			max-width: var(--desktop-max-width, 1200px); /* Desktop: much wider */
+			padding: 0 2rem;
+			min-height: 100vh; /* Full height on desktop */
+			height: auto; /* Allow content to determine height */
+		}
+	}
 
-    /* --- Main Content Area --- */
-    .main-content {
-        flex-grow: 1;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-left: max(0.5rem, env(safe-area-inset-left));
-        padding-right: max(0.5rem, env(safe-area-inset-right));
-        box-sizing: border-box;
-    }
+	/* --- Logo Header --- */
+	.logo-header {
+		text-align: center;
+		flex-shrink: 0; /* Prevent shrinking */
+		margin-bottom: 0.75rem;
+		width: 100%;
+		max-width: 320px; /* Max width consistent with card */
+		box-sizing: border-box;
+		padding-top: max(0.5rem, env(safe-area-inset-top));
+	}
 
-    /* --- Desktop Navigation (under logo) --- */
-    .desktop-nav {
-        display: none;
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
+	@media (min-width: 1024px) {
+		.logo-header {
+			max-width: 100%;
+			margin-bottom: 1rem;
+		}
+	}
+	.logo-header img {
+		width: 100%;
+		height: auto;
+		max-height: 40px;
+		opacity: 0.8;
+		display: block;
+	}
 
-    @media (min-width: 1024px) {
-        .desktop-nav {
-            display: flex;
-        }
-    }
+	.logo-header a {
+		display: inline-block; /* Ensure anchor behaves correctly */
+		line-height: 0; /* Prevent extra space below image */
+	}
 
-    /* --- Mobile Navigation Area (inside main-content) --- */
-    .nav-area.mobile-nav {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0.75rem; /* Space above nav */
-        padding-top: 0.5rem;
-        box-sizing: border-box;
-    }
+	/* --- Main Content Area --- */
+	.main-content {
+		flex-grow: 1;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-left: max(0.5rem, env(safe-area-inset-left));
+		padding-right: max(0.5rem, env(safe-area-inset-right));
+		box-sizing: border-box;
+	}
 
-    @media (min-width: 1024px) {
-        .nav-area.mobile-nav {
-            display: none;
-        }
-    }
+	/* --- Desktop Navigation (under logo) --- */
+	.desktop-nav {
+		display: none;
+		width: 100%;
+		justify-content: center;
+		margin-bottom: 1rem;
+	}
 
-    /* --- Footer Area --- */
-    .footer-area {
-        flex-shrink: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: auto; /* Pushes footer to the bottom */
-        padding-bottom: max(1rem, env(safe-area-inset-bottom));
-        box-sizing: border-box;
-    }
+	@media (min-width: 1024px) {
+		.desktop-nav {
+			display: flex;
+		}
+	}
 
+	/* --- Mobile Navigation Area (inside main-content) --- */
+	.nav-area.mobile-nav {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 0.75rem; /* Space above nav */
+		padding-top: 0.5rem;
+		box-sizing: border-box;
+	}
+
+	@media (min-width: 1024px) {
+		.nav-area.mobile-nav {
+			display: none;
+		}
+	}
+
+	/* --- Footer Area --- */
+	.footer-area {
+		flex-shrink: 0;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: auto; /* Pushes footer to the bottom */
+		padding-bottom: max(1rem, env(safe-area-inset-bottom));
+		box-sizing: border-box;
+	}
 </style>

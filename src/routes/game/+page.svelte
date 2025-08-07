@@ -8,16 +8,16 @@
 
 	// --- State --- //
 	let history: ScenarioCard[] = []; // Will hold the fully shuffled deck
-	let historyIndex = -1;           // Pointer within the history
-	let currentCardValue: ScenarioCard | null = null; // Keep track for $isDraggingCard check
+	let historyIndex = -1; // Pointer within the history
+	// Track current card state for potential future features
 	let showUnlockCard = false;
 	let demoState = { cardsViewed: 0, isUnlocked: false };
 
-	const unsubscribeCurrent = currentCard.subscribe((value: ScenarioCard | null) => { 
-		currentCardValue = value;
+	const unsubscribeCurrent = currentCard.subscribe(() => {
+		// Current card subscription for potential future features
 	});
 
-	const unsubscribeDemo = demoModeState.subscribe(value => {
+	const unsubscribeDemo = demoModeState.subscribe((value) => {
 		demoState = value;
 		showUnlockCard = value.cardsViewed >= 5 && !value.isUnlocked;
 	});
@@ -43,7 +43,7 @@
 
 		const allCards = scenariosData as ScenarioCard[];
 		if (allCards.length === 0) {
-			console.error("No scenario cards found!");
+			console.error('No scenario cards found!');
 			return;
 		}
 
@@ -58,7 +58,7 @@
 
 		// Set the initial current card
 		currentCard.set(history[historyIndex]);
-		
+
 		// Initialize with fresh state
 		demoModeState.set({ cardsViewed: 0, isUnlocked: false });
 	});
@@ -67,13 +67,13 @@
 	function nextCard() {
 		if (history.length === 0) return;
 		if (showUnlockCard && !demoState.isUnlocked) return;
-		
+
 		historyIndex = (historyIndex + 1) % history.length;
 		currentCard.set(history[historyIndex]);
-		
+
 		if (!demoState.isUnlocked) {
 			const newCardsViewed = demoState.cardsViewed + 1;
-			demoModeState.update(state => ({
+			demoModeState.update((state) => ({
 				...state,
 				cardsViewed: newCardsViewed
 			}));
@@ -83,13 +83,13 @@
 	function previousCard() {
 		if (history.length === 0) return;
 		if (showUnlockCard && !demoState.isUnlocked) return;
-		
+
 		historyIndex = historyIndex === 0 ? history.length - 1 : historyIndex - 1;
 		currentCard.set(history[historyIndex]);
 	}
 
 	function handleUnlock() {
-		demoModeState.update(state => ({
+		demoModeState.update((state) => ({
 			...state,
 			isUnlocked: true,
 			cardsViewed: 0
@@ -180,8 +180,9 @@
 		opacity: 0.3;
 		cursor: not-allowed;
 	}
-	.nav-button::before { /* Common styles for triangle pseudo-elements */
-		content: "";
+	.nav-button::before {
+		/* Common styles for triangle pseudo-elements */
+		content: '';
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -203,7 +204,7 @@
 	}
 
 	.nav-button:hover:not(:disabled) {
-		opacity: 1.0;
+		opacity: 1;
 	}
 
 	.card-area {
@@ -283,22 +284,23 @@
 		.desktop-layout {
 			display: block;
 			width: 100%;
-			height: 100%;
+			min-height: 60vh; /* Ensure minimum height */
+			height: auto; /* Allow content to determine height */
 		}
 
 		.desktop-game-container {
 			display: flex;
 			gap: 2rem;
-			height: 100%;
 			align-items: flex-start;
 			justify-content: center;
 			max-width: 1200px;
 			margin: 0 auto;
+			padding: 2rem 0; /* Add some vertical padding */
 		}
 
 		.desktop-left-panel {
 			flex: 1;
-			max-width: 500px;
+			max-width: 600px;
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
@@ -341,9 +343,9 @@
 
 		.desktop-right-panel {
 			flex: 1;
-			max-width: 400px;
+			max-width: 500px;
 			display: flex;
 			justify-content: center;
 		}
 	}
-</style> 
+</style>
