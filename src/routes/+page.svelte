@@ -39,6 +39,19 @@
 		overflow: hidden;
 	}
 
+	/* Desktop card sizing - match game card dimensions */
+	@media (min-width: 1024px) {
+		.static-content-card {
+			width: 400px; /* Fixed width to match game card */
+			height: 555px; /* Fixed height to match game card */
+			max-width: none; /* Remove max-width constraint */
+			aspect-ratio: auto; /* Let fixed dimensions control ratio */
+			padding: 40px; /* More padding on desktop */
+			border-radius: 25px; /* Larger border radius */
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+		}
+	}
+
 	.content-inner {
 		flex-grow: 1;
 		display: flex;
@@ -56,6 +69,13 @@
 		max-width: 100%;
 	}
 
+	/* Desktop text sizing - smaller for fixed card size */
+	@media (min-width: 1024px) {
+		.title {
+			font-size: 20px; /* Fixed size for 400px card */
+		}
+	}
+
 	.description {
 		font-weight: bold;
 		font-size: clamp(18px, 4cqw, 16px);
@@ -63,6 +83,13 @@
 		text-align: left;
 		max-width: 100%;
 		overflow-wrap: break-word;
+	}
+
+	/* Desktop description sizing - smaller for fixed card size */
+	@media (min-width: 1024px) {
+		.description {
+			font-size: 16px; /* Fixed size for 400px card */
+		}
 	}
 
 	.bottom-elements {

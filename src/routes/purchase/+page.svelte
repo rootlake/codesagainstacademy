@@ -83,6 +83,19 @@
 		box-sizing: border-box;
 		overflow: hidden;
 	}
+
+	/* Desktop card sizing - match game card dimensions */
+	@media (min-width: 1024px) {
+		.static-content-card {
+			width: 400px; /* Fixed width to match game card */
+			height: 555px; /* Fixed height to match game card */
+			max-width: none; /* Remove max-width constraint */
+			aspect-ratio: auto; /* Let fixed dimensions control ratio */
+			padding: 40px; /* More padding on desktop */
+			border-radius: 25px; /* Larger border radius */
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+		}
+	}
 	.content-inner {
 		flex-grow: 1;
 		display: flex;
@@ -99,12 +112,27 @@
 		line-height: 1.3; /* Match home page line-height */
 		text-align: center; /* Ensure centered */
 	}
+
+	/* Desktop text sizing - smaller for fixed card size */
+	@media (min-width: 1024px) {
+		h1 {
+			font-size: 18px; /* Fixed size for 400px card */
+		}
+	}
+
 	.description {
 		font-size: clamp(13px, 3.2cqw, 14px); /* Further reduced to fit content */
 		margin-bottom: 0;
 		line-height: 1.2;
 		text-align: center;
 		margin-bottom: 0.75rem; /* Slightly reduced space before buttons */
+	}
+
+	/* Desktop description sizing - smaller for fixed card size */
+	@media (min-width: 1024px) {
+		.description {
+			font-size: 14px; /* Fixed size for 400px card */
+		}
 	}
 
 	/* Purchase specific styles */

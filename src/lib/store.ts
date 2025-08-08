@@ -84,11 +84,13 @@ export const tiers: TierInfo[] = [
 		description: 'Beyond unethical, this is<br>immoral, illegal, and bad',
 		color: '#c086b5',
 		shortName: 'Evil'
-	},
-	{
-		id: 'Home',
-		color: '#D1D5DB',
-		description: 'Home',
-		shortName: 'Home'
 	}
 ];
+
+// Home tier for navigation - separate from main tier list
+export const homeTier: TierInfo = {
+	id: 'Home',
+	color: '#D1D5DB',
+	description: 'Home',
+	shortName: 'Home'
+};

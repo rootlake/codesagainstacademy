@@ -157,10 +157,12 @@
 	/* Desktop card sizing */
 	@media (min-width: 1024px) {
 		.card-front {
-			max-width: 450px; /* Larger on desktop */
-			padding: 20px; /* More padding on desktop */
-			border-radius: 15px; /* Slightly larger border radius */
-			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow */
+			max-width: 650px; /* Even larger on desktop to match mockup */
+			max-height: 75vh; /* Take most of the viewport height */
+			min-height: 550px; /* Larger minimum height */
+			padding: 40px; /* More padding on desktop */
+			border-radius: 25px; /* Larger border radius */
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
 		}
 	}
 
@@ -169,7 +171,7 @@
 
 	.text-container {
 		flex: 1;
-		margin-bottom: 5px; /* Reduced gutter significantly */
+		margin-bottom: 5px; /* Back to original mobile margin */
 		overflow: hidden;
 		/* Ensure text aligns top-left */
 		text-align: left;
@@ -182,22 +184,31 @@
 		margin: 0;
 		width: 100%;
 		word-wrap: break-word;
-		font-size: clamp(16px, 8cqw, 32px);
+		font-size: clamp(16px, 8cqw, 32px); /* Back to mobile sizing */
 		line-height: 1.3;
 		color: #000;
 		/* position: relative; /* No longer needed */
 		/* z-index: 1; /* No longer needed */
 	}
 
+	/* Desktop text sizing - keep mobile sizing exactly */
+	@media (min-width: 1024px) {
+		.text-container p {
+			font-size: clamp(16px, 8cqw, 32px); /* Use exact mobile sizing */
+			line-height: 1.3;
+			font-weight: bold;
+		}
+	}
+
 	.bottom-elements {
-		height: 20px; /* Reduced footer height further */
+		height: 20px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
 		border-top: 1px solid #aaa;
-		padding-top: 2px; /* Reduced padding */
-		margin-top: 3px; /* Reduced margin */
+		padding-top: 2px; /* Back to original mobile padding */
+		margin-top: 3px; /* Back to original mobile margin */
 		/* outline: 1px solid magenta; */
 	}
 

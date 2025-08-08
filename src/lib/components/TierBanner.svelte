@@ -48,19 +48,11 @@
 			<!-- Next arrow (bottom right) -->
 			<button class="next-button" on:click={handleNext} aria-label="Next card">
 				<svg
-					id="Layer_1"
-					data-name="Layer 1"
 					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 13.5529 22.1189"
+					viewBox="0 0 24 24"
+					fill="currentColor"
 				>
-					<defs>
-						<style>
-							.cls-1 {
-								fill: currentColor; /* Use currentColor so it inherits the button's text color */
-							}
-						</style>
-					</defs>
-					<polygon class="cls-1" points="0 0 13.5529 11.0595 0 22.1189 0 0" />
+					<path d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6-6 6-1.41-1.41z"/>
 				</svg>
 			</button>
 		</div>
@@ -101,6 +93,10 @@
 		align-items: center;
 		margin-bottom: 0.15rem;
 		position: relative;
+		flex-shrink: 0; /* Prevent squashing */
+		min-width: 35px; /* Ensure minimum width */
+		min-height: 35px; /* Ensure minimum height */
+		aspect-ratio: 1; /* Force 1:1 aspect ratio */
 	}
 
 	.letter {

@@ -59,7 +59,7 @@
 		// Set the initial current card
 		currentCard.set(history[historyIndex]);
 
-		// Initialize with fresh state
+		// Initialize with fresh state - start in demo mode
 		demoModeState.set({ cardsViewed: 0, isUnlocked: false });
 	});
 
@@ -131,22 +131,46 @@
 	</div>
 </div>
 
+{#if !demoState.isUnlocked}
+	<div class="demo-banner mobile-layout">
+		Demo Mode ({5 - demoState.cardsViewed} cards remaining)
+	</div>
+{/if}
+
 <!-- Desktop Layout -->
 <div class="desktop-layout">
+	{#if !demoState.isUnlocked}
+		<div class="demo-banner">
+			Demo Mode ({5 - demoState.cardsViewed} cards remaining)
+		</div>
+	{/if}
 	<div class="desktop-game-container">
 		<div class="desktop-left-panel">
 			{#if showUnlockCard}
 				<UnlockCard on:unlock={handleUnlock} />
 			{:else}
-				<div class="desktop-card-area">
-					<CurrentCardDisplay on:nextCard={nextCard} />
-				</div>
-				<div class="desktop-nav-area">
-					<button class="nav-button desktop-prev" on:click={previousCard} disabled={!canGoPrev}>
-						← Previous
+				<div class="desktop-card-container">
+					<!-- Left navigation button -->
+					<button
+						class="nav-button desktop-side-nav desktop-prev"
+						on:click={previousCard}
+						disabled={!canGoPrev}
+					>
+						<span class="nav-arrow">‹</span>
 					</button>
-					<button class="nav-button desktop-next" on:click={nextCard} disabled={!canGoNext}>
-						Next →
+
+					<!-- Card in center -->
+					<div class="desktop-card-area">
+						<CurrentCardDisplay on:nextCard={nextCard} />
+					</div>
+
+					<!-- Right navigation button -->
+					<button
+						class="nav-button desktop-side-nav desktop-next"
+						on:click={nextCard}
+						disabled={!canGoNext}
+					>
+						<span class="nav-arrow">›</span>
 					</button>
 				</div>
 			{/if}
@@ -156,12 +180,6 @@
 		</div>
 	</div>
 </div>
-
-{#if !demoState.isUnlocked}
-	<div class="demo-banner">
-		Demo Mode ({5 - demoState.cardsViewed} cards remaining)
-	</div>
-{/if}
 
 <style>
 	/* --- Nav Button Styles (using CSS triangles) --- */
@@ -180,28 +198,7 @@
 		opacity: 0.3;
 		cursor: not-allowed;
 	}
-	.nav-button::before {
-		/* Common styles for triangle pseudo-elements */
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		/* Default border color, overridden below */
-		border-color: transparent black transparent transparent;
-	}
-	.nav-button.prev::before {
-		border-width: 10px 12px 10px 0; /* h, right-w, h, left-w */
-		border-color: transparent black transparent transparent;
-		transform: translate(-50%, -50%);
-	}
-	.nav-button.next::before {
-		border-width: 10px 0 10px 12px; /* h, right-w, h, left-w */
-		border-color: transparent transparent transparent black;
-		transform: translate(-50%, -50%);
-	}
+	/* Remove triangle pseudo-elements */
 
 	.nav-button:hover:not(:disabled) {
 		opacity: 1;
@@ -266,6 +263,19 @@
 		box-sizing: border-box;
 	}
 
+	/* Desktop demo banner styling */
+	@media (min-width: 1024px) {
+		.demo-banner {
+			font-size: 1.2rem;
+			padding: 0.75rem 2rem;
+			border-radius: 10px;
+			margin: 0 auto 1rem auto; /* Reduced bottom margin */
+			max-width: 500px; /* Wider on desktop */
+			background-color: #333;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		}
+	}
+
 	/* Responsive Layout Controls */
 	.mobile-layout {
 		display: block;
@@ -290,52 +300,63 @@
 
 		.desktop-game-container {
 			display: flex;
-			gap: 2rem;
+			gap: 1rem; /* Reduced gap to bring tier list closer */
 			align-items: flex-start;
 			justify-content: center;
 			max-width: 1200px;
 			margin: 0 auto;
-			padding: 2rem 0; /* Add some vertical padding */
+			padding: 0.5rem 0; /* Reduced padding */
+			height: auto; /* Remove fixed height calculation */
 		}
 
 		.desktop-left-panel {
-			flex: 1;
-			max-width: 600px;
+			flex: 2; /* Take more space */
+			max-width: 700px;
 			display: flex;
 			flex-direction: column;
-			gap: 1rem;
+			justify-content: center;
+			height: 100%;
 		}
 
-		.desktop-card-area {
-			width: 100%;
-		}
-
-		.desktop-nav-area {
+		.desktop-card-container {
 			display: flex;
+			align-items: center;
 			gap: 1rem;
+			width: 100%;
 			justify-content: center;
 		}
 
-		.desktop-prev,
-		.desktop-next {
+		.desktop-card-area {
+			flex: 0 0 auto;
+		}
+
+		.desktop-side-nav {
 			background-color: #666;
 			color: white;
 			border: none;
-			padding: 0.75rem 1.5rem;
-			border-radius: 8px;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
 			cursor: pointer;
-			font-size: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
 			font-weight: bold;
 			transition: background-color 0.2s;
+			flex-shrink: 0;
 		}
 
-		.desktop-prev:hover:not(:disabled),
-		.desktop-next:hover:not(:disabled) {
+		.nav-arrow {
+			line-height: 1;
+			font-family: Arial, sans-serif;
+		}
+
+		.desktop-side-nav:hover:not(:disabled) {
 			background-color: #555;
 		}
 
-		.desktop-prev:disabled,
-		.desktop-next:disabled {
+		.desktop-side-nav:disabled {
 			background-color: #ccc;
 			cursor: not-allowed;
 			opacity: 0.5;
@@ -345,7 +366,10 @@
 			flex: 1;
 			max-width: 500px;
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
+			height: 100%;
+			overflow-y: auto;
 		}
 	}
 </style>

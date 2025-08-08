@@ -14,6 +14,9 @@
 	export let tierId: string = '';
 	export let color: string = '#ccc';
 	export let description: string | undefined = undefined;
+	
+	// Ensure color has a fallback value
+	$: safeColor = color || '#ccc';
 
 	const dispatch = createEventDispatcher<{ tierSelected: CardTierSelection }>();
 
@@ -27,15 +30,15 @@
 	let cardCountForThisTier = 0; // Reactive variable for the count
 
 	const unsubscribeSelections = allTierSelections.subscribe((selections) => {
-		if (cardId) {
+		if (cardId && tierId) {
 			// Check selection state - can be used for future features
 			// Check if THIS tier has ANY card selected for it (for the dot)
-			hasDot = Array.from(selections.values()).some((sel) => sel.tierId === tierId);
+			hasDot = Array.from(selections.values()).some((sel) => sel?.tierId === tierId);
 
 			// Calculate the count of cards assigned to this tier
 			let count = 0;
 			selections.forEach((selection) => {
-				if (selection.tierId === tierId) {
+				if (selection?.tierId === tierId) {
 					count++;
 				}
 			});
@@ -53,10 +56,6 @@
 
 	// Handle tier selection
 	function handleTierClick() {
-		if (tierId === 'Home') {
-			window.location.href = base + '/';
-			return;
-		}
 		if (!cardId) return;
 
 		const currentSelection = $allTierSelections.get(cardId);
@@ -93,14 +92,14 @@
 </script>
 
 <button
-	class="tier-card"
-	style:--tier-color={color}
+	class="tier-banner"
+	style:--tier-color={safeColor}
 	aria-label="Tier {tierId}{description ? ': ' + description : ''}"
 	on:click={handleTierClick}
 	on:keydown={(e) => e.key === 'Enter' && handleTierClick()}
 >
 	{#if cardCountForThisTier > 0}
-		<div class="indicator-area-top">
+		<div class="indicator-area">
 			<div class="chits-column">
 				<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 				{#each Array(Math.min(cardCountForThisTier, 7)) as _, i (i)}
@@ -113,26 +112,25 @@
 		</div>
 	{/if}
 
-	<div class="circle">
-		{#if tierId === 'Home'}
-			<svg
-				class="home-svg"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-				fill="currentColor"
-			>
-				<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-			</svg>
-		{:else}
+	<!-- Left tier button replica -->
+	<div class="tier-button-replica" style:--tier-color={safeColor}>
+		<div class="circle">
 			<span class="letter">{tierId}</span>
-			{#if hasDot}
-				<!-- OLD: <div class="selection-dot"></div> -->
-			{/if}
-		{/if}
+		</div>
+		<span class="tier-name">{tiers.find(t => t.id === tierId)?.shortName || tierId}</span>
 	</div>
-	{#if description}
-		<span class="description">{description}</span>
-	{/if}
+
+	<!-- Main banner area with description -->
+	<div class="banner-main" style:--tier-color={safeColor}>
+		<div class="banner-text">
+			{#if description}
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html description}
+			{:else}
+				Tier {tierId}
+			{/if}
+		</div>
+	</div>
 
 	{#if cardCountForThisTier > 0}
 		<div class="card-count">{cardCountForThisTier}</div>
@@ -140,34 +138,42 @@
 </button>
 
 <style>
-	.tier-card {
+	.tier-banner {
 		/* Reset default button styles */
-		background: none; /* Remove default background */
-		border: none; /* Remove default border */
-		padding: 0; /* Remove default padding */
-		margin: 0; /* Remove default margin */
-		font: inherit; /* Inherit font styles */
-		color: inherit; /* Inherit text color */
-		text-align: inherit; /* Inherit text alignment */
-		cursor: pointer; /* Ensure cursor is pointer */
-		/* Prevent any animations or transitions */
-		transition: none !important;
-		animation: none !important;
+		background: none;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		text-align: inherit;
+		cursor: pointer;
+		transition: opacity 0.2s ease;
 		-webkit-tap-highlight-color: transparent;
 		outline: none;
 
-		/* Existing styles to maintain look */
-		background-color: var(--tier-color); /* Re-apply background color */
+		/* Banner layout */
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 65px;
+		position: relative;
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+		margin-bottom: 0.5rem;
+	}
+
+	/* Replica of tier button on the left */
+	.tier-button-replica {
+		background-color: var(--tier-color);
 		padding: 0.5rem 0.25rem;
-		border-radius: 6px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.15rem;
-		/* Set fixed size */
-		width: 70px;
-		height: 70px;
-		position: relative; /* Added for absolute positioning of children */
+		min-width: 65px;
+		flex-shrink: 0;
+		height: 65px;
+		box-sizing: border-box;
 	}
 
 	.circle {
@@ -178,8 +184,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 0.15rem;
 		position: relative;
+		flex-shrink: 0; /* Prevent squashing */
+		min-width: 35px; /* Ensure minimum width */
+		min-height: 35px; /* Ensure minimum height */
+		aspect-ratio: 1; /* Force 1:1 aspect ratio */
 	}
 
 	.letter {
@@ -188,49 +197,61 @@
 		font-size: 1.8rem;
 		color: black;
 		line-height: 1;
-		position: relative;
 	}
 
-	.home-svg {
-		width: 24px;
-		height: 24px;
-		fill: black;
-		position: relative;
-		top: 1px;
-	}
 
-	.description {
+	.tier-name {
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 0.65rem;
 		font-weight: bold;
 		color: black;
 		text-align: center;
-		margin-bottom: 0.15rem; /* Restore original margin below description */
 	}
 
-	.tier-card .card-count {
-		/* Added .tier-card to increase specificity */
-		/* Position in bottom right corner */
-		position: absolute; /* Use absolute positioning */
-		bottom: 2px; /* Small offset from bottom */
-		right: 4px; /* Small offset from right */
-		transform: none; /* Remove centering transform */
-		font-size: 0.6rem;
+	/* Main banner area */
+	.banner-main {
+		background-color: var(--tier-color);
+		flex: 1;
+		height: 65px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		box-sizing: border-box;
+	}
+
+	.banner-text {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 1rem;
 		font-weight: bold;
 		color: black;
-		opacity: 1;
-		visibility: visible;
-		z-index: 2;
-		/* Remove any potentially conflicting styling */
+		text-align: center;
+		line-height: 1.2;
+		max-width: 300px;
+		word-break: break-word;
 	}
 
-	.indicator-area-top {
+	.card-count {
 		position: absolute;
-		top: 4px; /* Adjust as needed */
-		left: 4px; /* Adjust as needed */
+		bottom: 4px;
+		right: 20px; /* More padding from right edge */
+		font-size: 0.7rem;
+		font-weight: bold;
+		color: black;
+		background-color: rgba(255, 255, 255, 0.8);
+		padding: 2px 6px;
+		border-radius: 10px;
+		z-index: 10;
+	}
+
+	.indicator-area {
+		position: absolute;
+		top: 4px;
+		left: 4px;
 		display: flex;
-		flex-direction: column; /* Arrange chits column and plus sign vertically */
-		align-items: flex-start; /* Align items to the left */
+		flex-direction: column;
+		align-items: flex-start;
+		z-index: 10;
 	}
 
 	.chits-column {

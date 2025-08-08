@@ -102,6 +102,19 @@
 		container-type: inline-size;
 	}
 
+	/* Desktop card sizing - match game card dimensions */
+	@media (min-width: 1024px) {
+		.card-front {
+			width: 400px; /* Fixed width to match game card */
+			height: 555px; /* Fixed height to match game card */
+			max-width: none; /* Remove max-width constraint */
+			aspect-ratio: auto; /* Let fixed dimensions control ratio */
+			padding: 40px; /* More padding on desktop */
+			border-radius: 25px; /* Larger border radius */
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+		}
+	}
+
 	.text-container {
 		flex: 1;
 		margin-bottom: 5px;
@@ -123,6 +136,13 @@
 		line-height: 1.2;
 	}
 
+	/* Desktop text sizing - smaller for fixed card size */
+	@media (min-width: 1024px) {
+		h2 {
+			font-size: 18px; /* Fixed size for 400px card */
+		}
+	}
+
 	.message {
 		font-size: clamp(16px, 4cqw, 16px);
 		margin: 0;
@@ -130,10 +150,22 @@
 		font-weight: bold;
 	}
 
+	@media (min-width: 1024px) {
+		.message {
+			font-size: 14px; /* Fixed size for 400px card */
+		}
+	}
+
 	.support {
 		font-size: clamp(13px, 3.8cqw, 15px);
 		margin: 0;
 		line-height: 1.3;
+	}
+
+	@media (min-width: 1024px) {
+		.support {
+			font-size: 12px; /* Fixed size for 400px card */
+		}
 	}
 
 	.payment-options {
@@ -176,6 +208,12 @@
 		margin: 0;
 		line-height: 1.3;
 		text-align: center;
+	}
+
+	@media (min-width: 1024px) {
+		.student-note {
+			font-size: 11px; /* Fixed size for 400px card */
+		}
 	}
 
 	.email-link {

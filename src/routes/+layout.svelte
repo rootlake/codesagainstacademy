@@ -15,29 +15,34 @@
 		</a>
 	</div>
 
-	<!-- Desktop Navigation (under logo) -->
-	<div class="desktop-nav">
-		{#if $page.route.id !== '/game'}
-			<NavigationMenu />
-		{/if}
-	</div>
-
 	<main class="main-content">
 		<!-- The slot tag renders the content of the current page -->
 		<slot />
-		<!-- Mobile Navigation (bottom) -->
-		{#if $page.route.id !== '/game'}
-			<div class="nav-area mobile-nav">
-				<NavigationMenu />
-			</div>
-		{/if}
 	</main>
 
-	<!-- Footer area (empty for now, pushed down) -->
-	<footer class="footer-area">
-		<!-- The game page provides its own tier list in this space -->
-		<!-- This ensures the space is occupied consistently -->
-	</footer>
+	<!-- Persistent Bottom Navigation -->
+	<nav class="bottom-navigation">
+		<div class="nav-cards-container">
+			<a href="{base}/" class="nav-card {$page.route.id === '/' ? 'active' : ''}">
+				<span class="nav-card-title">Home</span>
+			</a>
+			<a href="{base}/game" class="nav-card {$page.route.id === '/game' ? 'active' : ''}">
+				<span class="nav-card-title">Game</span>
+			</a>
+			<a href="{base}/purchase" class="nav-card {$page.route.id === '/purchase' ? 'active' : ''}">
+				<span class="nav-card-title">Purchase</span>
+			</a>
+			<a href="{base}/contact" class="nav-card {$page.route.id === '/contact' ? 'active' : ''}">
+				<span class="nav-card-title">Contact</span>
+			</a>
+			<a
+				href="{base}/suggestions"
+				class="nav-card {$page.route.id === '/suggestions' ? 'active' : ''}"
+			>
+				<span class="nav-card-title">Suggest</span>
+			</a>
+		</div>
+	</nav>
 </div>
 
 <style>
@@ -148,46 +153,138 @@
 		box-sizing: border-box;
 	}
 
-	/* --- Desktop Navigation (under logo) --- */
-	.desktop-nav {
-		display: none;
-		width: 100%;
-		justify-content: center;
-		margin-bottom: 1rem;
-	}
-
-	@media (min-width: 1024px) {
-		.desktop-nav {
-			display: flex;
-		}
-	}
-
-	/* --- Mobile Navigation Area (inside main-content) --- */
-	.nav-area.mobile-nav {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-top: 0.75rem; /* Space above nav */
-		padding-top: 0.5rem;
-		box-sizing: border-box;
-	}
-
-	@media (min-width: 1024px) {
-		.nav-area.mobile-nav {
-			display: none;
-		}
-	}
-
-	/* --- Footer Area --- */
-	.footer-area {
+	/* --- Bottom Navigation --- */
+	.bottom-navigation {
 		flex-shrink: 0;
 		width: 100%;
+		background-color: rgba(0, 0, 0, 0.1);
+		padding: 0.75rem;
+		margin-top: auto; /* Pushes navigation to the bottom */
+		padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+		box-sizing: border-box;
+	}
+
+	.nav-cards-container {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		max-width: 600px;
+		margin: 0 auto;
+		height: 80px; /* Taller to accommodate fanned cards */
+		overflow: visible;
+	}
+
+	.nav-card {
+		background: linear-gradient(to bottom, #c6c7c9, #888a8c);
+		border-radius: 8px;
+		padding: 0.5rem 1rem;
+		width: 100px;
+		height: 70px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: auto; /* Pushes footer to the bottom */
-		padding-bottom: max(1rem, env(safe-area-inset-bottom));
-		box-sizing: border-box;
+		text-decoration: none;
+		color: #000;
+		font-family: Arial, sans-serif;
+		font-weight: bold;
+		font-size: 0.75rem;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease,
+			z-index 0.2s ease;
+		position: absolute;
+		border: 1px solid #999;
+		transform-origin: bottom center;
+	}
+
+	/* Fanned card positioning */
+	.nav-card:nth-child(1) { /* Home */
+		transform: rotate(-20deg) translateX(-120px);
+		z-index: 1;
+	}
+	
+	.nav-card:nth-child(2) { /* Game */
+		transform: rotate(-10deg) translateX(-60px);
+		z-index: 2;
+	}
+	
+	.nav-card:nth-child(3) { /* Purchase */
+		transform: rotate(0deg) translateX(0px);
+		z-index: 3;
+	}
+	
+	.nav-card:nth-child(4) { /* Contact */
+		transform: rotate(10deg) translateX(60px);
+		z-index: 2;
+	}
+	
+	.nav-card:nth-child(5) { /* Suggest */
+		transform: rotate(20deg) translateX(120px);
+		z-index: 1;
+	}
+
+	/* Hover effects for fanned cards */
+	.nav-card:hover {
+		transform: scale(1.1);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+		z-index: 10 !important;
+	}
+
+	.nav-card:nth-child(1):hover { /* Home */
+		transform: rotate(-20deg) translateX(-120px) scale(1.1);
+	}
+	
+	.nav-card:nth-child(2):hover { /* Game */
+		transform: rotate(-10deg) translateX(-60px) scale(1.1);
+	}
+	
+	.nav-card:nth-child(3):hover { /* Purchase */
+		transform: rotate(0deg) translateX(0px) scale(1.1);
+	}
+	
+	.nav-card:nth-child(4):hover { /* Contact */
+		transform: rotate(10deg) translateX(60px) scale(1.1);
+	}
+	
+	.nav-card:nth-child(5):hover { /* Suggest */
+		transform: rotate(20deg) translateX(120px) scale(1.1);
+	}
+
+	.nav-card.active {
+		background: linear-gradient(to bottom, #e07875, #c86662);
+		color: #fff;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		z-index: 5 !important;
+	}
+
+	.nav-card-title {
+		line-height: 1;
+	}
+
+	/* Mobile adjustments */
+	@media (max-width: 480px) {
+		.nav-cards-container {
+			gap: 0.25rem;
+		}
+
+		.nav-card {
+			min-width: 60px;
+			font-size: 0.75rem;
+			padding: 0.375rem 0.75rem;
+		}
+	}
+
+	/* Desktop adjustments */
+	@media (min-width: 1024px) {
+		.bottom-navigation {
+			padding: 1rem;
+		}
+
+		.nav-card {
+			min-width: 100px;
+			font-size: 1rem;
+		}
 	}
 </style>
