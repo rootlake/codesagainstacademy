@@ -83,6 +83,14 @@
 		}
 	}
 
+	/* Desktop-specific body constraints */
+	@media (min-width: 1024px) {
+		:global(body) {
+			height: 100vh;
+			overflow: hidden; /* Prevent scrolling on desktop too */
+		}
+	}
+
 	/* --- Layout Container (replaces old .game-container) --- */
 	.layout-container {
 		width: 100%;
@@ -97,17 +105,17 @@
 
 		/* Mobile: constrained width and height */
 		max-width: var(--mobile-max-width, 320px);
-		min-height: 100vh; /* Fallback */
-		min-height: 100svh;
-		height: auto;
+		height: 100vh; /* Fixed height to prevent scrolling */
+		height: 100svh; /* Use small viewport height */
+		overflow: hidden; /* Prevent internal scrolling */
 	}
 
 	@media (min-width: 768px) {
 		.layout-container {
 			max-width: var(--desktop-max-width, 1200px); /* Desktop: much wider */
 			padding: 0 2rem;
-			min-height: 100vh; /* Full height on desktop */
-			height: auto; /* Allow content to determine height */
+			height: 100vh; /* Fixed height on desktop too */
+			overflow: hidden; /* Prevent scrolling on desktop */
 		}
 	}
 
@@ -157,11 +165,12 @@
 	.bottom-navigation {
 		flex-shrink: 0;
 		width: 100%;
-		background-color: rgba(0, 0, 0, 0.1);
+		background-color: transparent;
 		padding: 0.75rem;
 		margin-top: auto; /* Pushes navigation to the bottom */
 		padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
 		box-sizing: border-box;
+		overflow: visible; /* Allow cards to extend beyond container */
 	}
 
 	.nav-cards-container {
@@ -169,9 +178,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
-		max-width: 600px;
+		max-width: 800px;
 		margin: 0 auto;
-		height: 80px; /* Taller to accommodate fanned cards */
+		height: 120px; /* Taller to accommodate extended cards */
 		overflow: visible;
 	}
 
@@ -179,16 +188,16 @@
 		background: linear-gradient(to bottom, #c6c7c9, #888a8c);
 		border-radius: 8px;
 		padding: 0.5rem 1rem;
-		width: 100px;
-		height: 70px;
+		width: 120px;
+		height: 166px; /* Scaled from 555px (400:555 ratio maintained) */
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: center;
 		text-decoration: none;
 		color: #000;
 		font-family: Arial, sans-serif;
 		font-weight: bold;
-		font-size: 0.75rem;
+		font-size: 0.875rem;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 		transition:
 			transform 0.2s ease,
@@ -197,16 +206,18 @@
 		position: absolute;
 		border: 1px solid #999;
 		transform-origin: bottom center;
+		padding-top: 0.75rem;
+		margin-bottom: -80px; /* Extend cards below the visible area */
 	}
 
 	/* Fanned card positioning */
 	.nav-card:nth-child(1) { /* Home */
-		transform: rotate(-20deg) translateX(-120px);
+		transform: rotate(-6deg) translateX(-240px);
 		z-index: 1;
 	}
 	
 	.nav-card:nth-child(2) { /* Game */
-		transform: rotate(-10deg) translateX(-60px);
+		transform: rotate(-3deg) translateX(-120px);
 		z-index: 2;
 	}
 	
@@ -216,12 +227,12 @@
 	}
 	
 	.nav-card:nth-child(4) { /* Contact */
-		transform: rotate(10deg) translateX(60px);
+		transform: rotate(3deg) translateX(120px);
 		z-index: 2;
 	}
 	
 	.nav-card:nth-child(5) { /* Suggest */
-		transform: rotate(20deg) translateX(120px);
+		transform: rotate(6deg) translateX(240px);
 		z-index: 1;
 	}
 
@@ -233,11 +244,11 @@
 	}
 
 	.nav-card:nth-child(1):hover { /* Home */
-		transform: rotate(-20deg) translateX(-120px) scale(1.1);
+		transform: rotate(-6deg) translateX(-240px) scale(1.1);
 	}
 	
 	.nav-card:nth-child(2):hover { /* Game */
-		transform: rotate(-10deg) translateX(-60px) scale(1.1);
+		transform: rotate(-3deg) translateX(-120px) scale(1.1);
 	}
 	
 	.nav-card:nth-child(3):hover { /* Purchase */
@@ -245,18 +256,42 @@
 	}
 	
 	.nav-card:nth-child(4):hover { /* Contact */
-		transform: rotate(10deg) translateX(60px) scale(1.1);
+		transform: rotate(3deg) translateX(120px) scale(1.1);
 	}
 	
 	.nav-card:nth-child(5):hover { /* Suggest */
-		transform: rotate(20deg) translateX(120px) scale(1.1);
+		transform: rotate(6deg) translateX(240px) scale(1.1);
 	}
 
 	.nav-card.active {
-		background: linear-gradient(to bottom, #e07875, #c86662);
-		color: #fff;
-		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-		z-index: 5 !important;
+		background: linear-gradient(to bottom, #c6c7c9, #888a8c);
+		color: #000;
+		text-shadow: none;
+		z-index: 10 !important;
+		transform-origin: bottom center;
+		margin-bottom: -60px; /* Pull up slightly to stick out more */
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+	}
+
+	/* Active card positioning - stick out from fan */
+	.nav-card:nth-child(1).active { /* Home */
+		transform: rotate(-6deg) translateX(-240px) translateY(-20px);
+	}
+	
+	.nav-card:nth-child(2).active { /* Game */
+		transform: rotate(-3deg) translateX(-120px) translateY(-20px);
+	}
+	
+	.nav-card:nth-child(3).active { /* Purchase */
+		transform: rotate(0deg) translateX(0px) translateY(-20px);
+	}
+	
+	.nav-card:nth-child(4).active { /* Contact */
+		transform: rotate(3deg) translateX(120px) translateY(-20px);
+	}
+	
+	.nav-card:nth-child(5).active { /* Suggest */
+		transform: rotate(6deg) translateX(240px) translateY(-20px);
 	}
 
 	.nav-card-title {

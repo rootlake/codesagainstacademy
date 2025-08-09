@@ -72,29 +72,29 @@
 		/* Remove margin-top */
 		margin-bottom: 0; /* Adjust spacing with gap */
 		font-weight: bold;
-		font-size: clamp(16px, 6cqw, 24px); /* Match home page title size */
-		line-height: 1.3; /* Match home page line-height */
+		font-size: clamp(20px, 7cqw, 28px); /* Larger title size */
+		line-height: 1.2; /* Tighter line height */
 		text-align: center; /* Ensure centered */
 	}
 
-	/* Desktop text sizing - smaller for fixed card size */
+	/* Desktop text sizing - use more available space */
 	@media (min-width: 1024px) {
 		h1 {
-			font-size: 18px; /* Fixed size for 400px card */
+			font-size: 30px; /* Even larger size to use available space */
 		}
 	}
 
 	.description {
 		font-weight: bold;
-		font-size: clamp(18px, 4cqw, 18px);
+		font-size: clamp(16px, 5cqw, 20px); /* Larger description text */
 		margin-bottom: 0; /* Adjust spacing with gap */
 		line-height: 1.3;
 	}
 
-	/* Desktop description sizing - smaller for fixed card size */
+	/* Desktop description sizing - use more available space */
 	@media (min-width: 1024px) {
 		.description {
-			font-size: 15px; /* Fixed size for 400px card */
+			font-size: 21px; /* Even larger size to use available space */
 		}
 	}
 

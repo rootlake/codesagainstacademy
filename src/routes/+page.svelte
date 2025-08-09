@@ -62,33 +62,33 @@
 
 	.title {
 		font-weight: bold;
-		font-size: clamp(16px, 6cqw, 24px);
-		line-height: 1.3;
+		font-size: clamp(18px, 6cqw, 26px); /* Larger title size */
+		line-height: 1.2; /* Tighter line height */
 		text-align: center;
 		white-space: pre-wrap;
 		max-width: 100%;
 	}
 
-	/* Desktop text sizing - smaller for fixed card size */
+	/* Desktop text sizing - use more available space */
 	@media (min-width: 1024px) {
 		.title {
-			font-size: 20px; /* Fixed size for 400px card */
+			font-size: 28px; /* Even larger size to use available space */
 		}
 	}
 
 	.description {
 		font-weight: bold;
-		font-size: clamp(18px, 4cqw, 16px);
-		line-height: 1.4;
+		font-size: clamp(16px, 4.5cqw, 18px); /* Larger description text */
+		line-height: 1.35;
 		text-align: left;
 		max-width: 100%;
 		overflow-wrap: break-word;
 	}
 
-	/* Desktop description sizing - smaller for fixed card size */
+	/* Desktop description sizing - use more available space */
 	@media (min-width: 1024px) {
 		.description {
-			font-size: 16px; /* Fixed size for 400px card */
+			font-size: 20px; /* Much larger size to use available space */
 		}
 	}
 

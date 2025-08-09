@@ -108,30 +108,31 @@
 	h1 {
 		margin-bottom: 0; /* Adjust spacing with gap */
 		font-weight: bold;
-		font-size: clamp(16px, 6cqw, 24px); /* Match home page title size */
-		line-height: 1.3; /* Match home page line-height */
+		font-size: clamp(18px, 6cqw, 26px); /* Larger title size */
+		line-height: 1.2; /* Tighter line height */
 		text-align: center; /* Ensure centered */
 	}
 
-	/* Desktop text sizing - smaller for fixed card size */
+	/* Desktop text sizing - match physical card aesthetic */
 	@media (min-width: 1024px) {
 		h1 {
-			font-size: 18px; /* Fixed size for 400px card */
+			font-size: 24px; /* Much larger size for 400px card */
 		}
 	}
 
 	.description {
-		font-size: clamp(13px, 3.2cqw, 14px); /* Further reduced to fit content */
+		font-size: clamp(14px, 4cqw, 16px); /* Larger description text */
 		margin-bottom: 0;
-		line-height: 1.2;
+		line-height: 1.25;
 		text-align: center;
 		margin-bottom: 0.75rem; /* Slightly reduced space before buttons */
+		font-weight: bold; /* Make text bold like physical card */
 	}
 
-	/* Desktop description sizing - smaller for fixed card size */
+	/* Desktop description sizing - match physical card aesthetic */
 	@media (min-width: 1024px) {
 		.description {
-			font-size: 14px; /* Fixed size for 400px card */
+			font-size: 16px; /* Much larger size for 400px card */
 		}
 	}
 
