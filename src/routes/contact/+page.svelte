@@ -39,6 +39,19 @@
         box-sizing: border-box;
         overflow: hidden;
     }
+
+    /* Desktop card sizing - match game card dimensions */
+    @media (min-width: 1024px) {
+        .static-content-card {
+            width: 400px; /* Fixed width to match game card */
+            height: 555px; /* Fixed height to match game card */
+            max-width: none; /* Remove max-width constraint */
+            aspect-ratio: auto; /* Let fixed dimensions control ratio */
+            padding: 40px; /* More padding on desktop */
+            border-radius: 25px; /* Larger border radius */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+        }
+    }
     .content-inner {
         flex-grow: 1;
         display: flex;
@@ -56,11 +69,26 @@
         line-height: 1.3; /* Match home page line-height */
         text-align: center; /* Ensure centered */
     }
+
+    /* Desktop text sizing - use more available space */
+    @media (min-width: 1024px) {
+        h1 {
+            font-size: 30px; /* Even larger size to use available space */
+        }
+    }
+
     .description {
         font-weight: bold;
-        font-size: clamp(18px, 4cqw, 18px);
+        font-size: clamp(16px, 3.8cqw, 17px); /* Slightly smaller for better mobile fit */
         margin-bottom: 0; /* Adjust spacing with gap */
-        line-height: 1.3;
+        line-height: 1.25; /* Tighter line height */
+    }
+
+    /* Desktop description sizing - use more available space */
+    @media (min-width: 1024px) {
+        .description {
+            font-size: 21px; /* Even larger size to use available space */
+        }
     }
 
     .mailto-link {

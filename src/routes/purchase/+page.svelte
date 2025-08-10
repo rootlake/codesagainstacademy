@@ -59,6 +59,19 @@
         box-sizing: border-box;
         overflow: hidden;
     }
+
+    /* Desktop card sizing - match game card dimensions */
+    @media (min-width: 1024px) {
+        .static-content-card {
+            width: 400px; /* Fixed width to match game card */
+            height: 555px; /* Fixed height to match game card */
+            max-width: none; /* Remove max-width constraint */
+            aspect-ratio: auto; /* Let fixed dimensions control ratio */
+            padding: 40px; /* More padding on desktop */
+            border-radius: 25px; /* Larger border radius */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+        }
+    }
     .content-inner {
         flex-grow: 1;
         display: flex;
@@ -71,17 +84,32 @@
     h1 {
         margin-bottom: 0; /* Adjust spacing with gap */
         font-weight: bold;
-        font-size: clamp(14px, 5.5cqw, 20px); /* Smaller title to fit content */
+        font-size: clamp(15px, 5.8cqw, 22px); /* Slightly larger for better mobile readability */
         line-height: 1.2; /* Tighter line height */
         text-align: center; /* Ensure centered */
     }
+
+    /* Desktop text sizing - match physical card aesthetic */
+    @media (min-width: 1024px) {
+        h1 {
+            font-size: 24px; /* Much larger size for 400px card */
+        }
+    }
+
     .description {
-        font-size: clamp(11px, 2.8cqw, 12px); /* Much smaller to fit all content */
+        font-size: clamp(12px, 3.2cqw, 14px); /* Slightly larger for better mobile readability */
         margin-bottom: 0;
-        line-height: 1.1;
+        line-height: 1.15;
         text-align: center;
         margin-bottom: 0.5rem; /* Further reduced space before buttons */
         font-weight: bold; /* Make text bold like physical card */
+    }
+
+    /* Desktop description sizing - match physical card aesthetic */
+    @media (min-width: 1024px) {
+        .description {
+            font-size: 16px; /* Much larger size for 400px card */
+        }
     }
 
     /* Purchase specific styles */

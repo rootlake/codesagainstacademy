@@ -151,6 +151,19 @@
     -webkit-user-select: none;
   }
 
+  /* Desktop card sizing - match game card dimensions */
+  @media (min-width: 1024px) {
+    .card-front {
+      width: 400px; /* Fixed width to match other desktop cards */
+      height: 555px; /* Fixed height to match other desktop cards */
+      max-width: none; /* Remove max-width constraint */
+      aspect-ratio: auto; /* Let fixed dimensions control ratio */
+      padding: 40px; /* More padding on desktop */
+      border-radius: 25px; /* Larger border radius */
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+    }
+  }
+
   /* Remove pseudo-element for background image */
   /* .card-front::before { ... } */
 
@@ -174,6 +187,14 @@
     color: #000;
     /* position: relative; /* No longer needed */
     /* z-index: 1; /* No longer needed */
+  }
+
+  /* Desktop text sizing - larger for desktop cards */
+  @media (min-width: 1024px) {
+    .text-container p {
+      font-size: 24px; /* Fixed larger size for desktop cards */
+      line-height: 1.4; /* Slightly more relaxed line height */
+    }
   }
 
   .bottom-elements {
