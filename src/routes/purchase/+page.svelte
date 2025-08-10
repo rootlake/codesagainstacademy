@@ -65,22 +65,23 @@
         flex-direction: column;
         text-align: center;
         overflow: hidden; /* Match home page */
-        padding: 0.2rem 0; /* Further reduce top padding */
-        gap: 0.4rem; /* Keep reduced gap */
+        padding: 0.1rem 0; /* Minimal padding */
+        gap: 0.3rem; /* Smaller gap */
     }
     h1 {
         margin-bottom: 0; /* Adjust spacing with gap */
         font-weight: bold;
-        font-size: clamp(16px, 6cqw, 24px); /* Match home page title size */
-        line-height: 1.3; /* Match home page line-height */
+        font-size: clamp(14px, 5.5cqw, 20px); /* Smaller title to fit content */
+        line-height: 1.2; /* Tighter line height */
         text-align: center; /* Ensure centered */
     }
     .description {
-        font-size: clamp(16px, 3.8cqw, 16px); /* Reduced from 18px */
+        font-size: clamp(11px, 2.8cqw, 12px); /* Much smaller to fit all content */
         margin-bottom: 0;
-        line-height: 1.25;
+        line-height: 1.1;
         text-align: center;
-        margin-bottom: 1rem; /* Add space before buttons */
+        margin-bottom: 0.5rem; /* Further reduced space before buttons */
+        font-weight: bold; /* Make text bold like physical card */
     }
 
     /* Purchase specific styles */
