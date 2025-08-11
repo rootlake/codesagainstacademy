@@ -169,7 +169,7 @@
 
   .text-container {
     flex: 1;
-    margin-bottom: 5px; /* Reduced gutter significantly */
+    margin-bottom: 40px; /* Increased space to push logo/category lower */
     overflow: hidden;
     /* Ensure text aligns top-left */
     text-align: left;
@@ -191,6 +191,10 @@
 
   /* Desktop text sizing - larger for desktop cards */
   @media (min-width: 1024px) {
+    .text-container {
+      margin-bottom: 60px; /* Even more space on desktop to match physical card */
+    }
+    
     .text-container p {
       font-size: 24px; /* Fixed larger size for desktop cards */
       line-height: 1.4; /* Slightly more relaxed line height */

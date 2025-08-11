@@ -223,11 +223,12 @@
             flex-shrink: 0;
             width: 100%;
             background-color: transparent;
-            padding: 1rem;
+            padding: 0.5rem; /* Reduced padding */
             margin-top: auto; /* Pushes navigation to the bottom */
-            padding-bottom: max(1rem, env(safe-area-inset-bottom));
+            padding-bottom: 0; /* Remove bottom padding to push cards lower */
             box-sizing: border-box;
             overflow: visible; /* Allow cards to extend beyond container */
+            transform: translateY(40px); /* Push the entire navigation section down */
         }
 
         .desktop-nav-cards {
@@ -264,7 +265,7 @@
             border: 1px solid #999;
             transform-origin: bottom center;
             padding-top: 0.75rem;
-            margin-bottom: -80px; /* Extend cards below the visible area */
+            margin-bottom: 20px; /* Keep cards visible above bottom */
         }
 
         /* Fanned card positioning */
@@ -326,7 +327,7 @@
             text-shadow: none;
             z-index: 10 !important;
             transform-origin: bottom center;
-            margin-bottom: -60px; /* Pull up slightly to stick out more */
+            margin-bottom: 0px; /* Keep active card visible */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 

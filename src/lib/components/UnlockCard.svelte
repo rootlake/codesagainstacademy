@@ -87,6 +87,19 @@
         container-type: inline-size;
     }
 
+    /* Desktop card sizing - match main game card dimensions */
+    @media (min-width: 1024px) {
+        .card-front {
+            width: 400px; /* Fixed width to match main game card */
+            height: 555px; /* Fixed height to match main game card */
+            max-width: none; /* Remove max-width constraint */
+            aspect-ratio: auto; /* Let fixed dimensions control ratio */
+            padding: 40px; /* More padding on desktop */
+            border-radius: 25px; /* Larger border radius */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+        }
+    }
+
     .text-container {
         flex: 1;
         margin-bottom: 5px;
@@ -108,6 +121,13 @@
         line-height: 1.2;
     }
 
+    /* Desktop text sizing - larger for desktop cards */
+    @media (min-width: 1024px) {
+        h2 {
+            font-size: 28px; /* Larger size for desktop card */
+        }
+    }
+
     .message {
         font-size: clamp(16px, 4cqw, 16px);
         margin: 0;
@@ -115,10 +135,24 @@
         font-weight: bold;
     }
 
+    /* Desktop message sizing */
+    @media (min-width: 1024px) {
+        .message {
+            font-size: 20px; /* Larger size for desktop card */
+        }
+    }
+
     .support {
         font-size: clamp(13px, 3.8cqw, 15px);
         margin: 0;
         line-height: 1.3;
+    }
+
+    /* Desktop support text sizing */
+    @media (min-width: 1024px) {
+        .support {
+            font-size: 17px; /* Larger size for desktop card */
+        }
     }
 
     .payment-options {
