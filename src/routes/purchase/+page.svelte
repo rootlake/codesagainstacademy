@@ -6,302 +6,353 @@
 		single: 'https://buy.stripe.com/eVq14o80CdK2dvWgRo2Ji00',
 		pack10: 'https://buy.stripe.com/5kQ28sa8KbBUeA0at02Ji01'
 	};
-	const hasStripe = Boolean(STRIPE.single);
 </script>
 
 <div class="static-content-card">
-    <div class="content-inner">
-        <h1>Purchase a Real Deck!</h1>
-        <p class="description">
-            Order a physical <strong>Codes Against Academy</strong> box —
-            an engaging faculty meeting in a box for classrooms, workshops, and PD.
-            <strong>2026 edition:</strong> 100 Scenario cards (5 categories),
-            7 Tier List cards, and rules including Spot the AI.
-        </p>
-         
-        <!-- Purchase buttons will go here -->
-        <div class="purchase-options">
-            {#if hasStripe}
-            <div class="primary-purchase">
-                <a href={STRIPE.single} target="_blank" rel="noopener noreferrer" class="amazon-button stripe-button">
-                    <span class="amazon-text">Buy with card — $25</span>
-                </a>
-            </div>
-            {#if STRIPE.pack10}
-            <div class="primary-purchase" style="margin-top:8px">
-                <a href={STRIPE.pack10} target="_blank" rel="noopener noreferrer" class="payment-button stripe-pack">
-                    Faculty Pack (10) — $225
-                </a>
-            </div>
-            {/if}
-            <div class="alternative-label">Or Amazon / other:</div>
-            {:else}
-            <div class="alternative-label">Card checkout (Stripe) — add Payment Link in page script</div>
-            {/if}
+	<div class="content-inner">
+		<h1>Purchase a Real Deck!</h1>
+		<p class="description">
+			Order your own physical box of <br /><strong>Codes Against Academy</strong>
+			here. It's perfect for classrooms, workshops, and discussions, basically an "Engaging
+			Faculty Meeting in a Box." The <strong>2026 edition</strong> holds 100 Scenario cards, 7
+			Tier List cards, and rules including Spot the AI.
+		</p>
 
-            <div class="primary-purchase">
-                <a href="https://www.amazon.com/dp/B0FD6VKZ9K" target="_blank" rel="noopener noreferrer" class="amazon-button">
-                    <span class="amazon-text">Buy on Amazon</span>
-                </a>
-            </div>
-            
-            <div class="alternative-label">Or pay directly:</div>
-            <div class="button-grid">
-                <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
-                <a href="https://paypal.me/JoshuaLake/25" target="_blank" rel="noopener noreferrer" class="payment-button paypal">PayPal</a>
-                <div class="price-circle">
-                    <span class="price">$25</span>
-                    <span class="each">EACH</span>
-                </div>
-                <a href="https://cash.app/$rootlake" target="_blank" rel="noopener noreferrer" class="payment-button cashapp">Cash App</a>
-                <a href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D" class="payment-button mail">Via Mail</a>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-elements">
-        <img src="{base}/minilogo.png" alt="CAA Logo" class="logo"/>
-        <span class="category">Purchase</span>
-    </div>
+		<div class="purchase-options">
+			<div class="alternative-label">Pay with card or other:</div>
+			<div class="button-grid">
+				<a
+					href={STRIPE.single}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="payment-button stripe">Stripe</a
+				>
+				<a
+					href="https://paypal.me/JoshuaLake/25"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="payment-button paypal">PayPal</a
+				>
+				<div class="price-circle">
+					<span class="price">$25</span>
+					<span class="each">EACH</span>
+				</div>
+				<a
+					href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="payment-button venmo">Venmo</a
+				>
+				<a
+					href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D"
+					class="payment-button mail">Via Mail</a
+				>
+			</div>
+
+			<a
+				href={STRIPE.pack10}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="pack-button"
+			>
+				<span class="pack-title">Faculty Meeting in a Box</span>
+				<span class="pack-sub">10 Pack · pay for 9 · $225</span>
+			</a>
+
+			<a
+				href="https://www.amazon.com/dp/B0FD6VKZ9K"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="amazon-button"
+			>
+				<span class="amazon-text">Buy on Amazon</span>
+			</a>
+		</div>
+	</div>
+	<div class="bottom-elements">
+		<img src="{base}/minilogo.png" alt="CAA Logo" class="logo" />
+		<span class="category">Purchase</span>
+	</div>
 </div>
 
 <style>
-    /* Card structure styles (copied from home page) */
-    .static-content-card {
-        width: 100%;
-        max-width: 320px;
-        aspect-ratio: 2.5 / 3.5;
-        margin: 0 auto; /* Use 0 margin like home */
-        background: linear-gradient(to bottom, #C6C7C9, #888A8C);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        color: #000;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        padding: 15px;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
+	.static-content-card {
+		width: 100%;
+		max-width: 320px;
+		aspect-ratio: 2.5 / 3.5;
+		margin: 0 auto;
+		background: linear-gradient(to bottom, #c6c7c9, #888a8c);
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		color: #000;
+		font-family: Arial, sans-serif;
+		display: flex;
+		flex-direction: column;
+		padding: 15px;
+		box-sizing: border-box;
+		overflow: hidden;
+	}
 
-    /* Desktop card sizing - match game card dimensions */
-    @media (min-width: 1024px) {
-        .static-content-card {
-            width: 400px; /* Fixed width to match game card */
-            height: 555px; /* Fixed height to match game card */
-            max-width: none; /* Remove max-width constraint */
-            aspect-ratio: auto; /* Let fixed dimensions control ratio */
-            padding: 40px; /* More padding on desktop */
-            border-radius: 25px; /* Larger border radius */
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
-        }
-    }
-    .content-inner {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        overflow: hidden; /* Match home page */
-        padding: 0.1rem 0; /* Minimal padding */
-        gap: 0.3rem; /* Smaller gap */
-    }
-    h1 {
-        margin-bottom: 0; /* Adjust spacing with gap */
-        font-weight: bold;
-        font-size: clamp(15px, 5.8cqw, 22px); /* Slightly larger for better mobile readability */
-        line-height: 1.2; /* Tighter line height */
-        text-align: center; /* Ensure centered */
-    }
+	@media (min-width: 1024px) {
+		.static-content-card {
+			width: 400px;
+			height: 555px;
+			max-width: none;
+			aspect-ratio: auto;
+			padding: 40px;
+			border-radius: 25px;
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+		}
+	}
 
-    /* Desktop text sizing - match physical card aesthetic */
-    @media (min-width: 1024px) {
-        h1 {
-            font-size: 24px; /* Much larger size for 400px card */
-        }
-    }
+	.content-inner {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		overflow: hidden;
+		padding: 0.1rem 0;
+		gap: 0.3rem;
+		min-height: 0;
+	}
 
-    .description {
-        font-size: clamp(12px, 3.2cqw, 14px); /* Slightly larger for better mobile readability */
-        margin-bottom: 0;
-        line-height: 1.15;
-        text-align: center;
-        margin-bottom: 0.5rem; /* Further reduced space before buttons */
-        font-weight: bold; /* Make text bold like physical card */
-    }
+	h1 {
+		margin-bottom: 0;
+		font-weight: bold;
+		font-size: clamp(15px, 5.8cqw, 22px);
+		line-height: 1.2;
+		text-align: center;
+	}
 
-    /* Desktop description sizing - match physical card aesthetic */
-    @media (min-width: 1024px) {
-        .description {
-            font-size: 16px; /* Much larger size for 400px card */
-        }
-    }
+	@media (min-width: 1024px) {
+		h1 {
+			font-size: 24px;
+		}
+	}
 
-    /* Purchase specific styles */
-    .purchase-options {
-        display: flex;
-        flex-direction: column;
-        padding: 0 0.5rem;
-        flex-grow: 1;
-        justify-content: flex-start;
-        gap: 0.25rem;
-    }
+	.description {
+		font-size: clamp(12px, 3.2cqw, 14px);
+		line-height: 1.15;
+		text-align: center;
+		margin-bottom: 0.35rem;
+		font-weight: bold;
+	}
 
-    .button-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 1rem;
-        position: relative;
-    }
+	@media (min-width: 1024px) {
+		.description {
+			font-size: 15px;
+		}
+	}
 
-    .price-circle {
-        width: 80px;
-        height: 80px;
-        background-color: white;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-    }
+	.purchase-options {
+		display: flex;
+		flex-direction: column;
+		padding: 0 0.35rem;
+		flex-grow: 1;
+		justify-content: flex-start;
+		gap: 0.35rem;
+		min-height: 0;
+	}
 
-    .price {
-        font-size: 2rem;
-        font-weight: bold;
-        color: black;
-        line-height: 1;
-        margin-bottom: 2px;
-    }
+	.alternative-label {
+		text-align: center;
+		font-size: 0.75rem;
+		color: #555;
+		font-style: italic;
+	}
 
-    .each {
-        font-size: 0.6rem;
-        color: black;
-        font-weight: 500;
-    }
+	.button-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 0.65rem;
+		position: relative;
+	}
 
-    /* Primary Amazon button */
-    .primary-purchase {
-        margin-bottom: 0.75rem;
-    }
+	.price-circle {
+		width: 72px;
+		height: 72px;
+		background-color: white;
+		border-radius: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+	}
 
-    .amazon-button {
-        display: block;
-        background-color: #FF9900;
-        color: #232F3E;
-        padding: 0.7rem;
-        border-radius: 8px;
-        text-decoration: none;
-        text-align: center;
-        transition: background-color 0.2s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
+	.price {
+		font-size: 1.65rem;
+		font-weight: bold;
+		color: black;
+		line-height: 1;
+		margin-bottom: 2px;
+	}
 
-    .amazon-button:hover {
-        background-color: #FF8800;
-    }
+	.each {
+		font-size: 0.55rem;
+		color: black;
+		font-weight: 500;
+	}
 
-    .amazon-text {
-        font-size: 1rem;
-        font-weight: bold;
-    }
+	@media (min-width: 1024px) {
+		.button-grid {
+			gap: 1rem;
+		}
+		.price-circle {
+			width: 80px;
+			height: 80px;
+		}
+		.price {
+			font-size: 2rem;
+		}
+		.each {
+			font-size: 0.6rem;
+		}
+	}
 
-    .alternative-label {
-        text-align: center;
-        font-size: 0.8rem;
-        color: #555;
-        margin-bottom: 0.5rem;
-        font-style: italic;
-    }
+	.payment-button {
+		background-color: white;
+		color: black;
+		padding: 0.55rem 0.4rem;
+		border: none;
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 0.85rem;
+		text-align: center;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.28);
+		transition: background-color 0.2s, box-shadow 0.15s;
+	}
 
-    .payment-button {
-        background-color: white;
-        color: black;
-        padding: 0.8rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        text-align: center;
-        transition: background-color 0.2s;
-    }
+	.payment-button:hover {
+		filter: brightness(0.95);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.32);
+	}
 
-    .payment-button:hover {
-        background-color: #f0f0f0;
-    }
+	.payment-button.stripe {
+		background-color: #635bff;
+		color: white;
+	}
 
-    .payment-button.venmo {
-        background-color: #3D95CE;
-        color: white;
-    }
+	.payment-button.stripe:hover {
+		background-color: #4b45c6;
+	}
 
-    .payment-button.venmo:hover {
-        background-color: #3788BD;
-    }
+	.payment-button.venmo {
+		background-color: #3d95ce;
+		color: white;
+	}
 
-    .payment-button.stripe-pack {
-        display: block;
-        background-color: #635bff;
-        color: white;
-        font-weight: 700;
-    }
-    .payment-button.stripe-pack:hover {
-        background-color: #0a2540;
-        color: white;
-    }
+	.payment-button.paypal {
+		background-color: #ffb800;
+		color: #253b80;
+	}
 
-    .payment-button.paypal {
-        background-color: #FFB800;
-        color: #253B80;
-        font-weight: 700;
-    }
+	.payment-button.mail {
+		background-color: #8b0000;
+		color: white;
+	}
 
-    .payment-button.paypal:hover {
-        background-color: #F2AE00;
-    }
+	.pack-button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.1rem;
+		margin-top: 0.15rem;
+		padding: 0.45rem 0.6rem;
+		border: none;
+		border-radius: 8px;
+		text-decoration: none;
+		background: #0d9488;
+		color: #fff;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.28);
+		transition: background-color 0.15s, box-shadow 0.15s;
+	}
+	.pack-button:hover {
+		background: #0f766e;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.32);
+	}
+	.pack-title {
+		font-size: 0.82rem;
+		font-weight: 800;
+		line-height: 1.2;
+		color: #fff;
+	}
+	.pack-sub {
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.92);
+	}
 
-    .payment-button.cashapp {
-        background-color: #00D632;
-        color: white;
-    }
+	.amazon-button {
+		display: block;
+		background-color: #ff9900;
+		color: #232f3e;
+		padding: 0.5rem 0.65rem;
+		border: none;
+		border-radius: 8px;
+		text-decoration: none;
+		text-align: center;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.28);
+		transition: background-color 0.2s, box-shadow 0.15s;
+	}
+	.amazon-button:hover {
+		background-color: #ff8800;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.32);
+	}
+	.amazon-text {
+		font-size: 0.88rem;
+		font-weight: bold;
+	}
 
-    .payment-button.cashapp:hover {
-        background-color: #00C02E;
-    }
+	@media (min-width: 1024px) {
+		.payment-button {
+			padding: 0.75rem;
+			font-size: 0.95rem;
+		}
+		.pack-button {
+			padding: 0.55rem 0.75rem;
+		}
+		.pack-title {
+			font-size: 0.95rem;
+		}
+		.pack-sub {
+			font-size: 0.75rem;
+		}
+		.amazon-button {
+			padding: 0.65rem 0.75rem;
+		}
+		.amazon-text {
+			font-size: 1rem;
+		}
+	}
 
-    .payment-button.mail {
-        background-color: #8B0000;
-        color: white;
-    }
-
-    .payment-button.mail:hover {
-        background-color: #700000;
-    }
-
-    /* Footer styles (copied from home page) */
-    .bottom-elements {
-        height: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        border-top: 1px solid #aaa;
-        padding-top: 2px;
-        margin-top: auto;
-        flex-shrink: 0;
-    }
-    .logo {
-        height: clamp(12px, 2.5cqw, 18px);
-        width: auto;
-        opacity: 0.8;
-        display: block;
-    }
-    .category {
-        font-size: clamp(11px, 2vw, 14px);
-        color: #000;
-        font-style: italic;
-        font-weight: normal;
-    }
-</style> 
+	.bottom-elements {
+		height: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		border-top: 1px solid #aaa;
+		padding-top: 2px;
+		margin-top: auto;
+		flex-shrink: 0;
+	}
+	.logo {
+		height: clamp(12px, 2.5cqw, 18px);
+		width: auto;
+		opacity: 0.8;
+		display: block;
+	}
+	.category {
+		font-size: clamp(11px, 2vw, 14px);
+		color: #000;
+		font-style: italic;
+	}
+</style>
