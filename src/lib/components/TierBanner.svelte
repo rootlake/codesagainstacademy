@@ -64,13 +64,20 @@
 <style>
   .tier-banner-container {
     position: absolute;
-    bottom: 40px; /* Move up from 35px */
+    bottom: 70px; /* Move higher to avoid covering logo/category */
     left: 0;
     right: 0;
     display: flex;
     z-index: 10;
     height: 65px; /* Match tier button height */
     filter: drop-shadow(0 3px 1px rgba(0, 0, 0, 0.5)); /* Darker, sharper shadow */
+  }
+
+  /* Desktop specific positioning to account for larger card */
+  @media (min-width: 1024px) {
+    .tier-banner-container {
+      bottom: 100px; /* Even higher on desktop cards */
+    }
   }
 
   /* Replica of tier button on the left */

@@ -1,27 +1,50 @@
 <script lang="ts">
-	// Purchase logic (e.g., Stripe integration) will eventually go here
 	import { base } from '$app/paths';
+
+	/** Live Payment Links (Stripe). */
+	const STRIPE = {
+		single: 'https://buy.stripe.com/eVq14o80CdK2dvWgRo2Ji00',
+		pack10: 'https://buy.stripe.com/5kQ28sa8KbBUeA0at02Ji01'
+	};
+	const hasStripe = Boolean(STRIPE.single);
 </script>
 
 <div class="static-content-card">
     <div class="content-inner">
         <h1>Purchase a Real Deck!</h1>
         <p class="description">
-            Order your own physical box of <br><strong>Codes Against Academy</strong>
-            here. It's perfect for classrooms, workshops, and discussions, basically an "Engaging Faculty Meeting in a Box."
-            The deck contains 75 Scenario cards, 25 Reaction cards, the colorful Tier List, and instructions for all three game modes.
+            Order a physical <strong>Codes Against Academy</strong> box —
+            an engaging faculty meeting in a box for classrooms, workshops, and PD.
+            <strong>2026 edition:</strong> 100 Scenario cards (5 categories),
+            7 Tier List cards, and rules including Spot the AI.
         </p>
          
         <!-- Purchase buttons will go here -->
         <div class="purchase-options">
-            <!-- Primary Amazon option -->
+            {#if hasStripe}
+            <div class="primary-purchase">
+                <a href={STRIPE.single} target="_blank" rel="noopener noreferrer" class="amazon-button stripe-button">
+                    <span class="amazon-text">Buy with card — $25</span>
+                </a>
+            </div>
+            {#if STRIPE.pack10}
+            <div class="primary-purchase" style="margin-top:8px">
+                <a href={STRIPE.pack10} target="_blank" rel="noopener noreferrer" class="payment-button stripe-pack">
+                    Faculty Pack (10) — $225
+                </a>
+            </div>
+            {/if}
+            <div class="alternative-label">Or Amazon / other:</div>
+            {:else}
+            <div class="alternative-label">Card checkout (Stripe) — add Payment Link in page script</div>
+            {/if}
+
             <div class="primary-purchase">
                 <a href="https://www.amazon.com/dp/B0FD6VKZ9K" target="_blank" rel="noopener noreferrer" class="amazon-button">
-                    <span class="amazon-text">📦 Buy on Amazon</span>
+                    <span class="amazon-text">Buy on Amazon</span>
                 </a>
             </div>
             
-            <!-- Alternative payment methods -->
             <div class="alternative-label">Or pay directly:</div>
             <div class="button-grid">
                 <a href="https://venmo.com/CodesAgainstAcademy?txn=pay&amount=25&note=Card Deck - (include shipping address)" target="_blank" rel="noopener noreferrer" class="payment-button venmo">Venmo</a>
@@ -216,6 +239,17 @@
 
     .payment-button.venmo:hover {
         background-color: #3788BD;
+    }
+
+    .payment-button.stripe-pack {
+        display: block;
+        background-color: #635bff;
+        color: white;
+        font-weight: 700;
+    }
+    .payment-button.stripe-pack:hover {
+        background-color: #0a2540;
+        color: white;
     }
 
     .payment-button.paypal {

@@ -25,7 +25,7 @@
         <div class="content">
             <h2>Thanks for trying Codes Against Academy!</h2>
             <p class="message">
-                Unlock all 75 scenario cards to fully explore the wide range of relevant AI discussions.
+                Unlock all 100 scenario cards to fully explore the wide range of relevant AI discussions.
             </p>
             <p class="support">
                 I created this app and pay for server time, so help me keep it running with a small donation ($5 recommended, but I'll be happy with anything, thank you!).
