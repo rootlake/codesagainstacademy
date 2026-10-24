@@ -36,7 +36,7 @@
                 <a href="https://cash.app/$rootlake" target="_blank" rel="noopener noreferrer" class="payment-button cashapp">Cash App</a>
             </div>
             <p class="student-note">
-                If the cost is prohibitive or you're a student, send me an email at <a href="mailto:jlake@pomfret.org" class="email-link">jlake@pomfret.org</a> to request an unlock code.
+                If the cost is prohibitive or you're a student, send me an email at <a href="mailto:josh@codesagainstacademy.com" class="email-link">josh@codesagainstacademy.com</a> to request an unlock code.
             </p>
             {#if !showCodeInput}
                 <button class="code-button" on:click={() => showCodeInput = true}>

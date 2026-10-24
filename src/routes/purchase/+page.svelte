@@ -8,6 +8,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Purchase — Codes Against Academy</title>
+</svelte:head>
+
 <div class="static-content-card">
 	<div class="content-inner">
 		<h1>Purchase a Real Deck!</h1>
@@ -44,7 +48,7 @@
 					class="payment-button venmo">Venmo</a
 				>
 				<a
-					href="mailto:jlake@pomfret.org?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D"
+					href="mailto:josh@codesagainstacademy.com?subject=Codes%20Deck%20Order&body=I'm%20sending%20a%20check%20for%20%2425%20(per%20deck)%20to%20you%20at%3A%0A%0AJosh%20Lake%0APomfret%20School%0A398%20Pomfret%20Street%0APomfret%20CT%2006258%0A%0APlease%20send%20my%20deck%20to%3A%0A%5BYour%20Name%20and%20Shipping%20Address%20Here%5D"
 					class="payment-button mail">Via Mail</a
 				>
 			</div>
@@ -70,7 +74,7 @@
 		</div>
 	</div>
 	<div class="bottom-elements">
-		<img src="{base}/minilogo.png" alt="CAA Logo" class="logo" />
+		<img src="{base}/minilogo.png" alt="Codes Against Academy" class="logo" />
 		<span class="category">Purchase</span>
 	</div>
 </div>

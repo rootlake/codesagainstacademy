@@ -8,7 +8,7 @@
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
 </script>
 
-<div class="layout-container">
+<div class="layout-container" class:readable={$page.route.id === '/policies'}>
     <div class="logo-header">
         <a href="{base}/" aria-label="Home">
             <img src="{base}/minilogo.png" alt="Codes Against Academy" />
@@ -39,16 +39,16 @@
                 <a href="{base}/" class="desktop-nav-card {$page.route.id === '/' ? 'active' : ''}">
                     <span class="desktop-nav-title">Home</span>
                 </a>
-                <a href="{base}/game" class="desktop-nav-card {$page.route.id === '/game' ? 'active' : ''}">
+                <a href="{base}/game/" class="desktop-nav-card {$page.route.id === '/game' ? 'active' : ''}">
                     <span class="desktop-nav-title">Game</span>
                 </a>
-                <a href="{base}/purchase" class="desktop-nav-card {$page.route.id === '/purchase' ? 'active' : ''}">
+                <a href="{base}/purchase/" class="desktop-nav-card {$page.route.id === '/purchase' ? 'active' : ''}">
                     <span class="desktop-nav-title">Purchase</span>
                 </a>
-                <a href="{base}/contact" class="desktop-nav-card {$page.route.id === '/contact' ? 'active' : ''}">
+                <a href="{base}/contact/" class="desktop-nav-card {$page.route.id === '/contact' ? 'active' : ''}">
                     <span class="desktop-nav-title">Contact</span>
                 </a>
-                <a href="{base}/suggestions" class="desktop-nav-card {$page.route.id === '/suggestions' ? 'active' : ''}">
+                <a href="{base}/suggestions/" class="desktop-nav-card {$page.route.id === '/suggestions' ? 'active' : ''}">
                     <span class="desktop-nav-title">Suggest</span>
                 </a>
             </div>
@@ -124,12 +124,21 @@
         height: auto; /* Allow content to determine height */
     }
 
+    .layout-container.readable {
+        max-width: 44rem;
+        height: auto;
+    }
+
     @media (min-width: 768px) {
         .layout-container {
             max-width: var(--desktop-max-width, 1200px); /* Desktop: much wider */
             padding: 0 2rem;
             min-height: 100vh; /* Minimum height but allow content to expand */
             height: auto; /* Allow content to determine height */
+        }
+
+        .layout-container.readable {
+            max-width: 44rem;
         }
     }
 

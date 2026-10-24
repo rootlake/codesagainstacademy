@@ -177,16 +177,16 @@
 			<a href="{base}/" class="desktop-nav-card">
 				<span class="desktop-nav-title">Home</span>
 			</a>
-			<a href="{base}/game" class="desktop-nav-card active">
+			<a href="{base}/game/" class="desktop-nav-card active">
 				<span class="desktop-nav-title">Game</span>
 			</a>
-			<a href="{base}/purchase" class="desktop-nav-card">
+			<a href="{base}/purchase/" class="desktop-nav-card">
 				<span class="desktop-nav-title">Purchase</span>
 			</a>
-			<a href="{base}/contact" class="desktop-nav-card">
+			<a href="{base}/contact/" class="desktop-nav-card">
 				<span class="desktop-nav-title">Contact</span>
 			</a>
-			<a href="{base}/suggestions" class="desktop-nav-card">
+			<a href="{base}/suggestions/" class="desktop-nav-card">
 				<span class="desktop-nav-title">Suggest</span>
 			</a>
 		</div>
@@ -275,6 +275,7 @@
 		gap: 10px;
 		width: 100%;
 		max-width: 420px; /* 320px tier list + 2 * (40px arrow + 10px gap) */
+		margin: 0 auto;
 		box-sizing: border-box;
 	}
 

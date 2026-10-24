@@ -21,6 +21,9 @@ const config = {
 		paths: {
 			base: '' // Empty string for root path
 		},
+		prerender: {
+			entries: ['*', '/.well-known/appspecific/com.chrome.devtools.json']
+		},
 		appDir: '_app'
 	}
 };

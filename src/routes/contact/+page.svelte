@@ -4,14 +4,27 @@
 	import { base } from '$app/paths';
 </script>
 
+<svelte:head>
+	<title>Contact — Codes Against Academy</title>
+</svelte:head>
+
 <div class="static-content-card">
     <div class="content-inner">
-        <h1>Contact the Creator</h1>
+        <h1>Contact</h1>
         <p class="description">
-            Josh Lake has been teaching Science at Pomfret School (CT) for over 20 years. For 2025, he'll move on from Science Department Head to Director of Technological Innovation, helping students and campus adults use AI tools ethically and wisely.
+            Joshua Lake runs Codes Against Academy. He teaches at Pomfret School in Connecticut.
         </p>
         <p class="description">
-            Reach Josh at <a href="mailto:jlake@pomfret.org?subject=Codes%20Against%20Academy%20game" class="mailto-link">jlake@pomfret.org</a> with any questions or comments!
+            <a href="mailto:josh@codesagainstacademy.com?subject=Codes%20Against%20Academy%20game" class="mailto-link">josh@codesagainstacademy.com</a>
+        </p>
+        <p class="description address">
+            Joshua Lake<br />
+            Codes Against Academy<br />
+            398 Pomfret Street<br />
+            Pomfret, CT 06258
+        </p>
+        <p class="description">
+            <a href="{base}/policies/" class="mailto-link">Business information</a>
         </p>
         
     </div>
@@ -59,7 +72,7 @@
         text-align: center;
         overflow: hidden; /* Match home page */
         padding: 0.5rem 0; /* Reduce top padding */
-        gap: 0.5rem; /* Reduce gap */
+        gap: 0.35rem;
     }
     h1 {
         /* Remove margin-top */
@@ -79,15 +92,19 @@
 
     .description {
         font-weight: bold;
-        font-size: clamp(16px, 3.8cqw, 17px); /* Slightly smaller for better mobile fit */
-        margin-bottom: 0; /* Adjust spacing with gap */
-        line-height: 1.25; /* Tighter line height */
+        font-size: clamp(14px, 3.6cqw, 16px);
+        margin-bottom: 0;
+        line-height: 1.25;
+    }
+
+    .address {
+        font-weight: 600;
     }
 
     /* Desktop description sizing - use more available space */
     @media (min-width: 1024px) {
         .description {
-            font-size: 21px; /* Even larger size to use available space */
+            font-size: 18px;
         }
     }
 
