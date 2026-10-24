@@ -7,23 +7,29 @@
     <title>Codes Against Academy</title>
     <meta
         name="description"
-        content="Codes Against Academy is a physical AI-ethics card deck for schools, sold by Joshua Lake. Single deck $25. Faculty Meeting Pack $225."
+        content="Codes Against Academy is a deck of 100 scenarios involving AI usage in schools by teachers, students, and administrators."
     />
+    <style>
+        html, body {
+            overflow: auto !important;
+            position: static !important;
+            height: auto !important;
+            min-height: 100% !important;
+            touch-action: auto !important;
+        }
+    </style>
 </svelte:head>
 
 <div class="static-content-card">
     <div class="content-inner">
-        <h1 class="title">Codes Against Academy</h1>
-        <div class="kicker">AI &amp; Ethics in Education: A Discussion Game</div>
-
-        <div class="description">This is the companion site for a physical deck of scenario cards about AI in school. Groups sort the cards and talk through the ethics of using these tools, or leaving them alone.</div>
+        <p class="description"><strong>Codes Against Academy</strong> is a deck of 100 scenarios involving AI usage in schools by teachers, students, and administrators. Players explore the ethical space surrounding these situations as they discuss and debate where to rate the scenes on a Tier List. From S Tier, where the AI use is so good that we <em>must</em> start doing it to F Tier, where the AI use is downright illegal and wrong, there is a wide spectrum of challenging thoughts and conversation points.</p>
+        <p class="description">This deck has helped hundreds of school communities have vital conversations about all the components of our ethical instincts: intention, reaction, individuals vs. groups, and the nature of the technology itself.</p>
+        <p class="business-link"><a href="{base}/policies/">Business information</a></p>
     </div>
     <div class="bottom-elements">
         <img src="{base}/minilogo.png" alt="Codes Against Academy" class="logo"/>
     </div>
 </div>
-
-<p class="business-link"><a href="{base}/policies/">Business information</a></p>
 
 
 <style>
@@ -41,17 +47,19 @@
         flex-direction: column;
         padding: 15px;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: visible;
+        height: auto;
+        aspect-ratio: auto;
     }
 
-    /* Desktop card sizing - match game card dimensions */
+    /* Desktop card sizing - match game card width, grow with the writing */
     @media (min-width: 1024px) {
         .static-content-card {
             width: 400px; /* Fixed width to match game card */
-            height: 555px; /* Fixed height to match game card */
+            height: auto;
             max-width: none; /* Remove max-width constraint */
             aspect-ratio: auto; /* Let fixed dimensions control ratio */
-            padding: 40px; /* More padding on desktop */
+            padding: 36px 32px; /* More padding on desktop */
             border-radius: 25px; /* Larger border radius */
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* More prominent shadow */
         }
@@ -61,54 +69,33 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0;
-    }
-
-    .title {
-        font-weight: bold;
-        font-size: clamp(16px, 6cqw, 24px);
-        line-height: 1.2;
-        text-align: center;
-        margin: 0;
-        max-width: 100%;
-    }
-
-    .kicker {
-        font-weight: bold;
-        font-size: clamp(13px, 3.6cqw, 15px);
-        line-height: 1.3;
-        text-align: center;
-    }
-
-    /* Desktop text sizing - use more available space */
-    @media (min-width: 1024px) {
-        .title {
-            font-size: 28px; /* Even larger size to use available space */
-        }
-        .kicker {
-            font-size: 16px;
-        }
+        gap: 0.75rem;
+        padding: 0.35rem 0 0.5rem;
     }
 
     .description {
         font-weight: bold;
-        font-size: clamp(14px, 3.6cqw, 15px);
-        line-height: 1.35;
+        font-size: 14px;
+        line-height: 1.4;
         text-align: left;
         max-width: 100%;
         overflow-wrap: break-word;
+        margin: 0;
+    }
+
+    .description em {
+        font-style: italic;
     }
 
     /* Desktop description sizing - use more available space */
     @media (min-width: 1024px) {
         .description {
-            font-size: 18px; /* Much larger size to use available space */
+            font-size: 16px;
         }
     }
 
     .business-link {
-        margin: 0.65rem 0 0;
+        margin: auto 0 0;
         text-align: center;
         font-family: Arial, sans-serif;
         font-size: 0.8rem;
