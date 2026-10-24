@@ -22,8 +22,9 @@
 
 <div class="static-content-card">
     <div class="content-inner">
-        <p class="description"><strong>Codes Against Academy</strong> is a deck of 100 scenarios involving AI usage in schools by teachers, students, and administrators. Players explore the ethical space surrounding these situations as they discuss and debate where to rate the scenes on a Tier List. From S Tier, where the AI use is so good that we <em>must</em> start doing it to F Tier, where the AI use is downright illegal and wrong, there is a wide spectrum of challenging thoughts and conversation points.</p>
-        <p class="description">This deck has helped hundreds of school communities have vital conversations about all the components of our ethical instincts: intention, reaction, individuals vs. groups, and the nature of the technology itself.</p>
+        <p class="description"><strong>Codes Against Academy</strong> is a deck of 100 scenarios involving AI usage in schools by teachers, students, and administrators. Players explore the ethical space surrounding these situations as they discuss and debate where to rate the scenes on a Tier List.</p>
+        <img class="deck" src="{base}/3dcardbox.png" alt="The Codes Against Academy deck box" />
+        <p class="closing">This deck has helped hundreds of school communities have vital conversations about all the components of our ethical instincts: intention, reaction, individuals vs. groups, and the nature of the technology itself.</p>
         <p class="business-link"><a href="{base}/policies/">Business information</a></p>
     </div>
     <div class="bottom-elements">
@@ -47,7 +48,7 @@
         flex-direction: column;
         padding: 15px;
         box-sizing: border-box;
-        overflow: visible;
+        overflow: hidden;
         height: auto;
         aspect-ratio: auto;
     }
@@ -69,7 +70,7 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.55rem;
         padding: 0.35rem 0 0.5rem;
     }
 
@@ -83,14 +84,31 @@
         margin: 0;
     }
 
-    .description em {
-        font-style: italic;
+    .deck {
+        width: 118%;
+        max-width: none;
+        height: auto;
+        display: block;
+        margin: 0 0 -2.05rem;
+        transform: translate(15%, -8%);
+        align-self: center;
+    }
+
+    .closing {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: left;
+        margin: 0;
     }
 
     /* Desktop description sizing - use more available space */
     @media (min-width: 1024px) {
         .description {
             font-size: 16px;
+        }
+        .closing {
+            font-size: 15px;
         }
     }
 
