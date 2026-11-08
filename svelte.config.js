@@ -22,7 +22,7 @@ const config = {
 			base: '' // Empty string for root path
 		},
 		prerender: {
-			entries: ['*', '/toddle/', '/.well-known/appspecific/com.chrome.devtools.json']
+			entries: ['*', '/order/', '/toddle/', '/.well-known/appspecific/com.chrome.devtools.json']
 		},
 		appDir: '_app'
 	}

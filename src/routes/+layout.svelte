@@ -8,7 +8,7 @@
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
 </script>
 
-<div class="layout-container" class:readable={$page.route.id === '/policies'} class:sheet={$page.route.id === '/desk' || $page.route.id === '/toddle'}>
+<div class="layout-container" class:readable={$page.route.id === '/policies'} class:sheet={$page.route.id === '/desk' || $page.route.id === '/order'}>
     <div class="logo-header">
         <a href="{base}/" aria-label="Home">
             <img src="{base}/minilogo.png" alt="Codes Against Academy" />
@@ -18,7 +18,7 @@
     <main class="main-content">
         <!-- The slot tag renders the content of the current page -->
         <slot />
-        {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/toddle'}
+        {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/order'}
             <!-- Mobile Navigation -->
             <div class="nav-area mobile-nav">
                 <NavigationMenu />
@@ -33,7 +33,7 @@
     </footer>
 
     <!-- Desktop Navigation (only visible on wide screens) -->
-    {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/toddle'}
+    {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/order'}
         <nav class="desktop-navigation">
             <div class="desktop-nav-cards">
                 <a href="{base}/" class="desktop-nav-card {$page.route.id === '/' ? 'active' : ''}">
