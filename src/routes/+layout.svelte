@@ -8,7 +8,7 @@
 	import NavigationMenu from '$lib/components/NavigationMenu.svelte';
 </script>
 
-<div class="layout-container" class:readable={$page.route.id === '/policies'}>
+<div class="layout-container" class:readable={$page.route.id === '/policies'} class:sheet={$page.route.id === '/desk' || $page.route.id === '/toddle'}>
     <div class="logo-header">
         <a href="{base}/" aria-label="Home">
             <img src="{base}/minilogo.png" alt="Codes Against Academy" />
@@ -18,7 +18,7 @@
     <main class="main-content">
         <!-- The slot tag renders the content of the current page -->
         <slot />
-        {#if $page.route.id !== '/game'}
+        {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/toddle'}
             <!-- Mobile Navigation -->
             <div class="nav-area mobile-nav">
                 <NavigationMenu />
@@ -33,7 +33,7 @@
     </footer>
 
     <!-- Desktop Navigation (only visible on wide screens) -->
-    {#if $page.route.id !== '/game'}
+    {#if $page.route.id !== '/game' && $page.route.id !== '/desk' && $page.route.id !== '/toddle'}
         <nav class="desktop-navigation">
             <div class="desktop-nav-cards">
                 <a href="{base}/" class="desktop-nav-card {$page.route.id === '/' ? 'active' : ''}">
@@ -127,6 +127,22 @@
     .layout-container.readable {
         max-width: 44rem;
         height: auto;
+    }
+
+    .layout-container.sheet {
+        max-width: 28rem;
+        height: auto;
+        min-height: 100svh;
+    }
+
+    .layout-container.sheet .footer-area {
+        display: none;
+    }
+
+    :global(body:has(.sheet)) {
+        overflow: auto;
+        height: auto;
+        min-height: 100svh;
     }
 
     @media (min-width: 768px) {
