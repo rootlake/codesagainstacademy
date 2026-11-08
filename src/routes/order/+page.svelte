@@ -35,8 +35,7 @@
 			name: 'Faculty Meeting Pack',
 			detail: '10 decks, 10th is free · shipping $18',
 			amount: '$225',
-			href: 'https://buy.stripe.com/14A28s0ya9tMeA0dFc2Ji0t',
-			deal: true
+			href: 'https://buy.stripe.com/14A28s0ya9tMeA0dFc2Ji0t'
 		}
 	];
 
@@ -86,7 +85,7 @@
 		<ul class="orders">
 			{#each orders as order (order.id)}
 				<li>
-					<a class:deal={order.deal} href={order.href}>
+					<a href={order.href}>
 						<span class="copy">
 							<span class="name">{order.name}</span>
 							<span class="detail">{order.detail}</span>
@@ -151,7 +150,7 @@
 	.orders {
 		list-style: none;
 		margin: 0;
-		padding: 0;
+		padding: 0.4rem 0.15rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.55rem;
@@ -166,17 +165,30 @@
 		text-decoration: none;
 		color: inherit;
 		padding: 0.9rem 0.95rem;
-		border: 1px solid #6e7073;
+		border: 1px solid #8e9092;
 		border-radius: 12px;
-		background: linear-gradient(to bottom, #d5d6d8, #b4b6b8);
-		box-shadow: 0 3px 0 #6e7073;
+		background: linear-gradient(to bottom, #b8b9bb, #c8c9cb);
+		box-shadow: 0 3px 0 #8e9092;
 	}
 
-	.orders a.deal {
-		background: #111;
-		color: #fff;
-		border-color: #111;
-		box-shadow: 0 3px 0 #000;
+	.orders li:nth-child(2) a {
+		border-color: #96989a;
+		background: linear-gradient(to bottom, #c0c1c3, #d0d1d3);
+		box-shadow: 0 3px 0 #96989a;
+	}
+
+	.orders li:nth-child(3) a {
+		border-color: #9ea0a2;
+		background: linear-gradient(to bottom, #c8c9cb, #d8d9db);
+		box-shadow: 0 3px 0 #9ea0a2;
+	}
+
+	.orders li:nth-child(4) a {
+		border-color: #a6a8aa;
+		background: linear-gradient(to bottom, #d0d1d3, #e0e1e3);
+		box-shadow:
+			0 0 14px 3px rgba(255, 255, 255, 0.55),
+			0 3px 0 #a6a8aa;
 	}
 
 	.orders a:focus-visible {
@@ -289,11 +301,21 @@
 	@media (prefers-reduced-motion: no-preference) {
 		.orders a:active {
 			transform: translateY(2px);
-			box-shadow: 0 1px 0 #6e7073;
+			box-shadow: 0 1px 0 #8e9092;
 		}
 
-		.orders a.deal:active {
-			box-shadow: 0 1px 0 #000;
+		.orders li:nth-child(2) a:active {
+			box-shadow: 0 1px 0 #96989a;
+		}
+
+		.orders li:nth-child(3) a:active {
+			box-shadow: 0 1px 0 #9ea0a2;
+		}
+
+		.orders li:nth-child(4) a:active {
+			box-shadow:
+				0 0 10px 2px rgba(255, 255, 255, 0.4),
+				0 1px 0 #a6a8aa;
 		}
 
 		.method:active {
