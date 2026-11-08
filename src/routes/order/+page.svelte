@@ -66,7 +66,6 @@
 		<a class="again" href="/order">Order another</a>
 	{:else}
 		<h1>Order decks</h1>
-		<p class="lead">A deck is $25. Packs take a little off. Shipping is added.</p>
 		<ul class="tiers" aria-hidden="true">
 			{#each tiers as tier (tier.id)}
 				<li style:background={tier.color}>{tier.id}</li>
@@ -85,7 +84,6 @@
 				</li>
 			{/each}
 		</ul>
-		<p class="note">Decks at the table are for today. This page is for the ones we ship.</p>
 	{/if}
 	<p class="mail"><a href="mailto:josh@codesagainstacademy.com">josh@codesagainstacademy.com</a></p>
 </div>
@@ -100,7 +98,7 @@
 	}
 
 	h1 {
-		margin: 0;
+		margin: 0 0 0.9rem;
 		font-size: 1.85rem;
 		font-weight: 700;
 		letter-spacing: -0.03em;
@@ -193,7 +191,6 @@
 		white-space: nowrap;
 	}
 
-	.note,
 	.mail {
 		margin: 0.9rem 0 0;
 		text-align: center;
