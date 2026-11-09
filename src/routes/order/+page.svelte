@@ -60,6 +60,7 @@
 		name="description"
 		content="Order Codes Against Academy decks. We mail them to your school."
 	/>
+	<meta name="theme-color" content="#8b8c8f" />
 </svelte:head>
 
 <div class="sheet">
