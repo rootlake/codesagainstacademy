@@ -139,10 +139,15 @@
         display: none;
     }
 
+    :global(html:has(.sheet)),
     :global(body:has(.sheet)) {
+        position: relative;
         overflow: auto;
         height: auto;
+        min-height: 100%;
         min-height: 100svh;
+        touch-action: auto;
+        background: linear-gradient(to bottom, #8b8c8f, #c7c8ca);
     }
 
     @media (min-width: 768px) {
