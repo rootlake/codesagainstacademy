@@ -19,6 +19,17 @@
 				height: 100%;
 				touch-action: none;
 			}
+			/* The order page has to scroll and paint past the locked game viewport. */
+			html:has(.sheet),
+			body:has(.sheet) {
+				overflow: auto;
+				position: relative;
+				height: auto;
+				min-height: 100dvh;
+				min-height: 100lvh;
+				touch-action: auto;
+				background: linear-gradient(to bottom, #8b8c8f, #c7c8ca);
+			}
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">

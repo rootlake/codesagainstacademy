@@ -131,8 +131,10 @@
 
     .layout-container.sheet {
         max-width: 28rem;
+        width: 100%;
         height: auto;
-        min-height: 100svh;
+        min-height: 100dvh;
+        min-height: 100lvh;
     }
 
     .layout-container.sheet .footer-area {
@@ -144,8 +146,8 @@
         position: relative;
         overflow: auto;
         height: auto;
-        min-height: 100%;
-        min-height: 100svh;
+        min-height: 100dvh;
+        min-height: 100lvh;
         touch-action: auto;
         background: linear-gradient(to bottom, #8b8c8f, #c7c8ca);
     }
